@@ -17,13 +17,12 @@ struct ButtonView: View {
             onTap()
                }) {
                    Text(title)
-                       .padding()
+                       .foregroundColor(.white)
+                       .frame(height: 60)
                        .frame(maxWidth: .infinity)
+                       .background(Color.blue)
+                       .cornerRadius(8)
                }
-               .buttonStyle(.bordered)
-               .tint(.blue)
-               .cornerRadius(10)
-               
     }
 }
 

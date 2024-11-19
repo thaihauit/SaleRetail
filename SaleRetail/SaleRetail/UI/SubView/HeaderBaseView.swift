@@ -14,9 +14,8 @@ struct HeaderBaseView: View {
         Text(name)
             .padding(4)
             .font(.system(size: 22, weight: .bold))
-            .foregroundColor(.white)
+            .foregroundColor(.blue)
             .frame(maxWidth: .infinity)
-            .background(Color.blue)
             .frame(height: 70)
             .ignoresSafeArea(.all)
     }

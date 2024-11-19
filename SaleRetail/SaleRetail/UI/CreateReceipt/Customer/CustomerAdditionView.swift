@@ -9,27 +9,91 @@ import SwiftUI
 
 struct CustomerAdditionView: View {
     
-    var body: some View {
-        VStack(spacing: 16) {
-            HeaderBaseView(name: "TẠO KHÁCH HÀNG")
-            
-            contentView
-                .padding(.horizontal, 16)
-        }
-        .frame(maxHeight: .infinity, alignment: .top)
+    @ObservedObject var state: CustomerAdditionState
+    let action: (Action) -> Void
+    
+    init(state: CustomerAdditionState, action: @escaping (Action) -> Void) {
+        self.state = state
+        self.action = action
     }
-}
-extension CustomerAdditionView {
-    var contentView: some View {
-        VStack(spacing: 8) {
-            TextFormView(title: "Khách Hàng", content: "Ethan")
-            TextFormView(title: "Nhóm", content: "Ethan")
-            TextFormView(title: "Địa Chỉ", content: "Ethan")
-            TextFormView(title: "Điện Thoại", content: "Ethan")
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            headerView
+                .padding(.horizontal, 16)
+                .background(Color.blue.opacity(0.6))
+            scrollView
         }
     }
 }
 
+extension CustomerAdditionView {
+    enum Action {
+        case didTapCustomer(item: CustomerModel)
+    }
+}
+
+extension CustomerAdditionView {
+    func itemRow(item: CustomerModel, index: Int) -> some View {
+        HStack(spacing: 0) {
+            Group {
+                Text("\(index)")
+                    .padding(.leading, 8)
+                    .frame(width: 150, alignment: .leading)
+                Text(item.name)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(item.phone)
+                    .frame(width: 300, alignment: .leading)
+                Text(item.address)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .font(.system(size: 12))
+            .frame(height: 60)
+        }
+    }
+    
+    var headerView: some View {
+        HStack(spacing: 0) {
+            Group {
+                Text("STT")
+                    .padding(.leading, 8)
+                    .frame(width: 150, alignment: .leading)
+                Text("TÊN")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("ĐIỆN THOẠI")
+                    .frame(width: 300, alignment: .leading)
+                Text("ĐỊA CHỈ")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .foregroundColor(.white)
+            .fixedSize(horizontal: false, vertical: true)
+            .font(.system(size: 12, weight: .semibold))
+            .frame(height: 60)
+        }
+    }
+    
+    var scrollView: some View {
+        List {
+            ForEach(Array(state.customers.enumerated()), id: \.offset) { (index, item) in
+                itemRow(item: item, index: index + 1)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        action(.didTapCustomer(item: item))
+                    }
+            }
+        }
+        .listStyle(PlainListStyle())
+        .background(Color.clear)
+        .scrollContentBackground(.hidden)
+    }
+}
+
 #Preview {
-    CustomerAdditionView()
+    CustomerAdditionView(state: .init(customers: [
+        CustomerModel(id: 1, group: 1, groupName: "111", phone: "1234567890", address: "London", code: "1234", name: "Ethan", note: "", isDeleted: false),
+        CustomerModel(id: 1, group: 1, groupName: "111", phone: "1234567890", address: "London", code: "1234", name: "Ethan", note: "", isDeleted: false),
+        CustomerModel(id: 1, group: 1, groupName: "111", phone: "1234567890", address: "London", code: "1234", name: "Ethan", note: "", isDeleted: false),
+        CustomerModel(id: 1, group: 1, groupName: "111", phone: "1234567890", address: "London", code: "1234", name: "Ethan", note: "", isDeleted: false)
+    ])) {_ in }
 }

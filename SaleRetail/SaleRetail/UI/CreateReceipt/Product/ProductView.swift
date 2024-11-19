@@ -1,43 +1,40 @@
 //
-//  ProductAdditionView.swift
+//  ProductView.swift
 //  SaleRetail
 //
-//  Created by D.Ace on 19/11/24.
+//  Created by D.Ace on 13/11/24.
 //
 
 import SwiftUI
 
-struct ProductAdditionView: View {
-    @ObservedObject var state: ProductAdditionState
+struct ProductView: View {
+    @ObservedObject var state: ProductState
     let action: (Action) -> Void
     
-    init(state: ProductAdditionState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: ProductState, action: @escaping (Action) -> Void = { _ in }) {
         self.state = state
         self.action = action
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            headerView
-                .padding(.horizontal, 16)
-                .background(Color.blue.opacity(0.6))
-            
-            scrollView
-        }
-        .frame(width: 500, height: 500)
+        contentView
+            .frame(height: 500)
     }
 }
 
-extension ProductAdditionView{
+extension ProductView {
     enum Action {
-        case didTapItem(item: ProductModel)
+        case didRemoveItem(index: Int)
     }
 }
 
-extension ProductAdditionView {
+extension ProductView {
     func itemRow(item: ProductModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
+                Text("\(index)")
+                    .frame(width: 70, alignment: .leading)
+                
                 Text(item.code)
                     .frame(width: 100, alignment: .leading)
                 
@@ -47,19 +44,31 @@ extension ProductAdditionView {
                 Text(item.unitName)
                     .frame(width: 100, alignment: .leading)
                 
+                TextFieldNumberView(onChangeValue: { value in
+                    
+                }).frame(width: 100, alignment: .leading)
+                
                 Text("\(item.sellPrice)")
                     .frame(width: 100, alignment: .leading)
+                
+                Text("\(item.unitExchangeRate)")
+                    .frame(width: 100, alignment: .leading)
+                
+                Text("999999")
+                    .frame(width: 150, alignment: .leading)
             }
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
+                Text("STT")
+                    .frame(width: 70, alignment: .leading)
+                
                 Text("Mã Hàng Hóa")
                     .frame(width: 100, alignment: .leading)
                 
@@ -69,12 +78,31 @@ extension ProductAdditionView {
                 Text("Đơn Vị")
                     .frame(width: 100, alignment: .leading)
                 
+                Text("Số Lượng")
+                    .frame(width: 100, alignment: .leading)
+                
                 Text("Đơn Giá")
                     .frame(width: 100, alignment: .leading)
+                
+                Text("Chiết Khấu")
+                    .frame(width: 100, alignment: .leading)
+                
+                Text("Thành Tiền")
+                    .frame(width: 150, alignment: .leading)
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
             .frame(height: 60)
+        }
+    }
+    
+    var contentView: some View {
+        VStack(spacing: 0) {
+            headerView
+                .padding(.horizontal, 16)
+                .background(Color.blue)
+            
+            scrollView
         }
     }
     
@@ -83,8 +111,12 @@ extension ProductAdditionView {
             ForEach(Array(state.products.enumerated()), id: \.offset) { (index, item) in
                 itemRow(item: item, index: index + 1)
                     .contentShape(Rectangle())
-                    .onTapGesture {
-                        action(.didTapItem(item: item))
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            action(.didRemoveItem(index: index))
+                        } label: {
+                            Label("Xóa", systemImage: "trash")
+                        }
                     }
             }
         }

@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct DateView: View {
+    
+    @Binding var selectedDate: Date
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        DatePicker("", selection: $selectedDate, displayedComponents: .date)
+                       .datePickerStyle(.graphical)
+                       .padding()
+                       .frame(width: 450, height: 400)
     }
+    
+    // Định dạng ngày
+       var dateFormatter: DateFormatter {
+           let formatter = DateFormatter()
+           formatter.dateStyle = .long
+           return formatter
+       }
 }
 
-#Preview {
-    DateView()
-}
