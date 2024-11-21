@@ -11,7 +11,7 @@ struct TextFieldNumberView: View {
     @State private var number: Int? = 0
     let onChangeValue: (Int?) -> Void
     
-    init(number: Int? = nil, onChangeValue: @escaping (Int?) -> Void) {
+    init(number: Int?, onChangeValue: @escaping (Int?) -> Void) {
         self.number = number
         self.onChangeValue = onChangeValue
     }
@@ -37,5 +37,5 @@ extension NumberFormatter {
 }
 
 #Preview {
-    TextFieldNumberView() { _ in }
+    TextFieldNumberView(number: 0) { _ in }
 }

@@ -60,7 +60,6 @@ extension DepotView {
         }
     }
     
-    
     var contentView: some View {
         VStack(spacing: 0) {
             headerView

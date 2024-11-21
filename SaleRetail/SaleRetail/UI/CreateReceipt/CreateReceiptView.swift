@@ -102,25 +102,16 @@ extension CreateReceiptView {
                         .onTapGesture {
                             state.iShowProductModal = true
                         }
-                        .popover(
-                            isPresented: $state.iShowProductModal,
-                            attachmentAnchor: .rect(.bounds),
-                            arrowEdge: .top
-                        ) {
-                            ProductAdditionView(state: .init(products: [])) { action in
-                                switch action {
-                                case .didTapItem(let item):
-                                    state.iShowProductModal = false
-                                    state.products.append(item)
-                                }
-                            }
-                        }
                     }
                     
                     ProductView(state: .init(products: state.products)) { action in
                         switch action {
                         case .didRemoveItem(let index):
                             state.products.remove(at: index)
+                        case let .didSelectedNumber(index, value):
+                            state.selectedNumber(index: index, value: value)
+                        case let .didSelectedUnit(index, unit):
+                            state.selectedUnit(index: index, unit: unit)
                         }
                     }
                 }
@@ -165,9 +156,13 @@ extension CreateReceiptView {
                                 arrowEdge: .top
                             ) {
                                 DepotView(state: .init(depots: []), action: { action in
-                                    
+                                    switch action {
+                                    case .didTapItem(let item):
+                                        state.depot = item
+                                    }
                                 })
                             }
+                        
                         TextFormView(title: "Xe", content: state.vehice?.code ?? "")
                             .contentShape(Rectangle())
                             .onTapGesture {
@@ -179,7 +174,10 @@ extension CreateReceiptView {
                                 arrowEdge: .top
                             ) {
                                 VehiceView(state: .init(vehices: []), action: { action in
-                                    
+                                    switch action {
+                                    case .didTapItem(let item):
+                                        state.vehice = item
+                                    }
                                 })
                             }
                     }
@@ -196,18 +194,29 @@ extension CreateReceiptView {
             .cornerRadius(8)
     }
     
-    
-    
     var contentView: some View {
         VStack(spacing: 16) {
             customerView
             infoView
+            
             productView
+                .fullScreenCover(isPresented: $state.iShowProductModal) {
+                    PopupView(isPresented: $state.iShowProductModal) {
+                        ProductAdditionView(state: .init(products: [])) { action in
+                            switch action {
+                            case .didTapItem(let item):
+                                state.iShowProductModal = false
+                                state.products.append(item)
+                            }
+                        }
+                    }
+                }
             
             ButtonView(title: "TẠO ĐƠN") {
                 
             }
         }
+        
     }
 }
 

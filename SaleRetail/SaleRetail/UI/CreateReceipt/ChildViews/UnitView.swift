@@ -11,16 +11,14 @@ struct UnitView: View {
     @ObservedObject var state: UnitState
     let action: (Action) -> Void
     
-    init(state: UnitState, action: @escaping (Action) -> Void) {
+    init(state: UnitState, action: @escaping (Action) -> Void = { _ in }) {
         self.state = state
         self.action = action
     }
     
     var body: some View {
         contentView
-            .background(Color.white)
-            .frame(height: 450)
-            .frame(maxHeight: .infinity, alignment: .top)
+            .frame(width: 200, height: 300)
     }
 }
 
@@ -32,49 +30,28 @@ extension UnitView {
 
 extension UnitView {
     func itemRow(item: UnitModel, index: Int) -> some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Group {
-                    Text("\(index)")
-                        .padding(.leading, 8)
-                        .frame(width: 150, alignment: .leading)
-                    
-                    Text(item.name)
-                        .frame(width: 300, alignment: .leading)
-                }
-                .padding(.horizontal, 4)
-                .fixedSize(horizontal: false, vertical: true)
-                .font(.system(size: 12))
-                .frame(height: 60)
-            }
-            
-            Divider()
-        }
-        .background(Color.white)
-        .padding(.horizontal, 12)
+        Text(item.name)
+            .frame(width: 100, alignment: .leading)
+            .font(.system(size: 13))
+            .frame(height: 60)
+            .background(Color.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var headerView: some View {
-        HStack(spacing: 0) {
-            Group {
-                Text("STT")
-                    .padding(.leading, 8)
-                    .frame(width: 50, alignment: .leading)
-                Text("Loại Xe")
-                    .frame(width: 100, alignment: .leading)
-            }
+        Text("Đơn vị")
+            .frame(maxWidth: .infinity, alignment: .leading)
             .foregroundColor(.white)
-            .font(.system(size: 12, weight: .semibold))
+            .font(.system(size: 13, weight: .semibold))
             .frame(height: 60)
-        }
     }
-    
     
     var contentView: some View {
         VStack(spacing: 0) {
             headerView
                 .padding(.horizontal, 16)
                 .background(Color.blue.opacity(0.6))
+            
             scrollView
         }
     }
@@ -82,7 +59,7 @@ extension UnitView {
     var scrollView: some View {
         List {
             ForEach(Array(state.units.enumerated()), id: \.offset) { (index, item) in
-                itemRow(item: item, index: index + 1)
+                itemRow(item: item, index: index)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         action(.didTapItem(item: item))
@@ -94,10 +71,11 @@ extension UnitView {
         .scrollContentBackground(.hidden)
     }
 }
+
 #Preview {
     UnitView(state: .init(units:  [
-        UnitModel(id: 1, code: "1234", name: "Tui"),
-        UnitModel(id: 1, code: "1234", name: "Bich"),
-        UnitModel(id: 1, code: "1234", name: "kg")
-    ])) { _ in }
+        UnitModel(id: 1, price: 1234, name: "Tui"),
+        UnitModel(id: 1, price: 2222, name: "Bich"),
+        UnitModel(id: 1, price: 1111, name: "chai"),
+    ]))
 }

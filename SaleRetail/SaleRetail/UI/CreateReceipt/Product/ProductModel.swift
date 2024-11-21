@@ -9,29 +9,32 @@ import Foundation
 
 struct ProductModel {
     let id: Int
-    let group: Int
-    let provider: Int
-    let unit: Int
-    let smallUnit: Int
     let unitExchangeRate: Int
-    let buyPrice: Int
-    let sellPrice: Int
     let smallUnitSellPrice: Int
-    let weight: Int
-    let smallUnitWeight: Int
+    let groupName: String
+    let providerName: String
+    let code: String
+    let name: String
+    let units: [UnitModel]
     let minSellUnit: Int
-    let isDeleted: Bool
-    let  hasExpiredDate: Bool
-    let  groupName: String
-    let  providerName: String
-    let  unitName: String
-    let  smallUnitName: String
-    let  minSellUnitName: String
-    let  code: String
-    let  name: String
+    let minSellUnitName: String
+    let number: Int
+    let unitSelected: UnitModel?
     
-    let number: Int = 0
-    let unitSelected: UnitModel? = nil
+    init(id: Int, unitExchangeRate: Int, smallUnitSellPrice: Int, groupName: String, providerName: String, code: String, name: String, units: [UnitModel], minSellUnit: Int, minSellUnitName: String, number: Int = 0, unitSelected: UnitModel? = nil) {
+        self.id = id
+        self.unitExchangeRate = unitExchangeRate
+        self.smallUnitSellPrice = smallUnitSellPrice
+        self.groupName = groupName
+        self.providerName = providerName
+        self.code = code
+        self.name = name
+        self.units = units
+        self.minSellUnit = minSellUnit
+        self.minSellUnitName = minSellUnitName
+        self.number = number
+        self.unitSelected = unitSelected
+    }
 }
 
 struct VehiceModel {
@@ -58,13 +61,8 @@ struct DepotModel {
 
 struct UnitModel {
     let id: Int
-    let code: String
+    let price: Int
     let name: String
-}
-
-enum UnitType {
-    case small(model: UnitModel)
-    case big(model: UnitModel)
 }
 
 struct DiscountModel {
@@ -132,54 +130,4 @@ struct PromotionModel {
     let isDeleted: Bool
 }
 
-struct SalesOrderModel {
-    struct DiscountId {
-        let discountId: Int
-        let amount: Int
-    }
-    
-    struct Detail {
-        let price: Int
-        let priceOriginal: Int
-        let amount: Int
-        let discount: Int
-        let discountId: Int
-        let product: Int
-        let unit: Int
-        let quantity: Int
-    }
-    
-    struct Promotion {
-        let promotionId: Int
-        let product: Int
-        let unit: Int
-        let quantity: Int
-    }
-    
-    let id: Int
-    let customer: Int
-    let saleEmployee: Int
-    let warehouse: Int
-    let vehicle: Int
-    let deliveredDate: String
-    let invoiceDate: String
-    let discountAmount: Int
-    let cumulativeAmount: Int
-    let paidAmount: Int
-    let note: String
-    let stockExported: Bool
-    let delivered: Bool
-    let returned: Bool
-    let cumulativeId: Int
-    let version: Int
-    let discountIds: [DiscountId]
-    let invoiceNo: String
-    let discount: Int
-    let totalAmount: Int
-    let createdBy: Int
-    let modifiedBy: Int
-    let detail: [Detail]
-    let promotion: [Promotion]
-    let createdDate: String
-}
 

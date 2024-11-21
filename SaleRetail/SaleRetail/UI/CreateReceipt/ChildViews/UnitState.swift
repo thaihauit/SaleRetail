@@ -12,9 +12,9 @@ class UnitState: ObservableObject {
     
     init(units: [UnitModel]) {
         self.units = [
-            UnitModel(id: 1, code: "1234", name: "Tui"),
-            UnitModel(id: 1, code: "1234", name: "Bich"),
-            UnitModel(id: 1, code: "1234", name: "kg")
+            UnitModel(id: 1, price: 1234, name: "Tui"),
+            UnitModel(id: 1, price: 2222, name: "Bich"),
+            UnitModel(id: 1, price: 1111, name: "chai"),
         ]
     }
 }

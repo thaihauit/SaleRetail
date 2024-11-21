@@ -19,7 +19,7 @@ struct VehiceView: View {
     
     var body: some View {
         contentView
-            .frame(height: 150)
+            .frame(height: 300)
     }
 }
 
@@ -35,9 +35,9 @@ extension VehiceView {
             Group {
                 Text("\(index)")
                     .padding(.leading, 8)
-                    .frame(width: 50, alignment: .leading)
-                Text(item.code)
                     .frame(width: 100, alignment: .leading)
+                Text(item.code)
+                    .frame(width: 200, alignment: .leading)
             }
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
@@ -50,9 +50,9 @@ extension VehiceView {
             Group {
                 Text("STT")
                     .padding(.leading, 8)
-                    .frame(width: 50, alignment: .leading)
-                Text("Loại Xe")
                     .frame(width: 100, alignment: .leading)
+                Text("Loại Xe")
+                    .frame(width: 200, alignment: .leading)
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
@@ -60,9 +60,9 @@ extension VehiceView {
         }
     }
     
-
+    
     var contentView: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 0) {
             headerView
                 .padding(.horizontal, 16)
                 .background(Color.blue.opacity(0.6))
@@ -71,17 +71,18 @@ extension VehiceView {
     }
     
     var scrollView: some View {
-        ScrollView(.vertical) {
-            LazyVStack(alignment: .leading, spacing: 10) {
-                ForEach(Array(state.vehices.enumerated()), id: \.offset) { (index, item) in
-                    itemRow(item: item, index: index + 1)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            action(.didTapItem(item: item))
-                        }
-                }
+        List {
+            ForEach(Array(state.vehices.enumerated()), id: \.offset) { (index, item) in
+                itemRow(item: item, index: index + 1)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        action(.didTapItem(item: item))
+                    }
             }
         }
+        .listStyle(PlainListStyle())
+        .background(Color.clear)
+        .scrollContentBackground(.hidden)
     }
 }
 

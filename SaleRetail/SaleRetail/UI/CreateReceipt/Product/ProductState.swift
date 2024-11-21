@@ -10,7 +10,7 @@ import UIKit
 
 class ProductState: ObservableObject {
     @Published var products: [ProductModel] = []
-    @Published var unitTypes: [UnitType] = []
+    @Published var isDisplayUnitModal = false
     
     init(products: [ProductModel]) {
         self.products = products
