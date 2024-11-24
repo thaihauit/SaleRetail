@@ -1,18 +1,18 @@
 //
-//  SalesOrderListView.swift
+//  PromotionView.swift
 //  SaleRetail
 //
-//  Created by D.Ace on 20/11/24.
+//  Created by D.Ace on 13/11/24.
 //
 
 import SwiftUI
 
-struct SalesOrderListView: View {
+struct PromotionView: View {
     
-    @ObservedObject var state: SalesOrderListState
+    @ObservedObject var state: PromotionState
     let action: (Action) -> Void
     
-    init(state: SalesOrderListState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: PromotionState, action: @escaping (Action) -> Void = { _ in }) {
         self.state = state
         self.action = action
     }
@@ -24,7 +24,7 @@ struct SalesOrderListView: View {
         .padding(16)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                HeaderBaseView(name: "DANH SÁCH PHIẾU BÁN HÀNG")
+                HeaderBaseView(name: "DANH SÁCH KHUYẾN MÃI")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -41,47 +41,42 @@ struct SalesOrderListView: View {
     }
 }
 
-extension SalesOrderListView {
+
+extension PromotionView {
     enum Action {
-        case didTapItem(item: SalesOrderModel)
+        case didTapItem(item: PromotionModel)
     }
 }
 
-extension SalesOrderListView {
-    func itemRow(item: SalesOrderModel, index: Int) -> some View {
+extension PromotionView {
+    func itemRow(item: PromotionModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
                 Text("\(index + 1)")
                     .frame(width: 70, alignment: .leading)
                 
-                Text(item.invoiceNo)
+                Text(item.productCode)
                     .frame(width: 100, alignment: .leading)
                    
-                Text(item.customerName)
+                Text(item.productName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.invoiceDate)
+                Text(item.requiredUnitName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text(item.note)
+                Text("\(item.requiredQuantity)")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(item.totalAmount)")
+                Text(item.promotionProductName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(item.discount)")
+                Text(item.promotionUnitName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(item.cumulativeAmount)")
+                Text("\(item.promotionQuantity)")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(item.paidAmount)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Đã Xuất Kho")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Đã Giao Hàng")
+                Text("\(item.totalPromotionQuantity)")
                     .frame(width: 100, alignment: .leading)
 
             }
@@ -101,31 +96,25 @@ extension SalesOrderListView {
                 Text("Mã Phiếu")
                     .frame(width: 100, alignment: .leading)
                    
-                Text("Khách Hàng")
+                Text("Tên Sản Phẩm")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Ngày Ghi Phiếu")
+                Text("Đơn Vị Yêu Cầu")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Ghi Chú")
+                Text("SL Yêu Cầu")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Tổng Tiền")
+                Text("SP Khuyến Mãi")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Chiết Khấu")
+                Text("ĐV-SP Khuyến Mãi")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("CK Tích Lũy")
+                Text("SL Khuyến Mãi")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Phải Thu")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Đã Xuất Kho")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Đã Giao Hàng")
+                Text("Tổng SL Hàng KM Còn Lại")
                     .frame(width: 100, alignment: .leading)
             }
             .foregroundColor(.white)
@@ -149,5 +138,3 @@ extension SalesOrderListView {
         .scrollContentBackground(.hidden)
     }
 }
-
-

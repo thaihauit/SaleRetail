@@ -65,7 +65,7 @@ extension VehiceView {
         VStack(spacing: 0) {
             headerView
                 .padding(.horizontal, 16)
-                .background(Color.blue.opacity(0.6))
+                .background(Color.blue)
             scrollView
         }
     }

@@ -38,16 +38,24 @@ extension MainView {
         }
     }
     
+    var saleOrderView: some View {
+        SalesOrderListView(state: .init())
+    }
+    
+    var productListView: some View {
+        ProductListView(state: .init(items: []))
+    }
+    
     var contentView: some View {
         NavigationStack {
             VStack {
                 Spacer()
                 LazyVGrid(columns: state.columns, spacing: 20) {
-                    ForEach(1...9, id: \.self) { index in
+                    ForEach(1...10, id: \.self) { index in
                         switch index {
                         case 1:
                             NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                                Text("TẠO ĐƠN HÀNG")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
@@ -55,8 +63,8 @@ extension MainView {
                             }
                             
                         case 2:
-                            NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                            NavigationLink(destination: saleOrderView) {
+                                Text("DANH SÁCH PHIẾU BÁN HÀNG")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
@@ -65,7 +73,7 @@ extension MainView {
                             
                         case 3:
                             NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                                Text("TỒN KHO")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
@@ -73,7 +81,7 @@ extension MainView {
                             }
                         case 4:
                             NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                                Text("TRẢ HÀNG")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
@@ -81,23 +89,23 @@ extension MainView {
                             }
                         case 5:
                             NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                                Text("DANH SÁCH PHIẾU TRẢ HÀNG)")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         case 6:
-                            NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                            NavigationLink(destination: productListView) {
+                                Text("DANH SÁCH HÀNG HÓA")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         case 7:
-                            NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                            NavigationLink(destination: saleOrderView) {
+                                Text("DANH SÁCH KHUYẾN MÃI")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
@@ -105,7 +113,7 @@ extension MainView {
                             }
                         case 8:
                             NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                                Text("DANH SÁCH CHIẾT KHẤU")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
@@ -113,7 +121,7 @@ extension MainView {
                             }
                         case 9:
                             NavigationLink(destination: receiptView) {
-                                Text("Button \(index)")
+                                Text("DANH SÁCH TÍCH LŨY")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
