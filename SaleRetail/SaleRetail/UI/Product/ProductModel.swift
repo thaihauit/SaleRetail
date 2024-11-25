@@ -78,28 +78,6 @@ struct UnitModel {
     let name: String
 }
 
-struct DiscountModel {
-    let id: Int
-    let type: Int
-    let basedOn: Int
-    let product: Int
-    let requiredAmount: Int
-    let fromDate: String
-    let toDate: String
-    let discountPercent: Int
-    let discountAmount: Int
-    let active: Bool
-    let createdBy: Int
-    let createdDate: String
-    let modifiedDate: String
-    let lastUpdate: String
-    let productName: String
-    let basedOnDisplay: String
-    let createdByEmp: String
-    let modifiedByEmp: String
-    let isDeleted: Bool
-}
-
 struct CumulativeDiscountModel {
     let id: Int
     let fromDate: String

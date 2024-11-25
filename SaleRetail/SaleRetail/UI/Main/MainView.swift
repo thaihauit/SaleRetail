@@ -46,6 +46,18 @@ extension MainView {
         ProductListView(state: .init(items: []))
     }
     
+    var inventoryView: some View {
+        InventoryView(state: .init())
+    }
+    
+    var cumulativeListView: some View {
+        CumulativeListView(state: .init())
+    }
+    
+    var discountListView: some View {
+        DiscountListView(state: .init())
+    }
+    
     var contentView: some View {
         NavigationStack {
             VStack {
@@ -72,7 +84,7 @@ extension MainView {
                             }
                             
                         case 3:
-                            NavigationLink(destination: receiptView) {
+                            NavigationLink(destination: inventoryView) {
                                 Text("TỒN KHO")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
@@ -112,7 +124,7 @@ extension MainView {
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         case 8:
-                            NavigationLink(destination: receiptView) {
+                            NavigationLink(destination: discountListView) {
                                 Text("DANH SÁCH CHIẾT KHẤU")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
@@ -120,7 +132,7 @@ extension MainView {
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         case 9:
-                            NavigationLink(destination: receiptView) {
+                            NavigationLink(destination: cumulativeListView) {
                                 Text("DANH SÁCH TÍCH LŨY")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)

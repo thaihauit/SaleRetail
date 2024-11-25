@@ -1,18 +1,19 @@
 //
-//  PromotionView.swift
+//  InventoryView.swift
 //  SaleRetail
 //
-//  Created by D.Ace on 13/11/24.
+//  Created by D.Ace on 25/11/24.
 //
 
 import SwiftUI
 
-struct PromotionView: View {
+
+struct InventoryView: View {
     
-    @ObservedObject var state: PromotionState
+    @ObservedObject var state: InventoryState
     let action: (Action) -> Void
     
-    init(state: PromotionState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: InventoryState, action: @escaping (Action) -> Void = { _ in }) {
         self.state = state
         self.action = action
     }
@@ -24,7 +25,7 @@ struct PromotionView: View {
         .padding(16)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                HeaderBaseView(name: "DANH SÁCH KHUYẾN MÃI")
+                HeaderBaseView(name: "DANH SÁCH TỒN KHO")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -41,14 +42,14 @@ struct PromotionView: View {
     }
 }
 
-extension PromotionView {
+extension InventoryView {
     enum Action {
-        case didTapItem(item: PromotionModel)
+        case didTapItem(item: InventoryModel)
     }
 }
 
-extension PromotionView {
-    func itemRow(item: PromotionModel, index: Int) -> some View {
+extension InventoryView {
+    func itemRow(item: InventoryModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
                 Text("\(index + 1)")
@@ -60,22 +61,19 @@ extension PromotionView {
                 Text(item.productName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.requiredUnitName)
+                Text(item.providerName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(item.requiredQuantity)")
+                Text(item.warehouseName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text(item.promotionProductName)
+                Text(item.unitName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text(item.promotionUnitName)
+                Text(item.smallUnitName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(item.promotionQuantity)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.totalPromotionQuantity)")
+                Text("\(item.smallUnit)")
                     .frame(width: 100, alignment: .leading)
 
             }
@@ -92,28 +90,25 @@ extension PromotionView {
                 Text("STT")
                     .frame(width: 70, alignment: .leading)
                 
-                Text("Mã Phiếu")
+                Text("Mã Hàng Hóa")
                     .frame(width: 100, alignment: .leading)
                    
-                Text("Tên Sản Phẩm")
+                Text("Tên Hàng Hóa")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Đơn Vị Yêu Cầu")
+                Text("Nhà Phân Phối")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("SL Yêu Cầu")
+                Text("Kho")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("SP Khuyến Mãi")
+                Text("Đơn Vị")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("ĐV-SP Khuyến Mãi")
+                Text("Đơn vị QĐ")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("SL Khuyến Mãi")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Tổng SL Hàng KM Còn Lại")
+                Text("SL tổn của ĐVQĐ")
                     .frame(width: 100, alignment: .leading)
             }
             .foregroundColor(.white)

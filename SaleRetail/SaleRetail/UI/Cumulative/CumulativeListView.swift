@@ -1,18 +1,18 @@
 //
-//  PromotionView.swift
+//  CumulativeListView.swift
 //  SaleRetail
 //
-//  Created by D.Ace on 13/11/24.
+//  Created by D.Ace on 25/11/24.
 //
 
 import SwiftUI
 
-struct PromotionView: View {
+struct CumulativeListView: View {
     
-    @ObservedObject var state: PromotionState
+    @ObservedObject var state: CumulativeListState
     let action: (Action) -> Void
     
-    init(state: PromotionState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: CumulativeListState, action: @escaping (Action) -> Void = { _ in }) {
         self.state = state
         self.action = action
     }
@@ -24,7 +24,7 @@ struct PromotionView: View {
         .padding(16)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                HeaderBaseView(name: "DANH SÁCH KHUYẾN MÃI")
+                HeaderBaseView(name: "DANH SÁCH TÍCH LŨY")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -41,42 +41,30 @@ struct PromotionView: View {
     }
 }
 
-extension PromotionView {
+extension CumulativeListView {
     enum Action {
-        case didTapItem(item: PromotionModel)
+        case didTapItem(item: CumulativeModel)
     }
 }
 
-extension PromotionView {
-    func itemRow(item: PromotionModel, index: Int) -> some View {
+extension CumulativeListView {
+    func itemRow(item: CumulativeModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
                 Text("\(index + 1)")
                     .frame(width: 70, alignment: .leading)
                 
-                Text(item.productCode)
-                    .frame(width: 100, alignment: .leading)
+                Text(item.fromDate)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                    
-                Text(item.productName)
+                Text(item.toDate)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.requiredUnitName)
-                    .frame(width: 100, alignment: .leading)
+                Text("\(item.requiredAmount)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("\(item.requiredQuantity)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text(item.promotionProductName)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text(item.promotionUnitName)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.promotionQuantity)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.totalPromotionQuantity)")
-                    .frame(width: 100, alignment: .leading)
+                Text("\(item.discountAmount)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
             }
             .fixedSize(horizontal: false, vertical: true)
@@ -92,29 +80,17 @@ extension PromotionView {
                 Text("STT")
                     .frame(width: 70, alignment: .leading)
                 
-                Text("Mã Phiếu")
-                    .frame(width: 100, alignment: .leading)
+                Text("Từ Ngày")
+                    .frame(maxWidth: .infinity, alignment: .leading)
                    
-                Text("Tên Sản Phẩm")
+                Text("Đến Ngày")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Đơn Vị Yêu Cầu")
-                    .frame(width: 100, alignment: .leading)
+                Text("Tổng Tiền Yêu Cầu")
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("SL Yêu Cầu")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("SP Khuyến Mãi")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("ĐV-SP Khuyến Mãi")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("SL Khuyến Mãi")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Tổng SL Hàng KM Còn Lại")
-                    .frame(width: 100, alignment: .leading)
+                Text("Số Tiền Tích Lũy")
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
