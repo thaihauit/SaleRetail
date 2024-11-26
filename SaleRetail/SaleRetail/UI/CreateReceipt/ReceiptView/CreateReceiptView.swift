@@ -104,7 +104,7 @@ extension CreateReceiptView {
                         }
                     }
                     
-                    ProductView(state: .init(products: state.products)) { action in
+                    ProductView(state: .init(products: state.products, isReturn: false)) { action in
                         switch action {
                         case .didRemoveItem(let index):
                             state.products.remove(at: index)
@@ -186,6 +186,7 @@ extension CreateReceiptView {
                         TextFormView(title: "Chiết Khấu", content: "iPhone")
                         TextFormView(title: "Chuyển Khoản Tích Lũy", content: "iPhone")
                         TextFormView(title: "Thành Tiền", content: "iPhone")
+                        TextFormView(title: "Phải Thu", content: "iPhone")
                     }
                 }
                 .padding(16)

@@ -49,6 +49,14 @@ struct ProductItemView: View {
                 
                 Text("\(state.totalCost)")
                     .frame(width: 150, alignment: .leading)
+                
+                if state.isReturn {
+                    Text("\(state.product.unitExchangeRate)")
+                        .frame(width: 100, alignment: .leading)
+                    
+                    Text("\(state.product.unitExchangeRate)")
+                        .frame(width: 100, alignment: .leading)
+                }
             }
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))

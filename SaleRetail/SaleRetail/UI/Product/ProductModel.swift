@@ -8,6 +8,7 @@
 import Foundation
 
 struct ProductModel {
+    
     let id: Int
     let unit: Int
     let unitName: String

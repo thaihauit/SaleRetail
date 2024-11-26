@@ -11,8 +11,11 @@ import UIKit
 class ProductState: ObservableObject {
     @Published var products: [ProductModel] = []
     @Published var isDisplayUnitModal = false
+    var isReturn: Bool
     
-    init(products: [ProductModel]) {
+    init(products: [ProductModel], isDisplayUnitModal: Bool = false, isReturn: Bool) {
         self.products = products
+        self.isDisplayUnitModal = isDisplayUnitModal
+        self.isReturn = isReturn
     }
 }

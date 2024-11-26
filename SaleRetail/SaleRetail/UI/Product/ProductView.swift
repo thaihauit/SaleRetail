@@ -32,7 +32,7 @@ extension ProductView {
 
 extension ProductView {
     func itemRow(item: ProductModel, index: Int) -> some View {
-        ProductItemView(state: .init(product: item, index: index)) { onAction in
+        ProductItemView(state: .init(product: item, index: index, isReturn: state.isReturn)) { onAction in
             switch onAction {
             case .didRemoveItem(let index):
                 action(.didRemoveItem(index: index))
@@ -70,6 +70,14 @@ extension ProductView {
                 
                 Text("Thành Tiền")
                     .frame(width: 150, alignment: .leading)
+                
+                if state.isReturn {
+                    Text("Hạn Sử Dụng")
+                        .frame(width: 100, alignment: .leading)
+                    
+                    Text("Đã Nhận")
+                        .frame(width: 100, alignment: .leading)
+                }
             }
             .foregroundColor(.white)
             .font(.system(size: 13, weight: .semibold))
@@ -108,5 +116,5 @@ extension ProductView {
 }
 
 #Preview {
-    ProductView(state: .init(products: []))
+    ProductView(state: .init(products: [], isReturn: false))
 }

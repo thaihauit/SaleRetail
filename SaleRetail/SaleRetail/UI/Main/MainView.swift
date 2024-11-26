@@ -92,7 +92,7 @@ extension MainView {
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         case 4:
-                            NavigationLink(destination: receiptView) {
+                            NavigationLink(destination: ReturnReceiptView(state: .init())) {
                                 Text("TRẢ HÀNG")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)

@@ -10,12 +10,13 @@ import Foundation
 class ProductItemState: ObservableObject {
     @Published var product: ProductModel
     var index: Int
-    
+    var isReturn: Bool
     @Published var isDisplayUnitModal = false
     
-    init(product: ProductModel, index: Int, isDisplayUnitModal: Bool = false) {
+    init(product: ProductModel, index: Int, isReturn: Bool, isDisplayUnitModal: Bool = false) {
         self.product = product
         self.index = index
+        self.isReturn = isReturn
         self.isDisplayUnitModal = isDisplayUnitModal
     }
     
