@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class ProductListState: ObservableObject {
     @Published var items: [ProductModel] = []
     

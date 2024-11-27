@@ -11,6 +11,13 @@ struct TextFormView: View {
     
     let title: String
     let content: String
+    let height: CGFloat
+    
+    init(title: String, content: String, height: CGFloat = 50) {
+        self.title = title
+        self.content = content
+        self.height = height
+    }
     
     var body: some View {
         VStack(spacing: 8) {
@@ -22,7 +29,8 @@ struct TextFormView: View {
             
             Text(content)
                 .padding(.horizontal, 8)
-                .frame(height: 50)
+                .frame(height: height)
+                .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.system(size: 12))
                 .foregroundColor(.black)

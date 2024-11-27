@@ -4,7 +4,7 @@
 //
 //  Created by D.Ace on 26/11/24.
 //
-
+ 
 import SwiftUI
 
 struct ReturnReceiptView: View {
@@ -101,7 +101,7 @@ extension ReturnReceiptView {
                     
                     HStack(spacing: 8) {
                         TextFormView(title: "Chiết Khấu", content: "iPhone")
-                        TextFormView(title: "Chuyển Khoản Tích Lũy", content: "iPhone")
+                        TextFormView(title: "Chiết Khấu Tích Lũy", content: "iPhone")
                         TextFormView(title: "Thành Tiền", content: "iPhone")
                         TextFormView(title: "Phải Trả", content: "iPhone")
                     }

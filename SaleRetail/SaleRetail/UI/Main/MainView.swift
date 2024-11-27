@@ -58,6 +58,14 @@ extension MainView {
         DiscountListView(state: .init())
     }
     
+    var promotionView: some View {
+        PromotionView(state: .init())
+    }
+    
+    var returnReceiptListView: some View {
+        ReturnReceiptListView(state: .init())
+    }
+    
     var contentView: some View {
         NavigationStack {
             VStack {
@@ -100,7 +108,7 @@ extension MainView {
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         case 5:
-                            NavigationLink(destination: receiptView) {
+                            NavigationLink(destination: returnReceiptListView) {
                                 Text("DANH SÁCH PHIẾU TRẢ HÀNG)")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)
@@ -116,7 +124,7 @@ extension MainView {
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         case 7:
-                            NavigationLink(destination: saleOrderView) {
+                            NavigationLink(destination: promotionView) {
                                 Text("DANH SÁCH KHUYẾN MÃI")
                                     .frame(width: 150, height: 150)
                                     .background(Color.blue)

@@ -24,7 +24,7 @@ struct DiscountListView: View {
         .padding(16)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                HeaderBaseView(name: "DANH SÁCH TÍCH LŨY")
+                HeaderBaseView(name: "DANH SÁCH CHIẾT KHẤU")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
