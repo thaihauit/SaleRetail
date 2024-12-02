@@ -68,94 +68,106 @@ extension MainView {
     
     var contentView: some View {
         NavigationStack {
-            VStack {
-                Spacer()
-                LazyVGrid(columns: state.columns, spacing: 20) {
-                    ForEach(1...10, id: \.self) { index in
-                        switch index {
-                        case 1:
-                            NavigationLink(destination: receiptView) {
+            LazyVGrid(columns: state.columns, spacing: 32) {
+                ForEach(1...10, id: \.self) { index in
+                    switch index {
+                    case 1:
+                        NavigationLink(destination: receiptView) {
+                            VStack(spacing: 16) {
+                                Image("createOrder")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                
                                 Text("TẠO ĐƠN HÀNG")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.blue)
                             }
-                            
-                        case 2:
-                            NavigationLink(destination: saleOrderView) {
-                                Text("DANH SÁCH PHIẾU BÁN HÀNG")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                            
-                        case 3:
-                            NavigationLink(destination: inventoryView) {
-                                Text("TỒN KHO")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        case 4:
-                            NavigationLink(destination: ReturnReceiptView(state: .init())) {
-                                Text("TRẢ HÀNG")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        case 5:
-                            NavigationLink(destination: returnReceiptListView) {
-                                Text("DANH SÁCH PHIẾU TRẢ HÀNG)")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        case 6:
-                            NavigationLink(destination: productListView) {
-                                Text("DANH SÁCH HÀNG HÓA")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        case 7:
-                            NavigationLink(destination: promotionView) {
-                                Text("DANH SÁCH KHUYẾN MÃI")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        case 8:
-                            NavigationLink(destination: discountListView) {
-                                Text("DANH SÁCH CHIẾT KHẤU")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        case 9:
-                            NavigationLink(destination: cumulativeListView) {
-                                Text("DANH SÁCH TÍCH LŨY")
-                                    .frame(width: 150, height: 150)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        default:
-                            EmptyView()
                         }
-                        
+                    case 2:
+                        NavigationLink(destination: saleOrderView) {
+                            VStack(spacing: 16) {
+                                Image("order")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                
+                                Text("DANH SÁCH ĐƠN HÀNG")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    case 3:
+                        NavigationLink(destination: inventoryView) {
+                            VStack(spacing: 16) {
+                                Image("inventory")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                
+                                Text("TỒN KHO")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    case 4:
+                        NavigationLink(destination: productListView) {
+                            VStack(spacing: 16) {
+                                Image("product")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                
+                                Text("DANH SÁCH HÀNG HÓA")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    case 5:
+                        NavigationLink(destination: promotionView) {
+                            VStack(spacing: 16) {
+                                Image("promotion")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                
+                                Text("DANH SÁCH KHUYẾN MÃI")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    case 6:
+                        NavigationLink(destination: discountListView) {
+                            VStack(spacing: 16) {
+                                Image("discount")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                
+                                Text("DANH SÁCH CHIẾT KHẤU")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    case 7:
+                        NavigationLink(destination: cumulativeListView) {
+                            VStack(spacing: 16) {
+                                Image("acumulative")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                
+                                Text("DANH SÁCH TÍCH LŨY")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    default:
+                        EmptyView()
                     }
                 }
-                
-                Spacer()
             }
+            .padding(.horizontal, 200)
         }
     }
 }

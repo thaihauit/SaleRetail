@@ -74,7 +74,7 @@ extension ReturnReceiptView {
                             .foregroundColor(.blue)
                     }
                     
-                    ProductView(state: .init(products: [], isReturn: true))
+                    ProductView(state: .init(products: []))
                 }
                 .padding(16)
             }

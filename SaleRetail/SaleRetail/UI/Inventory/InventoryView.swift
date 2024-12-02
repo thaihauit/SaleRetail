@@ -54,7 +54,7 @@ extension InventoryView {
             Group {
                 Text(item.productCode)
                     .frame(width: 100, alignment: .leading)
-                   
+                
                 Text(item.productName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -84,7 +84,7 @@ extension InventoryView {
                 
                 Text(item.smallUnitName)
                     .frame(width: 70, alignment: .leading)
-
+                
             }
             .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
@@ -99,7 +99,7 @@ extension InventoryView {
             Group {
                 Text("Mã Hàng Hóa")
                     .frame(width: 100, alignment: .leading)
-                   
+                
                 Text("Tên Hàng Hóa")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 

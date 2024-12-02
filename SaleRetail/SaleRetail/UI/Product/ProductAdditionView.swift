@@ -95,6 +95,5 @@ extension ProductAdditionView {
 }
 
 #Preview {
-    ProductView(state: .init(products: [
-    ], isReturn: false))
+    ProductView(state: .init(products: []))
 }

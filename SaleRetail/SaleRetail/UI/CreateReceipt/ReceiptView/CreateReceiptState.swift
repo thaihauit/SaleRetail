@@ -21,6 +21,7 @@ class CreateReceiptState: ObservableObject {
     @Published var iShowVehiceModal = false
     @Published var iShowDepotModal = false
     @Published var isDisplayUnitModal = false
+    @Published var iShowEdit = false
     
     var deliverString: String {
         dateFormatter.string(from: deliverDate)

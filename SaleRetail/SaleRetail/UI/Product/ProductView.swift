@@ -27,15 +27,17 @@ extension ProductView {
         case didRemoveItem(index: Int)
         case didSelectedNumber(index: Int, value: Int)
         case didSelectedUnit(index: Int, unit: UnitModel)
+        case didEditItem(index: Int)
+        case didTapItem(index: Int)
     }
 }
 
 extension ProductView {
     func itemRow(item: ProductModel, index: Int) -> some View {
-        ProductItemView(state: .init(product: item, index: index, isReturn: state.isReturn)) { onAction in
+        ProductItemView(state: .init(product: item, index: index)) { onAction in
             switch onAction {
-            case .didRemoveItem(let index):
-                action(.didRemoveItem(index: index))
+            case .didTapItem(let index):
+                action(.didTapItem(index: index))
             case .didSelectedNumber(let index, let value):
                 action(.didSelectedNumber(index: index, value: value))
             case .didSelectedUnit(let index, let unit):
@@ -71,13 +73,6 @@ extension ProductView {
                 Text("Thành Tiền")
                     .frame(width: 150, alignment: .leading)
                 
-                if state.isReturn {
-                    Text("Hạn Sử Dụng")
-                        .frame(width: 100, alignment: .leading)
-                    
-                    Text("Đã Nhận")
-                        .frame(width: 100, alignment: .leading)
-                }
             }
             .foregroundColor(.white)
             .font(.system(size: 13, weight: .semibold))
@@ -101,10 +96,19 @@ extension ProductView {
                 itemRow(item: item, index: index)
                     .contentShape(Rectangle())
                     .swipeActions {
-                        Button(role: .destructive) {
-                            action(.didRemoveItem(index: index))
-                        } label: {
-                            Label("Xóa", systemImage: "trash")
+                        HStack {
+                            Button(role: .destructive) {
+                                action(.didRemoveItem(index: index))
+                            } label: {
+                                Label("Xóa", systemImage: "trash")
+                            }
+                            
+                            Button {
+                                action(.didEditItem(index: index))
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            .tint(.blue)
                         }
                     }
             }
@@ -116,5 +120,5 @@ extension ProductView {
 }
 
 #Preview {
-    ProductView(state: .init(products: [], isReturn: false))
+    ProductView(state: .init(products: []))
 }

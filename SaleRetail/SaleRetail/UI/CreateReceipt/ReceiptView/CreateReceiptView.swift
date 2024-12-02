@@ -12,7 +12,7 @@ struct CreateReceiptView: View {
     @ObservedObject var state: CreateReceiptState
     let action: (Action) -> Void
     
-    init(state: CreateReceiptState, action: @escaping (Action) -> Void) {
+    init(state: CreateReceiptState, action: @escaping (Action) -> Void = { _ in }) {
         self.state = state
         self.action = action
     }
@@ -104,7 +104,7 @@ extension CreateReceiptView {
                         }
                     }
                     
-                    ProductView(state: .init(products: state.products, isReturn: false)) { action in
+                    ProductView(state: .init(products: state.products)) { action in
                         switch action {
                         case .didRemoveItem(let index):
                             state.products.remove(at: index)
@@ -112,6 +112,20 @@ extension CreateReceiptView {
                             state.selectedNumber(index: index, value: value)
                         case let .didSelectedUnit(index, unit):
                             state.selectedUnit(index: index, unit: unit)
+                        case .didEditItem(index: let index):
+                             state.iShowEdit = true
+                            //CreateReceiptView(state: .init())
+                            
+                        case .didTapItem(index: let index):
+                            print("")
+                        }
+                    }
+                    .background {
+                        NavigationLink(
+                            destination: CreateReceiptView(state: .init()),
+                            isActive: $state.iShowEdit
+                        ) {
+                            EmptyView()
                         }
                     }
                 }
@@ -228,5 +242,5 @@ extension CreateReceiptView {
 }
 
 #Preview {
-    CreateReceiptView(state: .init()) { _ in }
+    CreateReceiptView(state: .init())
 }

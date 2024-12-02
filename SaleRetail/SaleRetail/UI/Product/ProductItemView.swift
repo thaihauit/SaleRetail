@@ -50,13 +50,10 @@ struct ProductItemView: View {
                 Text("\(state.totalCost)")
                     .frame(width: 150, alignment: .leading)
                 
-                if state.isReturn {
-                    Text("\(state.product.unitExchangeRate)")
-                        .frame(width: 100, alignment: .leading)
-                    
-                    Text("\(state.product.unitExchangeRate)")
-                        .frame(width: 100, alignment: .leading)
-                }
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                action(.didTapItem(index: state.index))
             }
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
@@ -77,7 +74,7 @@ struct ProductItemView: View {
 
 extension ProductItemView {
     enum Action {
-        case didRemoveItem(index: Int)
+        case didTapItem(index: Int)
         case didSelectedNumber(index: Int, value: Int)
         case didSelectedUnit(index: Int, unit: UnitModel)
     }
