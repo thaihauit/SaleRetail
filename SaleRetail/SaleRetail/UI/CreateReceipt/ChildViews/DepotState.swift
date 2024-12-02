@@ -18,3 +18,11 @@ class DepotState: ObservableObject {
         ]
     }
 }
+
+struct DepotModel {
+    let id: Int
+    let code: String
+    let name: String
+    let isLiquidation: Bool
+    let isDeleted: Bool
+}

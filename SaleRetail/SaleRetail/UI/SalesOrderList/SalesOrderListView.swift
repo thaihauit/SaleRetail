@@ -51,8 +51,6 @@ extension SalesOrderListView {
     func itemRow(item: SalesOrderModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index + 1)")
-                    .frame(width: 70, alignment: .leading)
                 
                 Text(item.invoiceNo)
                     .frame(width: 100, alignment: .leading)
@@ -64,7 +62,7 @@ extension SalesOrderListView {
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.note)
-                    .frame(width: 100, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("\(item.totalAmount)")
                     .frame(width: 100, alignment: .leading)
@@ -85,6 +83,7 @@ extension SalesOrderListView {
                     .frame(width: 100, alignment: .leading)
 
             }
+            .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -95,8 +94,6 @@ extension SalesOrderListView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .frame(width: 70, alignment: .leading)
                 
                 Text("Mã Phiếu")
                     .frame(width: 100, alignment: .leading)
@@ -108,7 +105,7 @@ extension SalesOrderListView {
                     .frame(width: 100, alignment: .leading)
                 
                 Text("Ghi Chú")
-                    .frame(width: 100, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Tổng Tiền")
                     .frame(width: 100, alignment: .leading)

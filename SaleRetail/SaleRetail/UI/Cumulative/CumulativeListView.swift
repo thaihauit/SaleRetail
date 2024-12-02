@@ -51,9 +51,6 @@ extension CumulativeListView {
     func itemRow(item: CumulativeModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index + 1)")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text(item.fromDate)
                     .frame(maxWidth: .infinity, alignment: .leading)
                    
@@ -67,6 +64,7 @@ extension CumulativeListView {
                     .frame(maxWidth: .infinity, alignment: .leading)
 
             }
+            .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -77,9 +75,6 @@ extension CumulativeListView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text("Từ Ngày")
                     .frame(maxWidth: .infinity, alignment: .leading)
                    
@@ -89,7 +84,7 @@ extension CumulativeListView {
                 Text("Tổng Tiền Yêu Cầu")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Số Tiền Tích Lũy")
+                Text("Số Tiền Chiết Khấu")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .foregroundColor(.white)

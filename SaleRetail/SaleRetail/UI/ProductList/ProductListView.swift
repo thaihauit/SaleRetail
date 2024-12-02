@@ -43,17 +43,14 @@ struct ProductListView: View {
 
 extension ProductListView {
     enum Action {
-        case didTapItem(item: ProductModel)
+        case didTapItem(item: ProductListModel)
     }
 }
 
 extension ProductListView {
-    func itemRow(item: ProductModel, index: Int) -> some View {
+    func itemRow(item: ProductListModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index + 1)")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text(item.code)
                     .frame(width: 100, alignment: .leading)
                    
@@ -61,9 +58,6 @@ extension ProductListView {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(item.groupName)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text(item.providerName)
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.unitName)
@@ -84,6 +78,7 @@ extension ProductListView {
                 Text(item.minSellUnitName)
                     .frame(width: 100, alignment: .leading)
             }
+            .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -94,19 +89,13 @@ extension ProductListView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .frame(width: 70, alignment: .leading)
-                
-                Text("Mã Phiếu")
+                Text("Mã")
                     .frame(width: 100, alignment: .leading)
                    
-                Text("Tên SP")
+                Text("Tên")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Loại")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Nhà Phân Phối")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("Đơn Vị")

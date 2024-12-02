@@ -19,3 +19,10 @@ class VehiceState: ObservableObject {
         ]
     }
 }
+
+struct VehiceModel {
+    let id: Int
+    let licensePlate: String
+    let code: String
+    let lisDeleted: Bool
+}

@@ -51,9 +51,6 @@ extension PromotionView {
     func itemRow(item: PromotionModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index + 1)")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text(item.productCode)
                     .frame(width: 100, alignment: .leading)
                    
@@ -67,7 +64,7 @@ extension PromotionView {
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.promotionProductName)
-                    .frame(width: 100, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(item.promotionUnitName)
                     .frame(width: 100, alignment: .leading)
@@ -77,8 +74,8 @@ extension PromotionView {
                 
                 Text("\(item.totalPromotionQuantity)")
                     .frame(width: 100, alignment: .leading)
-
             }
+            .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -89,23 +86,20 @@ extension PromotionView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .frame(width: 70, alignment: .leading)
-                
-                Text("Mã Phiếu")
+                Text("Mã")
                     .frame(width: 100, alignment: .leading)
                    
-                Text("Tên Sản Phẩm")
+                Text("Tên")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Đơn Vị Yêu Cầu")
+                Text("Đơn Vị YC")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("SL Yêu Cầu")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("SP Khuyến Mãi")
-                    .frame(width: 100, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("ĐV-SP Khuyến Mãi")
                     .frame(width: 100, alignment: .leading)

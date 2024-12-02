@@ -52,31 +52,41 @@ extension InventoryView {
     func itemRow(item: InventoryModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index + 1)")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text(item.productCode)
                     .frame(width: 100, alignment: .leading)
                    
                 Text(item.productName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.providerName)
+                Text(item.productGroup)
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.warehouseName)
                     .frame(width: 100, alignment: .leading)
                 
-                Text(item.unitName)
-                    .frame(width: 100, alignment: .leading)
+                Text(item.providerName)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.smallUnitName)
-                    .frame(width: 100, alignment: .leading)
+                Text("\(item.unit)")
+                    .frame(width: 70, alignment: .leading)
+                
+                Text("\(item.smallUnitTemporary)")
+                    .frame(width: 70, alignment: .leading)
+                
+                Text(item.unitName)
+                    .frame(width: 70, alignment: .leading)
                 
                 Text("\(item.smallUnit)")
-                    .frame(width: 100, alignment: .leading)
+                    .frame(width: 70, alignment: .leading)
+                
+                Text("\(item.smallUnitTemporary)")
+                    .frame(width: 70, alignment: .leading)
+                
+                Text(item.smallUnitName)
+                    .frame(width: 70, alignment: .leading)
 
             }
+            .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -87,30 +97,40 @@ extension InventoryView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text("Mã Hàng Hóa")
                     .frame(width: 100, alignment: .leading)
                    
                 Text("Tên Hàng Hóa")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Nhà Phân Phối")
+                Text("Nhóm Hàng Hóa")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("Kho")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Đơn Vị")
-                    .frame(width: 100, alignment: .leading)
+                Text("Nhà Phân Phối")
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Đơn vị QĐ")
-                    .frame(width: 100, alignment: .leading)
+                Text("Số Lượng")
+                    .frame(width: 70, alignment: .leading)
                 
-                Text("SL tổn của ĐVQĐ")
-                    .frame(width: 100, alignment: .leading)
+                Text("SL Tồn Tạm")
+                    .frame(width: 70, alignment: .leading)
+                
+                Text("Đơn vị")
+                    .frame(width: 70, alignment: .leading)
+                
+                Text("Số Lượng QĐ")
+                    .frame(width: 70, alignment: .leading)
+                
+                Text("SLQĐ Tồn Tạm")
+                    .frame(width: 70, alignment: .leading)
+                
+                Text("Đơn Vị QĐ")
+                    .frame(width: 70, alignment: .leading)
             }
+            .fixedSize(horizontal: false, vertical: true)
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
             .frame(height: 60)

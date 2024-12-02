@@ -8,7 +8,6 @@
 import Foundation
 
 struct ProductModel {
-    
     let id: Int
     let unit: Int
     let unitName: String
@@ -18,7 +17,6 @@ struct ProductModel {
     let smallUnitSellPrice: Int
     let hasExpiredDate: Bool
     let groupName: String
-    let providerName: String
     let code: String
     let name: String
     let units: [UnitModel]
@@ -26,11 +24,10 @@ struct ProductModel {
     let minSellUnit: Int
     let minSellUnitName: String
     
-    
     let number: Int
     let unitSelected: UnitModel?
     
-    init(id: Int, unit: Int, unitName: String, smallUnit: Int, sellPrice: Int, unitExchangeRate: Int, smallUnitSellPrice: Int, hasExpiredDate: Bool, groupName: String, providerName: String, code: String, name: String, units: [UnitModel], smallUnitName: String, minSellUnit: Int, minSellUnitName: String, number: Int = 0, unitSelected: UnitModel? = nil) {
+    init(id: Int, unit: Int, unitName: String, smallUnit: Int, sellPrice: Int, unitExchangeRate: Int, smallUnitSellPrice: Int, hasExpiredDate: Bool, groupName: String, code: String, name: String, units: [UnitModel], smallUnitName: String, minSellUnit: Int, minSellUnitName: String, number: Int = 0, unitSelected: UnitModel? = nil) {
         self.id = id
         self.unit = unit
         self.unitName = unitName
@@ -40,7 +37,6 @@ struct ProductModel {
         self.smallUnitSellPrice = smallUnitSellPrice
         self.hasExpiredDate = hasExpiredDate
         self.groupName = groupName
-        self.providerName = providerName
         self.code = code
         self.name = name
         self.units = units
@@ -52,30 +48,3 @@ struct ProductModel {
     }
 }
 
-struct VehiceModel {
-    let id: Int
-    let licensePlate: String
-    let code: String
-    let lisDeleted: Bool
-}
-
-struct VatModel {
-    let id: Int
-    let value: Int
-    let name: String
-    let isDeleted: Bool
-}
-
-struct DepotModel {
-    let id: Int
-    let code: String
-    let name: String
-    let isLiquidation: Bool
-    let isDeleted: Bool
-}
-
-struct UnitModel {
-    let id: Int
-    let price: Int
-    let name: String
-}

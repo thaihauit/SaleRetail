@@ -10,7 +10,12 @@ import UIKit
 
 class CumulativeListState: ObservableObject {
     
-    @Published var items: [CumulativeModel] = []
-    
-    let width = UIApplication.shared.windows.first?.bounds.width ?? 0
+    @Published var items: [CumulativeModel] = [
+        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
+        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
+        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
+        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
+        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
+        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000)
+    ]
 }

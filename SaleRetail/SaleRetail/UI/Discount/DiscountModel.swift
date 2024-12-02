@@ -15,5 +15,5 @@ struct DiscountModel {
     let toDate: String
     let productName: String
     let productGroupName: String
-    let discountDisplay: Int
+    let discountDisplay: String
 }

@@ -18,3 +18,9 @@ class UnitState: ObservableObject {
         ]
     }
 }
+
+struct UnitModel {
+    let id: Int
+    let price: Int
+    let name: String
+}

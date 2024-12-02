@@ -51,19 +51,17 @@ extension DiscountListView {
     func itemRow(item: DiscountModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index + 1)")
-                    .frame(width: 70, alignment: .leading)
                 
                 Text(item.productName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(item.productGroupName)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                   
-                Text(item.basedOn)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("\(item.requiredAmount)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text(item.basedOn)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(item.fromDate)
@@ -76,6 +74,8 @@ extension DiscountListView {
                     .frame(maxWidth: .infinity, alignment: .leading)
 
             }
+            .foregroundColor(.black)
+            .padding(.leading, 4)
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -86,19 +86,17 @@ extension DiscountListView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .frame(width: 70, alignment: .leading)
                 
-                Text("Tên Sản Phẩm")
+                Text("Sản Phẩm")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Nhóm Sản Phẩm")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                   
-                Text("Loại YC")
+                
+                Text("Tổng Tiền/ SL YC")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Tổng Tiền/SL YC")
+                Text("Loại YC")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Từ Ngày")
@@ -109,7 +107,6 @@ extension DiscountListView {
                 
                 Text("Chiết Khấu")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
