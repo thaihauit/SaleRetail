@@ -37,9 +37,6 @@ extension CustomerAdditionView {
     func itemRow(item: CustomerModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index)")
-                    .padding(.leading, 8)
-                    .frame(width: 150, alignment: .leading)
                 Text(item.name)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(item.phone)
@@ -56,9 +53,6 @@ extension CustomerAdditionView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .padding(.leading, 8)
-                    .frame(width: 150, alignment: .leading)
                 Text("TÊN")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text("ĐIỆN THOẠI")

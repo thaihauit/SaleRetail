@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct InventoryModel {
+struct InventoryModel: Decodable {
     let productCode: String
     let productName: String
     let productGroup: String

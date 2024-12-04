@@ -20,7 +20,7 @@ class VehiceState: ObservableObject {
     }
 }
 
-struct VehiceModel {
+struct VehiceModel: Decodable {
     let id: Int
     let licensePlate: String
     let code: String

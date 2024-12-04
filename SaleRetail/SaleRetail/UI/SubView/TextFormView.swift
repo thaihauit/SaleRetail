@@ -46,3 +46,4 @@ struct TextFormView: View {
 #Preview {
     TextFormView(title: "title", content: "content")
 }
+

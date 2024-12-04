@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReturnReceiptModel {
+struct ReturnReceiptModel: Decodable {
     let  id: Int
     let  sellId: Int
     let  customer: Int

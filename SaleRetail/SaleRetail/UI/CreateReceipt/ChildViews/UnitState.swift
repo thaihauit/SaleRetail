@@ -19,7 +19,7 @@ class UnitState: ObservableObject {
     }
 }
 
-struct UnitModel {
+struct UnitModel: Decodable {
     let id: Int
     let price: Int
     let name: String

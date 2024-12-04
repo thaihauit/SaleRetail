@@ -38,12 +38,15 @@ struct SalesOrderListView: View {
             
             scrollView
         }
+        
     }
 }
 
 extension SalesOrderListView {
     enum Action {
         case didTapItem(item: SalesOrderModel)
+        case didRemoveItem(item: SalesOrderModel)
+        case didEditItem(item: SalesOrderModel)
     }
 }
 
@@ -51,14 +54,13 @@ extension SalesOrderListView {
     func itemRow(item: SalesOrderModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                
                 Text(item.invoiceNo)
                     .frame(width: 100, alignment: .leading)
                    
-                Text(item.customerName)
+                Text(item.customer.name)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.invoiceDate)
+                Text(item.createdDate)
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.note)
@@ -77,9 +79,6 @@ extension SalesOrderListView {
                     .frame(width: 100, alignment: .leading)
                 
                 Text("Đã Xuất Kho")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Đã Giao Hàng")
                     .frame(width: 100, alignment: .leading)
 
             }
@@ -121,9 +120,6 @@ extension SalesOrderListView {
                 
                 Text("Đã Xuất Kho")
                     .frame(width: 100, alignment: .leading)
-                
-                Text("Đã Giao Hàng")
-                    .frame(width: 100, alignment: .leading)
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
@@ -137,7 +133,32 @@ extension SalesOrderListView {
                 itemRow(item: item, index: index)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        action(.didTapItem(item: item))
+                        state.isTapItem = true
+                    }
+                    .fullScreenCover(isPresented: $state.isTapItem) {
+                        PopupView(isPresented: $state.isTapItem) {
+                            PopupView(isPresented: $state.isTapItem) {
+                                ProductAdditionView(state: .init(products: item.detail)) { action in
+                                    state.isTapItem = false
+                                }
+                            }
+                        }
+                    }
+                    .swipeActions {
+                        HStack {
+                            Button(role: .destructive) {
+                               
+                            } label: {
+                                Label("Xóa", systemImage: "trash")
+                            }
+                            
+                            Button {
+                                
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            .tint(.blue)
+                        }
                     }
             }
         }

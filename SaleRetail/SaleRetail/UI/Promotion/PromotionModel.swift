@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PromotionModel {
+struct PromotionModel: Decodable {
     let id: Int
     let requiredQuantity: Int
     let requiredUnitName: String

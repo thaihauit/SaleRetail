@@ -16,4 +16,10 @@ class MainState: ObservableObject {
            GridItem(.flexible())
     ]
     
+    init() {
+        BaseProvider().login { login in
+            LoginManager.shared.token = login.data.token
+        }
+    }
+    
 }

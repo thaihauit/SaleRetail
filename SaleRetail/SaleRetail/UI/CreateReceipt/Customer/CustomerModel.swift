@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CustomerModel {
+struct CustomerModel: Decodable {
     let  id: Int
     let  group: Int
     let  groupName: String

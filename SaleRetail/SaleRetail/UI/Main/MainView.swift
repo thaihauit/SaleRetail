@@ -68,7 +68,7 @@ extension MainView {
     
     var contentView: some View {
         NavigationStack {
-            LazyVGrid(columns: state.columns, spacing: 32) {
+            LazyVGrid(columns: state.columns, spacing: 64) {
                 ForEach(1...10, id: \.self) { index in
                     switch index {
                     case 1:
@@ -167,7 +167,7 @@ extension MainView {
                     }
                 }
             }
-            .padding(.horizontal, 200)
+            .padding(.horizontal, 150)
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CumulativeModel {
+struct CumulativeModel: Decodable {
     let fromDate: String
     let toDate: String
     let requiredAmount: Int

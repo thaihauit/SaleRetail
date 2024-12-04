@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DiscountModel {
+struct DiscountModel: Decodable {
     let id: Int
     let basedOn: String
     let requiredAmount: Int

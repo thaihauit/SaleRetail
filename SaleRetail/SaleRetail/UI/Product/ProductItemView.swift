@@ -36,7 +36,7 @@ struct ProductItemView: View {
                     }
                     .frame(width: 100, alignment: .leading)
                 
-                TextFieldNumberView(number: state.product.number, onChangeValue: { value in
+                TextFieldNumberView(number: state.product.quantity, onChangeValue: { value in
                     action(.didSelectedNumber(index: state.index, value: value ?? 0))
                 })
                 .frame(width: 100, alignment: .leading)

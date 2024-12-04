@@ -17,7 +17,7 @@ class CreateReceiptState: ObservableObject {
     @Published var customer: CustomerModel?
     @Published var products: [ProductModel] = []
     @Published var vehice: VehiceModel?
-    @Published var depot: DepotModel?
+    @Published var depot: Warehouse?
     @Published var iShowVehiceModal = false
     @Published var iShowDepotModal = false
     @Published var isDisplayUnitModal = false
@@ -76,7 +76,7 @@ class CreateReceiptState: ObservableObject {
             smallUnitName: product.smallUnitName,
             minSellUnit: product.minSellUnit,
             minSellUnitName: product.minSellUnitName,
-            number: product.number,
+            number: product.quantity,
             unitSelected: unit
         )
     }

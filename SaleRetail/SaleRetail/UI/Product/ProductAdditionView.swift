@@ -69,8 +69,26 @@ extension ProductAdditionView {
                 Text("Đơn Vị")
                     .frame(width: 100, alignment: .leading)
                 
+                if state.isDetail {
+                    Text("Số Lượng")
+                        .frame(width: 100, alignment: .leading)
+                }
+                
                 Text("Đơn Giá")
                     .frame(width: 100, alignment: .leading)
+                
+                if state.isDetail {
+                    Text("Đơn Vị")
+                        .frame(width: 100, alignment: .leading)
+                }
+                
+                if state.isDetail {
+                    Text("Chiết Khấu")
+                        .frame(width: 100, alignment: .leading)
+                    
+                    Text("Thành Tiền")
+                        .frame(width: 100, alignment: .leading)
+                }
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))

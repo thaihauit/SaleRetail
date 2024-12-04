@@ -25,17 +25,14 @@ struct DepotView: View {
 
 extension DepotView {
     enum Action {
-        case didTapItem(item: DepotModel)
+        case didTapItem(item: Warehouse)
     }
 }
 
 extension DepotView {
-    func itemRow(item: DepotModel, index: Int) -> some View {
+    func itemRow(item: Warehouse, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index)")
-                    .padding(.leading, 8)
-                    .frame(width: 100, alignment: .leading)
                 Text(item.name)
                     .frame(width: 200, alignment: .leading)
             }
@@ -48,9 +45,6 @@ extension DepotView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .padding(.leading, 8)
-                    .frame(width: 100, alignment: .leading)
                 Text("Kho")
                     .frame(width: 200, alignment: .leading)
             }
@@ -88,8 +82,8 @@ extension DepotView {
 
 #Preview {
     DepotView(state: .init(depots: [
-        DepotModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-        DepotModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-        DepotModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
+        Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
+        Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
+        Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
     ])) { _ in }
 }

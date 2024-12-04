@@ -33,9 +33,6 @@ extension VehiceView {
     func itemRow(item: VehiceModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(index)")
-                    .padding(.leading, 8)
-                    .frame(width: 100, alignment: .leading)
                 Text(item.code)
                     .frame(width: 200, alignment: .leading)
             }
@@ -48,9 +45,6 @@ extension VehiceView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .padding(.leading, 8)
-                    .frame(width: 100, alignment: .leading)
                 Text("Loại Xe")
                     .frame(width: 200, alignment: .leading)
             }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductModel {
+struct ProductModel: Decodable {
     let id: Int
     let unit: Int
     let unitName: String
@@ -24,7 +24,7 @@ struct ProductModel {
     let minSellUnit: Int
     let minSellUnitName: String
     
-    let number: Int
+    let quantity: Int
     let unitSelected: UnitModel?
     
     init(id: Int, unit: Int, unitName: String, smallUnit: Int, sellPrice: Int, unitExchangeRate: Int, smallUnitSellPrice: Int, hasExpiredDate: Bool, groupName: String, code: String, name: String, units: [UnitModel], smallUnitName: String, minSellUnit: Int, minSellUnitName: String, number: Int = 0, unitSelected: UnitModel? = nil) {
@@ -43,7 +43,7 @@ struct ProductModel {
         self.smallUnitName = smallUnitName
         self.minSellUnit = minSellUnit
         self.minSellUnitName = minSellUnitName
-        self.number = number
+        self.quantity = number
         self.unitSelected = unitSelected
     }
 }

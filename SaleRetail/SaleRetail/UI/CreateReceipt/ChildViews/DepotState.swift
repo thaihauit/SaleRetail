@@ -8,18 +8,18 @@
 import Foundation
 
 class DepotState: ObservableObject {
-    let depots: [DepotModel]
+    let depots: [Warehouse]
     
-    init(depots: [DepotModel]) {
+    init(depots: [Warehouse]) {
         self.depots = [
-            DepotModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-            DepotModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-            DepotModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
+            Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
+            Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
+            Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
         ]
     }
 }
 
-struct DepotModel {
+struct Warehouse: Decodable {
     let id: Int
     let code: String
     let name: String
