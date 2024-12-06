@@ -12,7 +12,7 @@ struct MainView: View {
     @ObservedObject var state: MainState
     let action: (Action) -> Void
     
-    init(state: MainState, action: @escaping (Action) -> Void) {
+    init(state: MainState, action: @escaping (Action) -> Void = { _ in}) {
         self.state = state
         self.action = action
     }

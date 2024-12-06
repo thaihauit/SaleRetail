@@ -20,9 +20,6 @@ struct ProductItemView: View {
     var body: some View {
         HStack(spacing: 0) {
             Group {
-                Text("\(state.index)")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text(state.product.code)
                     .frame(width: 100, alignment: .leading)
                 
@@ -36,8 +33,10 @@ struct ProductItemView: View {
                     }
                     .frame(width: 100, alignment: .leading)
                 
-                TextFieldNumberView(number: state.product.quantity, onChangeValue: { value in
-                    action(.didSelectedNumber(index: state.index, value: value ?? 0))
+                TextFieldFormView(text: "\(state.product.quantity)", onChangeValue: { value in
+                    if let value = Int(value) {
+                        action(.didSelectedNumber(index: state.index, value: value))
+                    }
                 })
                 .frame(width: 100, alignment: .leading)
                 

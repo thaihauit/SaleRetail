@@ -9,11 +9,22 @@ import SwiftUI
 
 @main
 struct SaleRetailApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
-            MainView(state: .init()) { action in
-                print("")
-            }
+            LoginView(state: .init())
+//            MainView(state: .init()) { action in
+//                print("")
+//            }
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        LoginManager.shared.asynLogin()
+        return true
     }
 }

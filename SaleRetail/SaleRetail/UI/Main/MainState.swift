@@ -17,9 +17,7 @@ class MainState: ObservableObject {
     ]
     
     init() {
-        BaseProvider().login { login in
-            LoginManager.shared.token = login.data.token
-        }
+        
     }
     
 }

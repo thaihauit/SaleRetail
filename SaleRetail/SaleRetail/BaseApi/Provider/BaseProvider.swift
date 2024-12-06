@@ -11,17 +11,19 @@ import Moya
 struct BaseProvider: Restable {
     var provider = MoyaProvider<ApiType>(plugins: [])
     
-    func login(completion: @escaping (Login) -> Void) {
-        provider.request(.login(userName: "saletest", password: "admin")) { result in
+    func login(userName: String, password: String, completion: @escaping (Login?) -> Void) {
+        provider.request(.login(userName: userName, password: password)) { result in
             switch result {
             case let .success(response):
                 BaseRestApi.decodingTask(with: response.data, decodingType: Login.self) { (data) in
                     if let data = data as? Login {
                         completion(data)
+                    } else {
+                        completion(nil)
                     }
                 }
             case let .failure(error):
-                print(error)
+                completion(nil)
             }
         }
     }
