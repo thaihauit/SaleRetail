@@ -19,6 +19,10 @@ class UnitState: ObservableObject {
     }
 }
 
+struct Unit: Decodable {
+    let data: UnitModel
+}
+
 struct UnitModel: Decodable {
     let id: Int
     let price: Int

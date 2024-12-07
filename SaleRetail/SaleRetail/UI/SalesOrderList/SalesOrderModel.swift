@@ -15,7 +15,7 @@ struct SalesOrder: Decodable {
 struct SalesOrderModel: Decodable {
     let invoiceNo: String
     let customer: CustomerModel
-    let warehouse: Warehouse
+    let warehouse: WarehouseModel
     let vehicle: VehiceModel
     let deliveryDate: String
     let note: String

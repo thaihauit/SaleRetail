@@ -24,7 +24,7 @@ struct LoginView: View {
 
 extension LoginView {
     enum Action {
-        case didTapItem
+        case didTapItem(userName: String, password: String)
     }
 }
 
@@ -38,15 +38,11 @@ extension LoginView {
                 .padding(.bottom, 48)
             
             Group {
-                TextFieldFormView2(title: "Tài Khoản", text: "") { text in
-                    text
-                }
-                
-                TextFieldFormView2(title: "Mật Khẩu", text: "") { text in
-                    text
-                }
+                TextFieldFormView2(title: "Tài Khoản", text: $state.userName)
+                TextFieldFormView2(title: "Mật Khẩu", text: $state.password)
                 
                 ButtonView(title: "Đăng Nhập") {
+                    action(.didTapItem(userName: state.userName, password: state.password))
                 }
             }
             .frame(width: 600)

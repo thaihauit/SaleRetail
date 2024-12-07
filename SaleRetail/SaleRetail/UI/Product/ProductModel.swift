@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct Product: Decodable {
+    let data: ProductModel
+}
+
 struct ProductModel: Decodable {
     let id: Int
     let unit: Int

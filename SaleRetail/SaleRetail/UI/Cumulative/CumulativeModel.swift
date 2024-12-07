@@ -14,3 +14,7 @@ struct CumulativeModel: Decodable {
     let discountAmount: Int
 }
 
+struct Cumulative: Decodable {
+    let data: [CumulativeModel]
+}
+

@@ -17,7 +17,7 @@ class CreateReceiptState: ObservableObject {
     @Published var customer: CustomerModel?
     @Published var products: [ProductModel] = []
     @Published var vehice: VehiceModel?
-    @Published var depot: Warehouse?
+    @Published var depot: WarehouseModel?
     @Published var iShowVehiceModal = false
     @Published var iShowDepotModal = false
     @Published var isDisplayUnitModal = false

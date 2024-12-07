@@ -18,3 +18,7 @@ struct PromotionModel: Decodable {
     let promotionUnitName: String
     let totalPromotionQuantity: Int
 }
+
+struct Promotion: Decodable {
+    let data: [PromotionModel]
+}

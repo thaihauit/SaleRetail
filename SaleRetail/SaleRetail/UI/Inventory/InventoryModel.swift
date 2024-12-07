@@ -20,3 +20,7 @@ struct InventoryModel: Decodable {
     let smallUnitName: String
     let smallUnit: Int
 }
+
+struct Inventory: Decodable {
+    let data: [InventoryModel]
+}

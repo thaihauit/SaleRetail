@@ -25,12 +25,12 @@ struct DepotView: View {
 
 extension DepotView {
     enum Action {
-        case didTapItem(item: Warehouse)
+        case didTapItem(item: WarehouseModel)
     }
 }
 
 extension DepotView {
-    func itemRow(item: Warehouse, index: Int) -> some View {
+    func itemRow(item: WarehouseModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
                 Text(item.name)
@@ -82,8 +82,8 @@ extension DepotView {
 
 #Preview {
     DepotView(state: .init(depots: [
-        Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-        Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-        Warehouse(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
+        WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
+        WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
+        WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
     ])) { _ in }
 }

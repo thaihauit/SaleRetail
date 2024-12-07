@@ -16,8 +16,10 @@ class MainState: ObservableObject {
            GridItem(.flexible())
     ]
     
-    init() {
-        
-    }
+    @Published var userName: String = ""
+    @Published var password: String = ""
+    @Published var shouldShowLoginView = LoginManager.shared.shouldLogin
+    
+    init() {}
     
 }

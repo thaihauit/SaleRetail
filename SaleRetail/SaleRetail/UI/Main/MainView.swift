@@ -18,7 +18,18 @@ struct MainView: View {
     }
     
     var body: some View {
-        contentView
+        if state.shouldShowLoginView {
+            LoginView(state: .init()) { action in
+                switch action {
+                case let .didTapItem(userName, password):
+                    LoginManager.shared.asynLogin(userName: userName, password: password) { success in
+                        state.shouldShowLoginView = !success
+                    }
+                }
+            }
+        } else {
+            contentView
+        }
     }
 }
 
@@ -43,7 +54,7 @@ extension MainView {
     }
     
     var productListView: some View {
-        ProductListView(state: .init(items: []))
+        ProductListView(state: .init())
     }
     
     var inventoryView: some View {

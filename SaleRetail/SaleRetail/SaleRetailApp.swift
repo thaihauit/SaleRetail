@@ -14,10 +14,7 @@ struct SaleRetailApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView(state: .init())
-//            MainView(state: .init()) { action in
-//                print("")
-//            }
+            MainView(state: .init())
         }
     }
 }

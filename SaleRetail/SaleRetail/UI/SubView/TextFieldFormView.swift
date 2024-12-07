@@ -36,14 +36,12 @@ struct TextFieldFormView: View {
 }
 
 struct TextFieldFormView2: View {
-    @State private var text: String
     let title: String
-    let onChangeValue: (String) -> Void
+    @Binding var text: String
     
-    init(title: String, text: String, onChangeValue: @escaping (String) -> Void) {
-        self.text = text
+    init(title: String, text: Binding<String>) {
         self.title = title
-        self.onChangeValue = onChangeValue
+        self._text = text
     }
     
     var body: some View {
@@ -55,19 +53,16 @@ struct TextFieldFormView2: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             TextField("", text: $text)
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 16)
                 .frame(height: 60)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.system(size: 12))
+                .font(.system(size: 14))
                 .foregroundColor(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 4)
                         .stroke(Color.blue, lineWidth: 1)
                 )
-                .onChange(of: text) { newValue in
-                    onChangeValue(newValue)
-                }
                 .background(Color.white)
         }
             

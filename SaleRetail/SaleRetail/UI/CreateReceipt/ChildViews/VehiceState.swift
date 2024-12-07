@@ -19,6 +19,9 @@ class VehiceState: ObservableObject {
         ]
     }
 }
+struct Vehice: Decodable {
+    let data: VehiceModel
+}
 
 struct VehiceModel: Decodable {
     let id: Int

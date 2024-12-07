@@ -34,7 +34,7 @@ extension ApiType: TargetType {
         default:
             return [
                 "Content-Type": "application/json",
-                "Authorization": "Bearer \(LoginManager.shared.token ?? "")"
+                "Authorization": "Bearer \(LoginManager.shared.token)"
             ]
         }
     }
@@ -83,7 +83,7 @@ extension ApiType: TargetType {
                     ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         default:
-            return .requestParameters(parameters: [:], encoding: JSONEncoding.default)
+            return .requestPlain
         }
         
     }
