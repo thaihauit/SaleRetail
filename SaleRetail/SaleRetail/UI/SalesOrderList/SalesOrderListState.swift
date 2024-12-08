@@ -11,8 +11,16 @@ import UIKit
 class SalesOrderListState: ObservableObject {
     
     @Published var isTapItem = false
-    @Published var isEditItem = false
-    @Published var isDeleteItem = false
     @Published var items: [SalesOrderModel] = []
+    
+    init() {
+        fetchItemList()
+    }
+    
+    func fetchItemList() {
+        BaseProvider().sell(fromDate: "2024-07-05", toDate: "2024-12-05") { items in
+            self.items = items
+        }
+    }
     
 }

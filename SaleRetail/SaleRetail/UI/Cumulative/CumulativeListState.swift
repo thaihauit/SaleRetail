@@ -10,12 +10,16 @@ import UIKit
 
 class CumulativeListState: ObservableObject {
     
-    @Published var items: [CumulativeModel] = [
-        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
-        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
-        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
-        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
-        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000),
-        .init(fromDate: "5/11/2024", toDate: "17/11/2024", requiredAmount: 5000000, discountAmount: 70000)
-    ]
+    @Published var items: [CumulativeModel] = []
+    
+    init() {
+        fetchItemList()
+    }
+    
+    func fetchItemList() {
+        BaseProvider().cumulative { items in
+            self.items = items
+        }
+    }
+    
 }

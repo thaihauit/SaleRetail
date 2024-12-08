@@ -1,17 +1,17 @@
 //
-//  ProductAdditionView.swift
+//  ProductDetailListView.swift
 //  SaleRetail
 //
-//  Created by D.Ace on 19/11/24.
+//  Created by D.Ace on 8/12/24.
 //
 
 import SwiftUI
 
-struct ProductAdditionView: View {
-    @ObservedObject var state: ProductAdditionState
+struct ProductDetailListView: View {
+    @ObservedObject var state: ProductDetailListState
     let action: (Action) -> Void
     
-    init(state: ProductAdditionState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: ProductDetailListState, action: @escaping (Action) -> Void = { _ in }) {
         self.state = state
         self.action = action
     }
@@ -20,34 +20,40 @@ struct ProductAdditionView: View {
         VStack(spacing: 0) {
             headerView
                 .padding(.horizontal, 16)
-                .background(Color.blue)
+                .background(Color.blue.opacity(0.6))
             
             scrollView
         }
-        .frame(width: 500, height: 500)
+        .frame(width: 732, height: 500)
     }
 }
 
-extension ProductAdditionView{
+extension ProductDetailListView{
     enum Action {
-        case didTapItem(item: ProductModel)
+        case didTapItem(item: SalesOrderModel.Product)
     }
 }
 
-extension ProductAdditionView {
-    func itemRow(item: ProductModel, index: Int) -> some View {
+extension ProductDetailListView {
+    func itemRow(item: SalesOrderModel.Product, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
                 Text(item.code)
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.name)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 200, alignment: .leading)
                 
-                Text(item.units.first?.name ?? "")
+                Text("\(item.quantity)")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(item.units.first?.price ?? 0)")
+                Text("\(item.price)")
+                    .frame(width: 100, alignment: .leading)
+                
+                Text("\(item.discount)")
+                    .frame(width: 100, alignment: .leading)
+                
+                Text("\(item.amount)")
                     .frame(width: 100, alignment: .leading)
             }
             .fixedSize(horizontal: false, vertical: true)
@@ -64,12 +70,18 @@ extension ProductAdditionView {
                     .frame(width: 100, alignment: .leading)
                 
                 Text("Tên Hàng Hóa")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 200, alignment: .leading)
                 
-                Text("Đơn Vị")
+                Text("Số Lượng")
                     .frame(width: 100, alignment: .leading)
-               
+                
                 Text("Đơn Giá")
+                    .frame(width: 100, alignment: .leading)
+                
+                Text("Chiết Khấu")
+                    .frame(width: 100, alignment: .leading)
+                
+                Text("Thành Tiền")
                     .frame(width: 100, alignment: .leading)
                 
             }
@@ -93,8 +105,4 @@ extension ProductAdditionView {
         .background(Color.clear)
         .scrollContentBackground(.hidden)
     }
-}
-
-#Preview {
-    ProductView(state: .init(products: []))
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 struct PromotionModel: Decodable {
-    let id: Int
     let requiredQuantity: Int
     let requiredUnitName: String
     let productCode: String

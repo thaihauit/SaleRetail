@@ -55,13 +55,13 @@ extension DiscountListView {
                 Text(item.productName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.productGroupName)
+                Text(item.productGroupName ?? "")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("\(item.requiredAmount)")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("\(item.basedOn)")
+                Text(item.basedOnDisplay)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(item.fromDate)

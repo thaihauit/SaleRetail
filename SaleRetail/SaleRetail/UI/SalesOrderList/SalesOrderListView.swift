@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SalesOrderListView: View {
     
+    @State var isTapItem = false
     @ObservedObject var state: SalesOrderListState
     let action: (Action) -> Void
     
@@ -27,7 +28,6 @@ struct SalesOrderListView: View {
                 HeaderBaseView(name: "DANH SÁCH PHIẾU BÁN HÀNG")
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
     var contentView: some View {
@@ -38,58 +38,16 @@ struct SalesOrderListView: View {
             
             scrollView
         }
-        
     }
 }
 
 extension SalesOrderListView {
     enum Action {
         case didTapItem(item: SalesOrderModel)
-        case didRemoveItem(item: SalesOrderModel)
-        case didEditItem(item: SalesOrderModel)
     }
 }
 
 extension SalesOrderListView {
-    func itemRow(item: SalesOrderModel, index: Int) -> some View {
-        HStack(spacing: 0) {
-            Group {
-                Text(item.invoiceNo)
-                    .frame(width: 100, alignment: .leading)
-                   
-                Text(item.customer.name)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text(item.createdDate)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text(item.note)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("\(item.totalAmount)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.discount)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.cumulativeAmount)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.paidAmount)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Đã Xuất Kho")
-                    .frame(width: 100, alignment: .leading)
-
-            }
-            .foregroundColor(.black)
-            .fixedSize(horizontal: false, vertical: true)
-            .font(.system(size: 12))
-            .frame(height: 60)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
-    
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
@@ -126,40 +84,10 @@ extension SalesOrderListView {
             .frame(height: 60)
         }
     }
-    
     var scrollView: some View {
         List {
-            ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
-                itemRow(item: item, index: index)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        state.isTapItem = true
-                    }
-                    .fullScreenCover(isPresented: $state.isTapItem) {
-                        PopupView(isPresented: $state.isTapItem) {
-                            PopupView(isPresented: $state.isTapItem) {
-                                ProductAdditionView(state: .init(products: item.detail)) { action in
-                                    state.isTapItem = false
-                                }
-                            }
-                        }
-                    }
-                    .swipeActions {
-                        HStack {
-                            Button(role: .destructive) {
-                               
-                            } label: {
-                                Label("Xóa", systemImage: "trash")
-                            }
-                            
-                            Button {
-                                
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            }
-                            .tint(.blue)
-                        }
-                    }
+            ForEach(Array(state.items.enumerated()), id: \.offset) { (_, item) in
+                SaleOrderItemView(item: item)
             }
         }
         .listStyle(PlainListStyle())

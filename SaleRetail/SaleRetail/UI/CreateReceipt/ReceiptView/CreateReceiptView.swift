@@ -24,7 +24,7 @@ struct CreateReceiptView: View {
                     .padding(.horizontal, 16)
             }
         }
-        .padding(.vertical, 16)
+        .padding(16)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HeaderBaseView(name: "TẠO ĐƠN HÀNG")
@@ -228,7 +228,6 @@ extension CreateReceiptView {
                 }
             
             ButtonView(title: "TẠO ĐƠN") {
-                
             }
         }
         

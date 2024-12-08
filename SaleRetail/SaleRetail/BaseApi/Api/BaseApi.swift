@@ -11,7 +11,7 @@ import Moya
 
 enum ApiType {
     case login(userName: String, password: String)
-    case sell
+    case sell(fromDate: String, toDate: String)
     case product
     case promotion
     case discount
@@ -48,7 +48,7 @@ extension ApiType: TargetType {
         case .login:
             return "/login"
         case .sell:
-            return "/self/list"
+            return "/sell/list"
         case .product:
             return "/product/list"
         case .promotion:
@@ -80,6 +80,12 @@ extension ApiType: TargetType {
             let parameters: [String: Any] = [
                         "username": userName,
                         "password": password
+                    ]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case let .sell(fromDate, toDate):
+            let parameters: [String: Any] = [
+                        "fromDate": fromDate,
+                        "toDate": toDate
                     ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         default:

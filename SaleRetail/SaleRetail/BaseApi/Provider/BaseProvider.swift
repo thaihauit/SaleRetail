@@ -30,6 +30,25 @@ struct BaseProvider: Restable {
         }
     }
     
+    func sell(fromDate: String, toDate: String, completion: @escaping ([SalesOrderModel]) -> Void) {
+        provider.request(.sell(fromDate: fromDate, toDate: toDate)) { result in
+            switch result {
+            case let .success(response):
+                DispatchQueue.main.async {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: SalesOrder.self) { (data) in
+                        if let data = data as? SalesOrder {
+                            completion(data.data)
+                        } else {
+                            completion([])
+                        }
+                    }
+                }
+            case .failure:
+                completion([])
+            }
+        }
+    }
+    
     func cumulative(completion: @escaping ([CumulativeModel]) -> Void) {
         provider.request(.cumulative) { result in
             switch result {
@@ -82,7 +101,7 @@ struct BaseProvider: Restable {
                         }
                     }
                 }
-            case .failure(let err):
+            case .failure:
                 completion([])
             }
         }

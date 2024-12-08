@@ -32,13 +32,13 @@ struct PopupView<Content: View>: View {
     var maskView: some View {
         Color.black
             .opacity(0.5)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.all)
             .transition(.opacity)
             .contentShape(Rectangle())
             .onTapGesture {
                 isPresented = false
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.all)
     }
     
     enum Action {

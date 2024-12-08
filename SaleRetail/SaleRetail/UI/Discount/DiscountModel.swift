@@ -8,12 +8,12 @@
 import Foundation
 
 struct DiscountModel: Decodable {
-    let basedOn: Int
+    let basedOnDisplay: String
     let requiredAmount: Int
     let fromDate: String
     let toDate: String
     let productName: String
-    let productGroupName: String
+    let productGroupName: String?
     let discountDisplay: String
 }
 

@@ -29,6 +29,7 @@ struct MainView: View {
             }
         } else {
             contentView
+                
         }
     }
 }
@@ -88,7 +89,7 @@ extension MainView {
                                 Image("createOrder")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 70, height: 70)
                                 
                                 Text("TẠO ĐƠN HÀNG")
                                     .font(.system(size: 25, weight: .bold))
@@ -101,7 +102,7 @@ extension MainView {
                                 Image("order")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 70, height: 70)
                                 
                                 Text("DANH SÁCH ĐƠN HÀNG")
                                     .font(.system(size: 25, weight: .bold))
@@ -114,7 +115,7 @@ extension MainView {
                                 Image("inventory")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 70, height: 70)
                                 
                                 Text("TỒN KHO")
                                     .font(.system(size: 25, weight: .bold))
@@ -127,7 +128,7 @@ extension MainView {
                                 Image("product")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 70, height: 70)
                                 
                                 Text("DANH SÁCH HÀNG HÓA")
                                     .font(.system(size: 25, weight: .bold))
@@ -140,7 +141,7 @@ extension MainView {
                                 Image("promotion")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 70, height: 70)
                                 
                                 Text("DANH SÁCH KHUYẾN MÃI")
                                     .font(.system(size: 25, weight: .bold))
@@ -153,7 +154,7 @@ extension MainView {
                                 Image("discount")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 70, height: 70)
                                 
                                 Text("DANH SÁCH CHIẾT KHẤU")
                                     .font(.system(size: 25, weight: .bold))
@@ -166,7 +167,7 @@ extension MainView {
                                 Image("acumulative")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 70, height: 70)
                                 
                                 Text("DANH SÁCH TÍCH LŨY")
                                     .font(.system(size: 25, weight: .bold))
