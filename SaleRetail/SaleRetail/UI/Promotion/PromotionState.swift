@@ -11,14 +11,16 @@ import UIKit
 class PromotionState: ObservableObject {
     
     @Published var items: [PromotionModel] = []
+    @Published var isLoading = false
     
     init() {
-        fetchItemList()
     }
     
     func fetchItemList() {
+        isLoading = true
         BaseProvider().promotion { items in
             self.items = items
+            self.isLoading = false
         }
     }
 }

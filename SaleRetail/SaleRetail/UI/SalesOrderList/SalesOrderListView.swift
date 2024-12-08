@@ -28,15 +28,57 @@ struct SalesOrderListView: View {
                 HeaderBaseView(name: "DANH SÁCH PHIẾU BÁN HÀNG")
             }
         }
+        .overlay {
+            if state.isLoading {
+                ProgressView()
+                    .tint(.blue)
+                    .progressViewStyle(.circular)
+            }
+        }
+        .onAppear {
+            state.fetchItemList()
+        }
     }
     
     var contentView: some View {
         VStack(spacing: 0) {
+            filterView
+                .frame(height: 100)
             headerView
                 .padding(.horizontal, 16)
                 .background(Color.blue)
             
             scrollView
+        }
+    }
+    
+    var filterView: some View {
+        HStack(spacing: 32) {
+            TextFormView(title: "Ngày Giao", content: state.createString)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    state.isShowCreateDatePicker = true
+                }
+                .popover(
+                    isPresented: $state.isShowCreateDatePicker,
+                    attachmentAnchor: .rect(.bounds),
+                    arrowEdge: .top
+                ) {
+                    DateView(selectedDate: $state.createDate)
+                }
+            
+            TextFormView(title: "Ngày Giao", content: state.endString)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    state.isShowEndDatePicker = true
+                }
+                .popover(
+                    isPresented: $state.isShowEndDatePicker,
+                    attachmentAnchor: .rect(.bounds),
+                    arrowEdge: .top
+                ) {
+                    DateView(selectedDate: $state.endDate)
+                }
         }
     }
 }

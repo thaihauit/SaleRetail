@@ -27,6 +27,16 @@ struct CumulativeListView: View {
                 HeaderBaseView(name: "DANH SÁCH TÍCH LŨY")
             }
         }
+        .onAppear {
+            state.fetchItemList()
+        }
+        .overlay {
+            if state.isLoading {
+                ProgressView()
+                    .tint(.blue)
+                    .progressViewStyle(.circular)
+            }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     

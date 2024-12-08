@@ -11,14 +11,15 @@ import UIKit
 class CumulativeListState: ObservableObject {
     
     @Published var items: [CumulativeModel] = []
-    
+    @Published var isLoading = false
     init() {
-        fetchItemList()
     }
     
     func fetchItemList() {
+        isLoading = true
         BaseProvider().cumulative { items in
             self.items = items
+            self.isLoading = false
         }
     }
     

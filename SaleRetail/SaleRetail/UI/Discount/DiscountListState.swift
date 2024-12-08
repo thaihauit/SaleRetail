@@ -11,14 +11,16 @@ import UIKit
 class DiscountListState: ObservableObject {
     
     @Published var items: [DiscountModel] = []
+    @Published var isLoading = false
     
     init() {
-        fetchDiscountList()
     }
     
     func fetchDiscountList() {
+        isLoading = true
         BaseProvider().discount { items in
             self.items = items
+            self.isLoading = false
         }
     }
 }

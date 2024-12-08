@@ -12,8 +12,6 @@ class CreateReceiptState: ObservableObject {
     
     @Published var isShowCustomerModal = false
     @Published var iShowProductModal = false
-    @Published var isShowDatePicker = false
-    @Published var deliverDate = Date()
     @Published var customer: CustomerModel?
     @Published var products: [ProductModel] = []
     @Published var vehice: VehiceModel?
@@ -26,7 +24,8 @@ class CreateReceiptState: ObservableObject {
     var deliverString: String {
         dateFormatter.string(from: deliverDate)
     }
-    
+    @Published var deliverDate = Date()
+    @Published var isShowDatePicker = false
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long

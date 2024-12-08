@@ -18,18 +18,31 @@ struct MainView: View {
     }
     
     var body: some View {
+        contentView
+            .overlay {
+                if state.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .padding()
+                }
+            }
+    }
+    
+    @ViewBuilder
+    var contentView: some View {
         if state.shouldShowLoginView {
             LoginView(state: .init()) { action in
                 switch action {
                 case let .didTapItem(userName, password):
+                    state.isLoading = true
                     LoginManager.shared.asynLogin(userName: userName, password: password) { success in
                         state.shouldShowLoginView = !success
+                        state.isLoading = false
                     }
                 }
             }
         } else {
-            contentView
-                
+            mainView
         }
     }
 }
@@ -78,7 +91,7 @@ extension MainView {
         ReturnReceiptListView(state: .init())
     }
     
-    var contentView: some View {
+    var mainView: some View {
         NavigationStack {
             LazyVGrid(columns: state.columns, spacing: 64) {
                 ForEach(1...10, id: \.self) { index in

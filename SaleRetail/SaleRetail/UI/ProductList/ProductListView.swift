@@ -27,6 +27,16 @@ struct ProductListView: View {
                 HeaderBaseView(name: "DANH SÁCH HÀNG HÓA")
             }
         }
+        .onAppear {
+            state.fetchProductList()
+        }
+        .overlay {
+            if state.isLoading {
+                ProgressView()
+                    .tint(.blue)
+                    .progressViewStyle(.circular)
+            }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     

@@ -27,6 +27,16 @@ struct DiscountListView: View {
                 HeaderBaseView(name: "DANH SÁCH CHIẾT KHẤU")
             }
         }
+        .onAppear {
+            state.fetchDiscountList()
+        }
+        .overlay {
+            if state.isLoading {
+                ProgressView()
+                    .tint(.blue)
+                    .progressViewStyle(.circular)
+            }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     

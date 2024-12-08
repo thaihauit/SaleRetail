@@ -10,14 +10,14 @@ import UIKit
 
 class ProductListState: ObservableObject {
     @Published var items: [ProductListModel] = []
-    
-    init() {
-        fetchProductList()
-    }
+    @Published var isLoading = false
+    init() {}
     
     func fetchProductList() {
+        isLoading = true
         BaseProvider().product { items in
             self.items = items
+            self.isLoading = false
         }
     }
 }

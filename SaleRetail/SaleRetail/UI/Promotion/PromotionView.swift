@@ -27,6 +27,16 @@ struct PromotionView: View {
                 HeaderBaseView(name: "DANH SÁCH KHUYẾN MÃI")
             }
         }
+        .onAppear {
+            state.fetchItemList()
+        }
+        .overlay {
+            if state.isLoading {
+                ProgressView()
+                    .tint(.blue)
+                    .progressViewStyle(.circular)
+            }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     

@@ -19,6 +19,7 @@ class MainState: ObservableObject {
     @Published var userName: String = ""
     @Published var password: String = ""
     @Published var shouldShowLoginView = LoginManager.shared.shouldLogin
+    @Published var isLoading = false
     
     init() {}
     
