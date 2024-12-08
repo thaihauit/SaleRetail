@@ -79,11 +79,3 @@ extension DepotView {
         .scrollContentBackground(.hidden)
     }
 }
-
-#Preview {
-    DepotView(state: .init(depots: [
-        WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-        WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-        WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
-    ])) { _ in }
-}

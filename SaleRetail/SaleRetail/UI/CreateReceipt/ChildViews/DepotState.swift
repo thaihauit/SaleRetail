@@ -11,22 +11,16 @@ class DepotState: ObservableObject {
     let depots: [WarehouseModel]
     
     init(depots: [WarehouseModel]) {
-        self.depots = [
-            WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-            WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false),
-            WarehouseModel(id: 1, code: "", name: "Kho A", isLiquidation: false, isDeleted: false)
-        ]
+        self.depots = []
     }
 }
 
 struct Warehouse: Decodable {
-    let data: WarehouseModel
+    let data: [WarehouseModel]
 }
 
 struct WarehouseModel: Decodable {
     let id: Int
     let code: String
     let name: String
-    let isLiquidation: Bool
-    let isDeleted: Bool
 }

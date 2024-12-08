@@ -187,7 +187,7 @@ extension CreateReceiptView {
                                 attachmentAnchor: .rect(.bounds),
                                 arrowEdge: .top
                             ) {
-                                VehiceView(state: .init(vehices: []), action: { action in
+                                VehicleView(state: .init(vehices: []), action: { action in
                                     switch action {
                                     case .didTapItem(let item):
                                         state.vehice = item

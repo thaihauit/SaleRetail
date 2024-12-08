@@ -1,5 +1,5 @@
 //
-//  VehiceView.swift
+//  VehicleView.swift
 //  SaleRetail
 //
 //  Created by D.Ace on 17/11/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct VehiceView: View {
+struct VehicleView: View {
     
-    @ObservedObject var state: VehiceState
+    @ObservedObject var state: VehicleState
     let action: (Action) -> Void
     
-    init(state: VehiceState, action: @escaping (Action) -> Void) {
+    init(state: VehicleState, action: @escaping (Action) -> Void) {
         self.state = state
         self.action = action
     }
@@ -23,14 +23,14 @@ struct VehiceView: View {
     }
 }
 
-extension VehiceView {
+extension VehicleView {
     enum Action {
-        case didTapItem(item: VehiceModel)
+        case didTapItem(item: VehicleModel)
     }
 }
 
-extension VehiceView {
-    func itemRow(item: VehiceModel, index: Int) -> some View {
+extension VehicleView {
+    func itemRow(item: VehicleModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
                 Text(item.code)
@@ -78,13 +78,4 @@ extension VehiceView {
         .background(Color.clear)
         .scrollContentBackground(.hidden)
     }
-}
-
-#Preview {
-    VehiceView(state: .init(vehices: [
-        VehiceModel(id: 1, licensePlate: "", code: "AB", lisDeleted: false),
-        VehiceModel(id: 1, licensePlate: "", code: "NVX", lisDeleted: false),
-        VehiceModel(id: 1, licensePlate: "", code: "Dream", lisDeleted: false),
-        VehiceModel(id: 1, licensePlate: "", code: "Ware", lisDeleted: false)
-    ])) { _ in }
 }

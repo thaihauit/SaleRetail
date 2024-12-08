@@ -17,6 +17,9 @@ enum ApiType {
     case discount
     case cumulative
     case inventory
+    case vehicel
+    case warehouse
+    case customer
 }
 
 private extension String {
@@ -59,6 +62,12 @@ extension ApiType: TargetType {
             return "/cumulative/list"
         case .inventory:
             return "/inventories/list"
+        case .vehicel:
+            return "/vehicel/list"
+        case .warehouse:
+            return "/warehouse/list"
+        case .customer:
+            return "/customer/list"
         }
     }
     

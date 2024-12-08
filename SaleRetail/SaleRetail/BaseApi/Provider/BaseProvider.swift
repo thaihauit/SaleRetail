@@ -87,6 +87,63 @@ struct BaseProvider: Restable {
         }
     }
     
+    func vehicle(completion: @escaping ([VehicleModel]) -> Void) {
+        provider.request(.vehicel) { result in
+            switch result {
+            case let .success(response):
+                DispatchQueue.main.async {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: Vehice.self) { (data) in
+                        if let data = data as? Vehice {
+                            completion(data.data)
+                        } else {
+                            completion([])
+                        }
+                    }
+                }
+            case .failure:
+                completion([])
+            }
+        }
+    }
+    
+    func warehouse(completion: @escaping ([WarehouseModel]) -> Void) {
+        provider.request(.warehouse) { result in
+            switch result {
+            case let .success(response):
+                DispatchQueue.main.async {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: Warehouse.self) { (data) in
+                        if let data = data as? Warehouse {
+                            completion(data.data)
+                        } else {
+                            completion([])
+                        }
+                    }
+                }
+            case .failure:
+                completion([])
+            }
+        }
+    }
+    
+    func customer(completion: @escaping ([CustomerModel]) -> Void) {
+        provider.request(.customer) { result in
+            switch result {
+            case let .success(response):
+                DispatchQueue.main.async {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: Customer.self) { (data) in
+                        if let data = data as? Customer {
+                            completion(data.data)
+                        } else {
+                            completion([])
+                        }
+                    }
+                }
+            case .failure:
+                completion([])
+            }
+        }
+    }
+    
     
     func discount(completion: @escaping ([DiscountModel]) -> Void) {
         provider.request(.discount) { result in
