@@ -9,21 +9,22 @@ import Foundation
 import UIKit
 
 class CreateReceiptState: ObservableObject {
-    
     @Published var isShowCustomerModal = false
     @Published var iShowProductModal = false
     @Published var customer: CustomerModel?
-    @Published var products: [ProductModel] = []
     @Published var vehice: VehicleModel?
     @Published var depot: WarehouseModel?
     @Published var iShowVehiceModal = false
     @Published var iShowDepotModal = false
     @Published var isDisplayUnitModal = false
-    @Published var iShowEdit = false
     
-    var deliverString: String {
-        dateFormatter.string(from: deliverDate)
-    }
+    @Published var productAdditions: [ProductModel] = []
+    @Published var products: [ProductModel] = []
+    @Published var vehicles: [VehicleModel] = []
+    @Published var customers: [CustomerModel] = []
+    @Published var depots: [WarehouseModel] = []
+    
+    var deliverString: String { dateFormatter.string(from: deliverDate) }
     @Published var deliverDate = Date()
     @Published var isShowDatePicker = false
     var dateFormatter: DateFormatter {
@@ -32,6 +33,9 @@ class CreateReceiptState: ObservableObject {
         formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "vi_VN")
         return formatter
+    }
+    
+    func reset() {
     }
     
     func selectedNumber(index: Int, value: Int) {
@@ -80,5 +84,28 @@ class CreateReceiptState: ObservableObject {
         )
     }
     
-    let width = UIApplication.shared.windows.first?.bounds.width ?? 0
+    func getVehicle() {
+        BaseProvider().vehicle { items in
+            self.vehicles = items
+        }
+    }
+    
+    func getDepots() {
+        BaseProvider().warehouse { items in
+            self.depots = items
+        }
+    }
+    
+    func getCustomers() {
+        BaseProvider().customer { items in
+            self.customers = items
+        }
+    }
+    
+    func getProducts() {
+        BaseProvider().productSell { items in
+            self.productAdditions = items
+        }
+    }
+    
 }

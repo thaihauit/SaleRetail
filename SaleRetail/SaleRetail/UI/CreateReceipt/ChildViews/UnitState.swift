@@ -8,14 +8,10 @@
 import Foundation
 
 class UnitState: ObservableObject {
-    let units: [UnitModel]
+    @Published var units: [UnitModel]
     
     init(units: [UnitModel]) {
-        self.units = [
-            UnitModel(id: 1, price: 1234, name: "Tui"),
-            UnitModel(id: 1, price: 2222, name: "Bich"),
-            UnitModel(id: 1, price: 1111, name: "chai"),
-        ]
+        self.units = units
     }
 }
 

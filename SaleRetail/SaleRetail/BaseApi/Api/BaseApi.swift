@@ -11,15 +11,19 @@ import Moya
 
 enum ApiType {
     case login(userName: String, password: String)
-    case sell(fromDate: String, toDate: String)
+    case sellist(fromDate: String, toDate: String)
     case product
     case promotion
     case discount
     case cumulative
     case inventory
-    case vehicel
+    case vehicle
     case warehouse
     case customer
+    case productSell
+    case calculatepromotion(json: [String: Any])
+    case sell(json: [String: Any])
+    
 }
 
 private extension String {
@@ -50,7 +54,7 @@ extension ApiType: TargetType {
         switch self {
         case .login:
             return "/login"
-        case .sell:
+        case .sellist:
             return "/sell/list"
         case .product:
             return "/product/list"
@@ -62,19 +66,25 @@ extension ApiType: TargetType {
             return "/cumulative/list"
         case .inventory:
             return "/inventories/list"
-        case .vehicel:
-            return "/vehicel/list"
+        case .vehicle:
+            return "/vehicle/list"
         case .warehouse:
             return "/warehouse/list"
         case .customer:
             return "/customer/list"
+        case .productSell:
+            return "/product/listforsell"
+        case .calculatepromotion:
+            return "/sell/calculatepromotion"
+        case .sell:
+            return "/sell"
         }
     }
     
     public var method: Moya.Method {
         switch self {
         case .login: return .post
-        case .sell: return .post
+        case .sellist: return .post
         default: return .get
         }
     }
@@ -91,7 +101,7 @@ extension ApiType: TargetType {
                         "password": password
                     ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case let .sell(fromDate, toDate):
+        case let .sellist(fromDate, toDate):
             let parameters: [String: Any] = [
                         "fromDate": fromDate,
                         "toDate": toDate

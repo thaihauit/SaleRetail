@@ -8,10 +8,10 @@
 import Foundation
 
 class VehicleState: ObservableObject {
-    let vehices: [VehicleModel]
+    @Published var vehicles: [VehicleModel]
     
     init(vehices: [VehicleModel]) {
-        self.vehices = []
+        self.vehicles = vehices
     }
 }
 struct Vehice: Decodable {

@@ -50,10 +50,6 @@ struct ProductItemView: View {
                     .frame(width: 150, alignment: .leading)
                 
             }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                action(.didTapItem(index: state.index))
-            }
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -73,7 +69,6 @@ struct ProductItemView: View {
 
 extension ProductItemView {
     enum Action {
-        case didTapItem(index: Int)
         case didSelectedNumber(index: Int, value: Int)
         case didSelectedUnit(index: Int, unit: UnitModel)
     }

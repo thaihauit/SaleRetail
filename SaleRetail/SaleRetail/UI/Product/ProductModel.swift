@@ -8,7 +8,7 @@
 import Foundation
 
 struct Product: Decodable {
-    let data: ProductModel
+    let data: [ProductModel]
 }
 
 struct ProductModel: Decodable {

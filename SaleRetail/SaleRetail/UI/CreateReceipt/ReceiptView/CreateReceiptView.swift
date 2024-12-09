@@ -25,6 +25,15 @@ struct CreateReceiptView: View {
             }
         }
         .padding(16)
+        .onDisappear {
+            state.reset()
+        }
+        .onAppear {
+            state.getDepots()
+            state.getVehicle()
+            state.getCustomers()
+            state.getProducts()
+        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HeaderBaseView(name: "TẠO ĐƠN HÀNG")
@@ -49,20 +58,6 @@ extension CreateReceiptView {
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 state.isShowCustomerModal = true
-                            }
-                            .popover(
-                                isPresented: $state.isShowCustomerModal,
-                                attachmentAnchor: .rect(.bounds),
-                                arrowEdge: .top
-                            ) {
-                                CustomerAdditionView(state: .init(customers: [])) { action in
-                                    switch action {
-                                    case .didTapCustomer(let item):
-                                        state.isShowCustomerModal = false
-                                        state.customer = item
-                                    }
-                                }
-                                .frame(width: state.width - 40, height: 500)
                             }
                         
                         TextFormView(title: "SĐT", content: state.customer?.phone ?? "")
@@ -112,20 +107,6 @@ extension CreateReceiptView {
                             state.selectedNumber(index: index, value: value)
                         case let .didSelectedUnit(index, unit):
                             state.selectedUnit(index: index, unit: unit)
-                        case .didEditItem(index: let index):
-                             state.iShowEdit = true
-                            //CreateReceiptView(state: .init())
-                            
-                        case .didTapItem(index: let index):
-                            print("")
-                        }
-                    }
-                    .background {
-                        NavigationLink(
-                            destination: CreateReceiptView(state: .init()),
-                            isActive: $state.iShowEdit
-                        ) {
-                            EmptyView()
                         }
                     }
                 }
@@ -169,10 +150,11 @@ extension CreateReceiptView {
                                 attachmentAnchor: .rect(.bounds),
                                 arrowEdge: .top
                             ) {
-                                DepotView(state: .init(depots: []), action: { action in
+                                DepotView(state: .init(depots: state.depots), action: { action in
                                     switch action {
                                     case .didTapItem(let item):
                                         state.depot = item
+                                        state.iShowDepotModal = false
                                     }
                                 })
                             }
@@ -187,10 +169,11 @@ extension CreateReceiptView {
                                 attachmentAnchor: .rect(.bounds),
                                 arrowEdge: .top
                             ) {
-                                VehicleView(state: .init(vehices: []), action: { action in
+                                VehicleView(state: .init(vehices: state.vehicles), action: { action in
                                     switch action {
                                     case .didTapItem(let item):
                                         state.vehice = item
+                                        state.iShowVehiceModal = false
                                     }
                                 })
                             }
@@ -213,24 +196,33 @@ extension CreateReceiptView {
         VStack(spacing: 16) {
             customerView
             infoView
-            
             productView
-                .fullScreenCover(isPresented: $state.iShowProductModal) {
-                    PopupView(isPresented: $state.iShowProductModal) {
-                        ProductAdditionView(state: .init(products: [])) { action in
-                            switch action {
-                            case .didTapItem(let item):
-                                state.iShowProductModal = false
-                                state.products.append(item)
-                            }
-                        }
-                    }
-                }
             
             ButtonView(title: "TẠO ĐƠN") {
             }
         }
-        
+        .fullScreenCover(isPresented: $state.iShowProductModal) {
+            PopupView(isPresented: $state.iShowProductModal) {
+                ProductAdditionView(state: .init(products: state.productAdditions)) { action in
+                    switch action {
+                    case .didTapItem(let item):
+                        state.iShowProductModal = false
+                        state.products.append(item)
+                    }
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $state.isShowCustomerModal) {
+            PopupView(isPresented: $state.isShowCustomerModal) {
+                CustomerAdditionView(state: .init(customers: state.customers)) { action in
+                    switch action {
+                    case .didTapCustomer(let item):
+                        state.isShowCustomerModal = false
+                        state.customer = item
+                    }
+                }
+            }
+        }
     }
 }
 

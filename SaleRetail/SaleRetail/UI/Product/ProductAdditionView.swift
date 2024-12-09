@@ -24,7 +24,7 @@ struct ProductAdditionView: View {
             
             scrollView
         }
-        .frame(width: 500, height: 500)
+        .frame(width: 632, height: 700)
     }
 }
 
@@ -39,10 +39,10 @@ extension ProductAdditionView {
         HStack(spacing: 0) {
             Group {
                 Text(item.code)
-                    .frame(width: 100, alignment: .leading)
+                    .frame(width: 150, alignment: .leading)
                 
                 Text(item.name)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 250, alignment: .leading)
                 
                 Text(item.units.first?.name ?? "")
                     .frame(width: 100, alignment: .leading)
@@ -61,10 +61,10 @@ extension ProductAdditionView {
         HStack(spacing: 0) {
             Group {
                 Text("Mã Hàng Hóa")
-                    .frame(width: 100, alignment: .leading)
+                    .frame(width: 150, alignment: .leading)
                 
                 Text("Tên Hàng Hóa")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 250, alignment: .leading)
                 
                 Text("Đơn Vị")
                     .frame(width: 100, alignment: .leading)

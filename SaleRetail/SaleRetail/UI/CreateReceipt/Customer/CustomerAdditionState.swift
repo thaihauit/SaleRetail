@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 class CustomerAdditionState: ObservableObject {
-    let customers: [CustomerModel]
+    
+    @Published var customers: [CustomerModel]
     
     init(customers: [CustomerModel]) {
-        self.customers = [
-        ]
+        self.customers = customers
     }
 }

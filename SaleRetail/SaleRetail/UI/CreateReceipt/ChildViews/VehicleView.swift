@@ -66,7 +66,7 @@ extension VehicleView {
     
     var scrollView: some View {
         List {
-            ForEach(Array(state.vehices.enumerated()), id: \.offset) { (index, item) in
+            ForEach(Array(state.vehicles.enumerated()), id: \.offset) { (index, item) in
                 itemRow(item: item, index: index + 1)
                     .contentShape(Rectangle())
                     .onTapGesture {

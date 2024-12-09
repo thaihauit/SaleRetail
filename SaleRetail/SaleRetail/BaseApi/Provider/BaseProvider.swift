@@ -31,7 +31,7 @@ struct BaseProvider: Restable {
     }
     
     func sell(fromDate: String, toDate: String, completion: @escaping ([SalesOrderModel]) -> Void) {
-        provider.request(.sell(fromDate: fromDate, toDate: toDate)) { result in
+        provider.request(.sellist(fromDate: fromDate, toDate: toDate)) { result in
             switch result {
             case let .success(response):
                 DispatchQueue.main.async {
@@ -87,8 +87,27 @@ struct BaseProvider: Restable {
         }
     }
     
+    func productSell(completion: @escaping ([ProductModel]) -> Void) {
+        provider.request(.productSell) { result in
+            switch result {
+            case let .success(response):
+                DispatchQueue.main.async {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: Product.self) { (data) in
+                        if let data = data as? Product {
+                            completion(data.data)
+                        } else {
+                            completion([])
+                        }
+                    }
+                }
+            case .failure:
+                completion([])
+            }
+        }
+    }
+    
     func vehicle(completion: @escaping ([VehicleModel]) -> Void) {
-        provider.request(.vehicel) { result in
+        provider.request(.vehicle) { result in
             switch result {
             case let .success(response):
                 DispatchQueue.main.async {

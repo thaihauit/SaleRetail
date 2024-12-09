@@ -27,8 +27,6 @@ extension ProductView {
         case didRemoveItem(index: Int)
         case didSelectedNumber(index: Int, value: Int)
         case didSelectedUnit(index: Int, unit: UnitModel)
-        case didEditItem(index: Int)
-        case didTapItem(index: Int)
     }
 }
 
@@ -36,8 +34,6 @@ extension ProductView {
     func itemRow(item: ProductModel, index: Int) -> some View {
         ProductItemView(state: .init(product: item, index: index)) { onAction in
             switch onAction {
-            case .didTapItem(let index):
-                action(.didTapItem(index: index))
             case .didSelectedNumber(let index, let value):
                 action(.didSelectedNumber(index: index, value: value))
             case .didSelectedUnit(let index, let unit):
@@ -102,13 +98,6 @@ extension ProductView {
                             } label: {
                                 Label("Xóa", systemImage: "trash")
                             }
-                            
-                            Button {
-                                action(.didEditItem(index: index))
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            }
-                            .tint(.blue)
                         }
                     }
             }

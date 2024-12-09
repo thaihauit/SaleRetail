@@ -8,10 +8,10 @@
 import Foundation
 
 class DepotState: ObservableObject {
-    let depots: [WarehouseModel]
+    @Published var depots: [WarehouseModel]
     
     init(depots: [WarehouseModel]) {
-        self.depots = []
+        self.depots = depots
     }
 }
 
