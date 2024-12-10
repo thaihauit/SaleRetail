@@ -30,8 +30,46 @@ struct BaseProvider: Restable {
         }
     }
     
-    func sell(fromDate: String, toDate: String, completion: @escaping ([SalesOrderModel]) -> Void) {
+    func sellist(fromDate: String, toDate: String, completion: @escaping ([SalesOrderModel]) -> Void) {
         provider.request(.sellist(fromDate: fromDate, toDate: toDate)) { result in
+            switch result {
+            case let .success(response):
+                DispatchQueue.main.async {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: SalesOrder.self) { (data) in
+                        if let data = data as? SalesOrder {
+                            completion(data.data)
+                        } else {
+                            completion([])
+                        }
+                    }
+                }
+            case .failure:
+                completion([])
+            }
+        }
+    }
+    
+    func sell(json: [String: Any], completion: @escaping ([SalesOrderModel]) -> Void) {
+        provider.request(.sell(json: json)) { result in
+            switch result {
+            case let .success(response):
+                DispatchQueue.main.async {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: SalesOrder.self) { (data) in
+                        if let data = data as? SalesOrder {
+                            completion(data.data)
+                        } else {
+                            completion([])
+                        }
+                    }
+                }
+            case .failure:
+                completion([])
+            }
+        }
+    }
+    
+    func calculatePromotion(json: [String: Any], completion: @escaping ([SalesOrderModel]) -> Void) {
+        provider.request(.calculatePromotion(json: json)) { result in
             switch result {
             case let .success(response):
                 DispatchQueue.main.async {
@@ -220,5 +258,6 @@ struct BaseProvider: Restable {
             }
         }
     }
+    
     
 }

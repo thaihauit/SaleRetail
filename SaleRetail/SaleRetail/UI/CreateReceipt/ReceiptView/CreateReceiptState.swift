@@ -12,7 +12,7 @@ class CreateReceiptState: ObservableObject {
     @Published var isShowCustomerModal = false
     @Published var iShowProductModal = false
     @Published var customer: CustomerModel?
-    @Published var vehice: VehicleModel?
+    @Published var vehicle: VehicleModel?
     @Published var depot: WarehouseModel?
     @Published var iShowVehiceModal = false
     @Published var iShowDepotModal = false
@@ -23,6 +23,7 @@ class CreateReceiptState: ObservableObject {
     @Published var vehicles: [VehicleModel] = []
     @Published var customers: [CustomerModel] = []
     @Published var depots: [WarehouseModel] = []
+    @Published var note: String = ""
     
     var deliverString: String { dateFormatter.string(from: deliverDate) }
     @Published var deliverDate = Date()
@@ -36,7 +37,26 @@ class CreateReceiptState: ObservableObject {
     }
     
     func reset() {
+        customer = nil
+        vehicle = nil
+        depot = nil
+        deliverDate = Date()
+        products = []
     }
+    
+    func convert(receiptModel: ReceiptModel) -> [String: Any] {
+        var params: [String: Any] = [:]
+        do {
+            let jsonData = try JSONEncoder().encode(receiptModel)
+            if let parameters = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                params = parameters
+            }
+        } catch {
+            print("Failed to convert object to parameters: \(error)")
+        }
+        return params
+    }
+    
     
     func selectedNumber(index: Int, value: Int) {
         let product = products[index]

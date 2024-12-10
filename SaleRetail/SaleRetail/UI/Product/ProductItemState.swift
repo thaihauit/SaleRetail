@@ -28,6 +28,7 @@ class ProductItemState: ObservableObject {
     var totalCost: Int {
         let price = unitSelected?.price ?? 1
         let number = product.quantity
-        return price * number
+        let unitExchangeRate = product.unitExchangeRate
+        return price * number - unitExchangeRate
     }
 }

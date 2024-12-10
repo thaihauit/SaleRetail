@@ -62,7 +62,6 @@ extension CreateReceiptView {
                         
                         TextFormView(title: "SĐT", content: state.customer?.phone ?? "")
                     }
-                    
                     TextFormView(title: "Địa Chỉ", content: state.customer?.address ?? "")
                         .padding(.bottom, 16)
                 }
@@ -159,7 +158,7 @@ extension CreateReceiptView {
                                 })
                             }
                         
-                        TextFormView(title: "Xe", content: state.vehice?.code ?? "")
+                        TextFormView(title: "Xe", content: state.vehicle?.code ?? "")
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 state.iShowVehiceModal = true
@@ -172,7 +171,7 @@ extension CreateReceiptView {
                                 VehicleView(state: .init(vehices: state.vehicles), action: { action in
                                     switch action {
                                     case .didTapItem(let item):
-                                        state.vehice = item
+                                        state.vehicle = item
                                         state.iShowVehiceModal = false
                                     }
                                 })
@@ -180,9 +179,9 @@ extension CreateReceiptView {
                     }
                     
                     HStack(spacing: 8) {
-                        TextFormView(title: "Chiết Khấu", content: "iPhone")
-                        TextFormView(title: "Chuyển Khoản Tích Lũy", content: "iPhone")
                         TextFormView(title: "Thành Tiền", content: "iPhone")
+                        TextFormView(title: "Chiết Khấu", content: "iPhone")
+                        TextFormView(title: "CK Tích Lũy", content: "iPhone")
                         TextFormView(title: "Phải Thu", content: "iPhone")
                     }
                 }
@@ -198,6 +197,10 @@ extension CreateReceiptView {
             infoView
             productView
             
+            TextViewFromView(text: $state.note, title: "Ghi Chú")
+            
+            ButtonView(title: "KIỂM TRA KHUYẾN MÃI") {
+            }
             ButtonView(title: "TẠO ĐƠN") {
             }
         }
@@ -230,8 +233,4 @@ extension CreateReceiptView {
     enum Action {
         case didTapItem
     }
-}
-
-#Preview {
-    CreateReceiptView(state: .init())
 }

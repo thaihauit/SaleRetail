@@ -21,7 +21,7 @@ enum ApiType {
     case warehouse
     case customer
     case productSell
-    case calculatepromotion(json: [String: Any])
+    case calculatePromotion(json: [String: Any])
     case sell(json: [String: Any])
     
 }
@@ -74,7 +74,7 @@ extension ApiType: TargetType {
             return "/customer/list"
         case .productSell:
             return "/product/listforsell"
-        case .calculatepromotion:
+        case .calculatePromotion:
             return "/sell/calculatepromotion"
         case .sell:
             return "/sell"
@@ -107,6 +107,11 @@ extension ApiType: TargetType {
                         "toDate": toDate
                     ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case let .calculatePromotion(json):
+            return .requestParameters(parameters: json, encoding: JSONEncoding.default)
+        case let .sell(json):
+            return .requestParameters(parameters: json, encoding: JSONEncoding.default)
+            
         default:
             return .requestPlain
         }

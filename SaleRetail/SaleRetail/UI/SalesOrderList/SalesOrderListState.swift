@@ -61,7 +61,7 @@ class SalesOrderListState: ObservableObject {
     
     func fetchItemList() {
         isLoading = true
-        BaseProvider().sell(fromDate: createDateString, toDate: endDateString) { items in
+        BaseProvider().sellist(fromDate: createDateString, toDate: endDateString) { items in
             self.items = items
             self.isLoading = false
         }
