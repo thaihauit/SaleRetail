@@ -15,11 +15,11 @@ class DepotState: ObservableObject {
     }
 }
 
-struct Warehouse: Decodable {
+struct Warehouse: Codable {
     let data: [WarehouseModel]
 }
 
-struct WarehouseModel: Decodable {
+struct WarehouseModel: Codable {
     let id: Int
     let code: String
     let name: String

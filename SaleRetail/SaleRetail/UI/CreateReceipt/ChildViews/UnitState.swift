@@ -15,11 +15,11 @@ class UnitState: ObservableObject {
     }
 }
 
-struct Unit: Decodable {
+struct Unit: Codable {
     let data: UnitModel
 }
 
-struct UnitModel: Decodable {
+struct UnitModel: Codable {
     let id: Int
     let price: Int
     let name: String

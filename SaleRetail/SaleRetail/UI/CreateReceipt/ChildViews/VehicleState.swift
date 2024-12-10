@@ -14,11 +14,11 @@ class VehicleState: ObservableObject {
         self.vehicles = vehices
     }
 }
-struct Vehice: Decodable {
+struct Vehice: Codable {
     let data: [VehicleModel]
 }
 
-struct VehicleModel: Decodable {
+struct VehicleModel: Codable {
     let id: Int
     let licensePlate: String
     let code: String

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CustomerModel: Decodable {
+struct CustomerModel: Codable {
     let  id: Int
     let  phone: String
     let  address: String
@@ -16,6 +16,6 @@ struct CustomerModel: Decodable {
     let  note: String
 }
 
-struct Customer: Decodable {
+struct Customer: Codable {
     let data: [CustomerModel]
 }
