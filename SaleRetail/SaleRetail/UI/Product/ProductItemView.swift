@@ -43,7 +43,7 @@ struct ProductItemView: View {
                 Text("\(state.unitSelected?.price ?? 0)")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(state.product.unitExchangeRate)")
+                Text("\(state.product.discount)")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("\(state.totalCost)")

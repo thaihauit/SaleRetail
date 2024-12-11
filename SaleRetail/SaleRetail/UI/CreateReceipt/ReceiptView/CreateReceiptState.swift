@@ -44,7 +44,29 @@ class CreateReceiptState: ObservableObject {
         products = []
     }
     
-    func convert(receiptModel: ReceiptModel) -> [String: Any] {
+    var receiptModel: ReceiptModel? {
+        guard let customer, let depot, !products.isEmpty else {
+            return nil
+        }
+        return ReceiptModel(
+            cumulativeAmount: 0,
+            customer: customer,
+            deliveredDate: deliverString,
+            products: products,
+            discount: 0,
+            discountIds: [],
+            note: note,
+            paidAmount: 0,
+            totalAmount: 0,
+            vehicle: vehicle,
+            warehouse: depot
+        )
+    }
+    
+    var receiptJson: [String: Any]? {
+        guard let receiptModel else {
+            return nil
+        }
         var params: [String: Any] = [:]
         do {
             let jsonData = try JSONEncoder().encode(receiptModel)
@@ -52,31 +74,23 @@ class CreateReceiptState: ObservableObject {
                 params = parameters
             }
         } catch {
-            print("Failed to convert object to parameters: \(error)")
+            return nil
         }
         return params
     }
-    
     
     func selectedNumber(index: Int, value: Int) {
         let product = products[index]
         products[index] = ProductModel(
             id: product.id,
             unit: product.unit,
-            unitName: product.unitName,
             smallUnit: product.smallUnit,
-            sellPrice: product.sellPrice,
+            discount: product.discount,
             unitExchangeRate: product.unitExchangeRate,
-            smallUnitSellPrice: product.smallUnitSellPrice,
-            hasExpiredDate: product.hasExpiredDate,
-            groupName: product.groupName,
             code: product.code,
             name: product.name,
             units: product.units,
-            smallUnitName: product.smallUnitName,
-            minSellUnit: product.minSellUnit,
-            minSellUnitName: product.minSellUnitName,
-            number: value,
+            quantity: value,
             unitSelected: product.unitSelected
         )
     }
@@ -86,22 +100,24 @@ class CreateReceiptState: ObservableObject {
         products[index] = ProductModel(
             id: product.id,
             unit: product.unit,
-            unitName: product.unitName,
             smallUnit: product.smallUnit,
-            sellPrice: product.sellPrice,
+            discount: product.discount,
             unitExchangeRate: product.unitExchangeRate,
-            smallUnitSellPrice: product.smallUnitSellPrice,
-            hasExpiredDate: product.hasExpiredDate,
-            groupName: product.groupName,
             code: product.code,
             name: product.name,
             units: product.units,
-            smallUnitName: product.smallUnitName,
-            minSellUnit: product.minSellUnit,
-            minSellUnitName: product.minSellUnitName,
-            number: product.quantity,
+            quantity: product.quantity,
             unitSelected: unit
         )
+    }
+    
+    func calculatePromotion() {
+        guard let receiptJson else {
+            return
+        }
+        BaseProvider().calculatePromotion(json: receiptJson) { data in
+            print(data)
+        }
     }
     
     func getVehicle() {

@@ -68,21 +68,21 @@ struct BaseProvider: Restable {
         }
     }
     
-    func calculatePromotion(json: [String: Any], completion: @escaping ([SalesOrderModel]) -> Void) {
+    func calculatePromotion(json: [String: Any], completion: @escaping (ReceiptModel1?) -> Void) {
         provider.request(.calculatePromotion(json: json)) { result in
             switch result {
             case let .success(response):
                 DispatchQueue.main.async {
-                    BaseRestApi.decodingTask(with: response.data, decodingType: SalesOrder.self) { (data) in
-                        if let data = data as? SalesOrder {
+                    BaseRestApi.decodingTask(with: response.data, decodingType: Receipt.self) { (data) in
+                        if let data = data as? Receipt {
                             completion(data.data)
                         } else {
-                            completion([])
+                            completion(nil)
                         }
                     }
                 }
             case .failure:
-                completion([])
+                completion(nil)
             }
         }
     }

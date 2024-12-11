@@ -45,9 +45,9 @@ extension ApiType: TargetType {
             ]
         }
     }
-    
+   
     var baseURL: URL {
-        URL(string: "http://160.22.79.80:500/mobile")!
+        URL(string: "https://qlbhkh.com:500/mobile")!
     }
     
     public var path: String {
@@ -83,8 +83,9 @@ extension ApiType: TargetType {
     
     public var method: Moya.Method {
         switch self {
-        case .login: return .post
-        case .sellist: return .post
+        case .login, .sellist, .calculatePromotion, .sell:
+            return .post
+            
         default: return .get
         }
     }

@@ -200,6 +200,7 @@ extension CreateReceiptView {
             TextViewFromView(text: $state.note, title: "Ghi Chú")
             
             ButtonView(title: "KIỂM TRA KHUYẾN MÃI") {
+                state.calculatePromotion()
             }
             ButtonView(title: "TẠO ĐƠN") {
             }

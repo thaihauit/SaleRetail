@@ -14,9 +14,7 @@ class SalesOrderListState: ObservableObject {
     @Published var items: [SalesOrderModel] = []
     @Published var isLoading = false
     
-    var createString: String {
-        dateFormatter.string(from: createDate)
-    }
+    var createString: String { dateFormatter.string(from: createDate) }
     @Published var createDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date()) ?? Date() {
         didSet {
             isShowCreateDatePicker = false

@@ -6,7 +6,7 @@
     <dict>
         <key>NSExceptionDomains</key>
         <dict>
-            <key>160.22.79.80</key> <!-- Thay bằng IP hoặc tên miền thực tế -->
+            <key>160.22.79.80</key>
             <dict>
                 <key>NSIncludesSubdomains</key>
                 <true/>
