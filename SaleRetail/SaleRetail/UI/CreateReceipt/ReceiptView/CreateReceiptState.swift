@@ -24,6 +24,10 @@ class CreateReceiptState: ObservableObject {
     @Published var customers: [CustomerModel] = []
     @Published var depots: [WarehouseModel] = []
     @Published var note: String = ""
+    @Published var receipt: ReceiptModel?
+    @Published var isShowErrorDialog = false
+    @Published var isShowSuccessDialog = false
+    @Published var isCreatedReceipt = false
     
     var deliverString: String { dateFormatter.string(from: deliverDate) }
     @Published var deliverDate = Date()
@@ -41,17 +45,16 @@ class CreateReceiptState: ObservableObject {
         vehicle = nil
         depot = nil
         deliverDate = Date()
+        receipt = nil
         products = []
     }
     
     var receiptModel: ReceiptModel? {
-        guard let customer, let depot, !products.isEmpty else {
-            return nil
-        }
+        guard let customer, let depot, !products.isEmpty else { return nil }
         return ReceiptModel(
             cumulativeAmount: 0,
             customer: customer,
-            deliveredDate: deliverString,
+            deliverydate: deliverString,
             products: products,
             discount: 0,
             discountIds: [],
@@ -63,10 +66,8 @@ class CreateReceiptState: ObservableObject {
         )
     }
     
-    var receiptJson: [String: Any]? {
-        guard let receiptModel else {
-            return nil
-        }
+    func receiptJson(model: ReceiptModel?) -> [String: Any]? {
+        guard let receiptModel else { return nil }
         var params: [String: Any] = [:]
         do {
             let jsonData = try JSONEncoder().encode(receiptModel)
@@ -81,6 +82,8 @@ class CreateReceiptState: ObservableObject {
     
     func selectedNumber(index: Int, value: Int) {
         let product = products[index]
+        let price = product.unitSelected?.price ?? 0
+        let amount = price * value - product.discount
         products[index] = ProductModel(
             id: product.id,
             unit: product.unit,
@@ -91,12 +94,18 @@ class CreateReceiptState: ObservableObject {
             name: product.name,
             units: product.units,
             quantity: value,
-            unitSelected: product.unitSelected
+            unitSelected: product.unitSelected,
+            amount: amount
         )
     }
     
     func selectedUnit(index: Int, unit: UnitModel) {
+        
         let product = products[index]
+        let price = unit.price
+        let number = product.quantity
+        let amount = price * number - product.discount
+        
         products[index] = ProductModel(
             id: product.id,
             unit: product.unit,
@@ -107,18 +116,31 @@ class CreateReceiptState: ObservableObject {
             name: product.name,
             units: product.units,
             quantity: product.quantity,
-            unitSelected: unit
+            unitSelected: unit,
+            amount: amount
         )
     }
     
     func calculatePromotion() {
-        guard let receiptJson else {
+        guard let json = receiptJson(model: receiptModel) else {
+            isShowErrorDialog = true
             return
         }
-        BaseProvider().calculatePromotion(json: receiptJson) { data in
-            print(data)
+        BaseProvider().calculatePromotion(json: json) { receipt in
+            self.receipt = receipt
+            self.isCreatedReceipt = true
         }
     }
+    
+    func sell() {
+        guard let json = receiptJson(model: receipt) else {
+            return
+        }
+        BaseProvider().sell(json: json) { data in
+            
+        }
+    }
+    
     
     func getVehicle() {
         BaseProvider().vehicle { items in

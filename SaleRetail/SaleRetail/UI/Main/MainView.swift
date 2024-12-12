@@ -26,6 +26,13 @@ struct MainView: View {
                         .padding()
                 }
             }
+            .alert("Thông Báo", isPresented: $state.isShowErrorDialog) {
+                Button("OK", role: .cancel) {
+                    state.isShowErrorDialog = false
+                }
+            } message: {
+                Text("Xin Hãy kiểm tra thông tin đăng nhập")
+            }
     }
     
     @ViewBuilder
@@ -36,6 +43,7 @@ struct MainView: View {
                 case let .didTapItem(userName, password):
                     state.isLoading = true
                     LoginManager.shared.asynLogin(userName: userName, password: password) { success in
+                        state.isShowErrorDialog = !success
                         state.shouldShowLoginView = !success
                         state.isLoading = false
                     }

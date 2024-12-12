@@ -22,8 +22,9 @@ struct ProductModel: Codable {
     let units: [UnitModel]
     let quantity: Int
     let unitSelected: UnitModel?
+    let amount: Int
     
-    init(id: Int, unit: Int, smallUnit: Int, discount: Int, unitExchangeRate: Int, code: String, name: String, units: [UnitModel], quantity: Int, unitSelected: UnitModel? = nil) {
+    init(id: Int, unit: Int, smallUnit: Int, discount: Int, unitExchangeRate: Int, code: String, name: String, units: [UnitModel], quantity: Int, unitSelected: UnitModel? = nil, amount: Int) {
         self.id = id
         self.unit = unit
         self.smallUnit = smallUnit
@@ -34,6 +35,7 @@ struct ProductModel: Codable {
         self.units = units
         self.quantity = quantity
         self.unitSelected = unitSelected ?? units.first
+        self.amount = amount
     }
 }
 

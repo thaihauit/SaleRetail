@@ -10,4 +10,5 @@ import Foundation
 class LoginState: ObservableObject {
     @Published var userName: String = "saletest"
     @Published var password: String = "admin"
+    
 }

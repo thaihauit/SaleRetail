@@ -46,7 +46,7 @@ struct ProductItemView: View {
                 Text("\(state.product.discount)")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("\(state.totalCost)")
+                Text("\(state.product.amount)")
                     .frame(width: 150, alignment: .leading)
                 
             }

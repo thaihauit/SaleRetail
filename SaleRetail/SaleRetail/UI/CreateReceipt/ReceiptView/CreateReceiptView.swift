@@ -34,6 +34,32 @@ struct CreateReceiptView: View {
             state.getCustomers()
             state.getProducts()
         }
+        .alert("Thông Báo", isPresented: $state.isShowErrorDialog) {
+            Button("OK", role: .cancel) {
+                state.isShowErrorDialog = false
+            }
+            
+        } message: {
+            Text("Xin Nhập Đầy Đủ Thông Tin")
+        }
+        .alert("Thông Báo", isPresented: $state.isShowSuccessDialog) {
+            Button("OK", role: .cancel) {
+                state.isShowSuccessDialog = false
+                state.reset()
+            }
+            
+        } message: {
+            Text("Tạo Đơn Thành Công")
+        }
+        .alert("Thông Báo", isPresented: $state.isCreatedReceipt) {
+            Button("OK", role: .cancel) {
+                state.isCreatedReceipt = false
+                state.reset()
+            }
+            
+        } message: {
+            Text("Kiểm tra khuyến mãi thành công")
+        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HeaderBaseView(name: "TẠO ĐƠN HÀNG")
@@ -179,10 +205,10 @@ extension CreateReceiptView {
                     }
                     
                     HStack(spacing: 8) {
-                        TextFormView(title: "Thành Tiền", content: "iPhone")
-                        TextFormView(title: "Chiết Khấu", content: "iPhone")
-                        TextFormView(title: "CK Tích Lũy", content: "iPhone")
-                        TextFormView(title: "Phải Thu", content: "iPhone")
+                        TextFormView(title: "Thành Tiền", content: "\(state.receiptModel?.totalAmount ?? 0)")
+                        TextFormView(title: "Chiết Khấu", content: "\(state.receiptModel?.discount ?? 0)")
+                        TextFormView(title: "CK Tích Lũy", content: "\(state.receiptModel?.cumulativeAmount ?? 0)")
+                        TextFormView(title: "Phải Thu", content: "\(state.receiptModel?.paidAmount ?? 0)")
                     }
                 }
                 .padding(16)
@@ -203,6 +229,7 @@ extension CreateReceiptView {
                 state.calculatePromotion()
             }
             ButtonView(title: "TẠO ĐƠN") {
+                state.sell()
             }
         }
         .fullScreenCover(isPresented: $state.iShowProductModal) {

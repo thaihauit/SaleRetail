@@ -49,26 +49,18 @@ struct BaseProvider: Restable {
         }
     }
     
-    func sell(json: [String: Any], completion: @escaping ([SalesOrderModel]) -> Void) {
+    func sell(json: [String: Any], completion: @escaping (Bool) -> Void) {
         provider.request(.sell(json: json)) { result in
             switch result {
             case let .success(response):
-                DispatchQueue.main.async {
-                    BaseRestApi.decodingTask(with: response.data, decodingType: SalesOrder.self) { (data) in
-                        if let data = data as? SalesOrder {
-                            completion(data.data)
-                        } else {
-                            completion([])
-                        }
-                    }
-                }
+                completion(true)
             case .failure:
-                completion([])
+                completion(false)
             }
         }
     }
     
-    func calculatePromotion(json: [String: Any], completion: @escaping (ReceiptModel1?) -> Void) {
+    func calculatePromotion(json: [String: Any], completion: @escaping (ReceiptModel?) -> Void) {
         provider.request(.calculatePromotion(json: json)) { result in
             switch result {
             case let .success(response):
