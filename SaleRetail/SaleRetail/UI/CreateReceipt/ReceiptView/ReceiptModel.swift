@@ -10,7 +10,7 @@ import Foundation
 struct ReceiptModel: Codable {
     var cumulativeAmount: Int
     var customer: CustomerModel
-    var deliverydate: String
+    var deliveryDate: String
     var products: [ProductModel]
     var discount: Int
     var discountIds: [DiscountId]

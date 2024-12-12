@@ -23,48 +23,78 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7BF2448C-2B8E-4CDE-BB35-7BFE2CB7BCCE"
+            uuid = "CD61D725-26CF-45EC-9DED-56D90D391ACB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SaleRetail/UI/CreateReceipt/ReceiptView/CreateReceiptState.swift"
+            filePath = "SaleRetail/BaseApi/Provider/BaseProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "calculatePromotion()"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "sell(json:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CD61D725-26CF-45EC-9DED-56D90D391ACB - c7a7286c15321d27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in SaleRetail.BaseProvider.sell(json: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "SaleRetail.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/d.ace/Desktop/SaleRetailApp/SaleRetail/SaleRetail/BaseApi/Provider/BaseProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55">
+               </Location>
+               <Location
+                  uuid = "CD61D725-26CF-45EC-9DED-56D90D391ACB - c7a7286c15321d27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in SaleRetail.BaseProvider.sell(json: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "SaleRetail.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/d.ace/Desktop/SaleRetailApp/SaleRetail/SaleRetail/BaseApi/Provider/BaseProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BC248D9-9578-44B9-8F77-3009CA4AA801"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SaleRetail/BaseApi/Provider/BaseProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "sell(json:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C3A9895B-5EA2-44DC-954A-DC8837B6D0A7"
+            uuid = "31902196-FD0D-4F4B-AD77-8393F6795B7E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SaleRetail/BaseApi/BaseRestApi.swift"
+            filePath = "SaleRetail/BaseApi/Provider/BaseProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "decodingTask(with:decodingType:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3C82A932-1034-4904-AAD8-37C592778F09"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SaleRetail/BaseApi/BaseRestApi.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "decodingTask(with:decodingType:_:)"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "sell(json:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

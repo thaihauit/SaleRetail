@@ -32,10 +32,18 @@ class CreateReceiptState: ObservableObject {
     var deliverString: String { dateFormatter.string(from: deliverDate) }
     @Published var deliverDate = Date()
     @Published var isShowDatePicker = false
+    
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .none
+        formatter.locale = Locale(identifier: "vi_VN")
+        return formatter
+    }
+    
+    var dateFormatter2: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: "vi_VN")
         return formatter
     }
@@ -54,7 +62,7 @@ class CreateReceiptState: ObservableObject {
         return ReceiptModel(
             cumulativeAmount: 0,
             customer: customer,
-            deliverydate: deliverString,
+            deliveryDate: dateFormatter2.string(from: deliverDate),
             products: products,
             discount: 0,
             discountIds: [],
@@ -100,7 +108,6 @@ class CreateReceiptState: ObservableObject {
     }
     
     func selectedUnit(index: Int, unit: UnitModel) {
-        
         let product = products[index]
         let price = unit.price
         let number = product.quantity
@@ -137,7 +144,7 @@ class CreateReceiptState: ObservableObject {
             return
         }
         BaseProvider().sell(json: json) { data in
-            
+            self.isShowSuccessDialog = data
         }
     }
     

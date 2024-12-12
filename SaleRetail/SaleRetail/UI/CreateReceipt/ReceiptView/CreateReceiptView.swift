@@ -54,7 +54,6 @@ struct CreateReceiptView: View {
         .alert("Thông Báo", isPresented: $state.isCreatedReceipt) {
             Button("OK", role: .cancel) {
                 state.isCreatedReceipt = false
-                state.reset()
             }
             
         } message: {
@@ -205,10 +204,10 @@ extension CreateReceiptView {
                     }
                     
                     HStack(spacing: 8) {
-                        TextFormView(title: "Thành Tiền", content: "\(state.receiptModel?.totalAmount ?? 0)")
-                        TextFormView(title: "Chiết Khấu", content: "\(state.receiptModel?.discount ?? 0)")
-                        TextFormView(title: "CK Tích Lũy", content: "\(state.receiptModel?.cumulativeAmount ?? 0)")
-                        TextFormView(title: "Phải Thu", content: "\(state.receiptModel?.paidAmount ?? 0)")
+                        TextFormView(title: "Thành Tiền", content: "\(state.receipt?.totalAmount ?? 0)")
+                        TextFormView(title: "Chiết Khấu", content: "\(state.receipt?.discount ?? 0)")
+                        TextFormView(title: "CK Tích Lũy", content: "\(state.receipt?.cumulativeAmount ?? 0)")
+                        TextFormView(title: "Phải Thu", content: "\(state.receipt?.paidAmount ?? 0)")
                     }
                 }
                 .padding(16)
