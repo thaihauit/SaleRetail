@@ -45,9 +45,6 @@ extension ProductView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("STT")
-                    .frame(width: 70, alignment: .leading)
-                
                 Text("Mã Hàng Hóa")
                     .frame(width: 100, alignment: .leading)
                 

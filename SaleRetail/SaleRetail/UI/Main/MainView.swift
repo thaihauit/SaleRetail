@@ -31,7 +31,7 @@ struct MainView: View {
                     state.isShowErrorDialog = false
                 }
             } message: {
-                Text("Xin Hãy kiểm tra thông tin đăng nhập")
+                Text(state.message)
             }
     }
     
@@ -42,10 +42,11 @@ struct MainView: View {
                 switch action {
                 case let .didTapItem(userName, password):
                     state.isLoading = true
-                    LoginManager.shared.asynLogin(userName: userName, password: password) { success in
+                    LoginManager.shared.asynLogin(userName: userName, password: password) { (success, mess) in
                         state.isShowErrorDialog = !success
                         state.shouldShowLoginView = !success
                         state.isLoading = false
+                        state.message = mess
                     }
                 }
             }

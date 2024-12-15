@@ -22,7 +22,7 @@ class LoginManager {
     func asynLogin() {
         guard !userName.isEmpty, !password.isEmpty, shouldLogin else { return }
         BaseProvider().login(userName: userName, password: password) { login in
-            if let token = login?.data.token, let expiredTime = login?.data.expiredTime {
+            if let token = login?.data?.token, let expiredTime = login?.data?.expiredTime {
                 self.token = token
                 if let date = ISO8601DateFormatter().date(from: expiredTime) {
                     self.expiredTime = date.timeIntervalSince1970
@@ -39,19 +39,19 @@ class LoginManager {
         self.password = ""
     }
     
-    func asynLogin(userName: String, password: String, completion: @escaping (Bool) -> Void) {
+    func asynLogin(userName: String, password: String, completion: @escaping (Bool, String) -> Void) {
         BaseProvider().login(userName: userName, password: password) { login in
-            if let token = login?.data.token, let expiredTime = login?.data.expiredTime {
+            if let token = login?.data?.token, let expiredTime = login?.data?.expiredTime {
                 self.token = token
                 self.userName = userName
                 self.password = password
                 if let date = ISO8601DateFormatter().date(from: expiredTime) {
                     self.expiredTime = date.timeIntervalSince1970
                 }
-                completion(true)
+                completion(true, "Đăng Nhập Thành Công")
             } else {
                 self.reset()
-                completion(false)
+                completion(false, login?.error_message ??  "Lỗi Kết Nối")
             }
         }
     }

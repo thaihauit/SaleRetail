@@ -21,11 +21,11 @@ struct CustomerAdditionView: View {
         VStack(spacing: 0) {
             headerView
                 .padding(.horizontal, 16)
-                .background(Color.blue.opacity(0.6))
+                .background(Color.blue)
             
             scrollView
         }
-        .frame(width: 682, height: 700)
+        .frame(width: 882, height: 700)
     }
 }
 
@@ -40,11 +40,11 @@ extension CustomerAdditionView {
         HStack(spacing: 0) {
             Group {
                 Text(item.name)
-                    .frame(width: 200, alignment: .leading)
+                    .frame(width: 300, alignment: .leading)
                 Text(item.phone)
                     .frame(width: 150, alignment: .leading)
                 Text(item.address)
-                    .frame(width: 300, alignment: .leading)
+                    .frame(width: 400, alignment: .leading)
             }
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
@@ -56,11 +56,11 @@ extension CustomerAdditionView {
         HStack(spacing: 0) {
             Group {
                 Text("TÊN")
-                    .frame(width: 200, alignment: .leading)
+                    .frame(width: 300, alignment: .leading)
                 Text("ĐIỆN THOẠI")
                     .frame(width: 150, alignment: .leading)
                 Text("ĐỊA CHỈ")
-                    .frame(width: 300, alignment: .leading)
+                    .frame(width: 400, alignment: .leading)
             }
             .foregroundColor(.white)
             .fixedSize(horizontal: false, vertical: true)

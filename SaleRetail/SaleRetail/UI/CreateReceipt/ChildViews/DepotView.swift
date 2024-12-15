@@ -45,7 +45,7 @@ extension DepotView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("Kho")
+                Text("KHO")
                     .frame(width: 200, alignment: .leading)
             }
             .foregroundColor(.white)
@@ -58,7 +58,7 @@ extension DepotView {
         VStack(spacing: 0) {
             headerView
                 .padding(.horizontal, 16)
-                .background(Color.blue.opacity(0.6))
+                .background(Color.blue)
             
             scrollView
         }

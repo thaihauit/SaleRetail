@@ -34,7 +34,7 @@ struct ProductModel: Codable {
         self.name = name
         self.units = units
         self.quantity = quantity
-        self.unitSelected = unitSelected ?? units.first
+        self.unitSelected = unitSelected
         self.amount = amount
     }
 }

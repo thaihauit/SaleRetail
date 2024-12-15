@@ -39,7 +39,7 @@ extension UnitView {
     }
     
     var headerView: some View {
-        Text("Đơn vị")
+        Text("ĐƠN VỊ")
             .frame(maxWidth: .infinity, alignment: .leading)
             .foregroundColor(.white)
             .font(.system(size: 13, weight: .semibold))

@@ -20,11 +20,11 @@ struct ProductDetailListView: View {
         VStack(spacing: 0) {
             headerView
                 .padding(.horizontal, 16)
-                .background(Color.blue.opacity(0.6))
+                .background(Color.blue)
             
             scrollView
         }
-        .frame(width: 732, height: 500)
+        .frame(width: 882, height: 700)
     }
 }
 
@@ -39,10 +39,10 @@ extension ProductDetailListView {
         HStack(spacing: 0) {
             Group {
                 Text(item.code)
-                    .frame(width: 100, alignment: .leading)
+                    .frame(width: 150, alignment: .leading)
                 
                 Text(item.name)
-                    .frame(width: 200, alignment: .leading)
+                    .frame(width: 300, alignment: .leading)
                 
                 Text("\(item.quantity)")
                     .frame(width: 100, alignment: .leading)
@@ -66,22 +66,22 @@ extension ProductDetailListView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("Mã Hàng Hóa")
+                Text("MÃ HÀNG HÓA")
+                    .frame(width: 150, alignment: .leading)
+                
+                Text("TÊN HÀNG HÓA")
+                    .frame(width: 300, alignment: .leading)
+                
+                Text("SỐ LƯỢNG")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Tên Hàng Hóa")
-                    .frame(width: 200, alignment: .leading)
-                
-                Text("Số Lượng")
+                Text("ĐƠN GIÁ")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Đơn Giá")
+                Text("CHIẾT KHẤU")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Chiết Khấu")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Thành Tiền")
+                Text("THÀNH TIỀN")
                     .frame(width: 100, alignment: .leading)
                 
             }

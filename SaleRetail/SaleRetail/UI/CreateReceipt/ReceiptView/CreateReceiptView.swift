@@ -34,30 +34,16 @@ struct CreateReceiptView: View {
             state.getCustomers()
             state.getProducts()
         }
-        .alert("Thông Báo", isPresented: $state.isShowErrorDialog) {
+        .alert("Thông Báo", isPresented: $state.isShowDialog) {
             Button("OK", role: .cancel) {
-                state.isShowErrorDialog = false
+                state.isShowDialog = false
+                if state.messageType?.isFinished ?? false {
+                    state.reset()
+                }
             }
             
         } message: {
-            Text("Xin Nhập Đầy Đủ Thông Tin")
-        }
-        .alert("Thông Báo", isPresented: $state.isShowSuccessDialog) {
-            Button("OK", role: .cancel) {
-                state.isShowSuccessDialog = false
-                state.reset()
-            }
-            
-        } message: {
-            Text("Tạo Đơn Thành Công")
-        }
-        .alert("Thông Báo", isPresented: $state.isCreatedReceipt) {
-            Button("OK", role: .cancel) {
-                state.isCreatedReceipt = false
-            }
-            
-        } message: {
-            Text("Kiểm tra khuyến mãi thành công")
+            Text(state.messageType?.message ?? "")
         }
         .toolbar {
             ToolbarItem(placement: .principal) {

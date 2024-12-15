@@ -27,5 +27,11 @@ struct DiscountId: Codable {
 }
 
 struct Receipt: Codable {
-    let data: ReceiptModel
+    let data: ReceiptModel?
+    let error_message: String?
+}
+
+struct SellModel: Codable {
+    let ok: Bool
+    let error_message: String?
 }

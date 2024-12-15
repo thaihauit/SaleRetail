@@ -18,12 +18,13 @@ struct SalesOrderModel: Decodable {
     let customerName: String
     let warehouseName: String
     let note: String
-    let createdDate: String
+    let vehicleLicensePlate: String?
     let totalAmount: Int
     let discount: Int
     let cumulativeAmount: Int
     let paidAmount: Int
     let products: [Product]
+    let stockExported: Bool
     
     struct Product: Decodable {
         let code: String

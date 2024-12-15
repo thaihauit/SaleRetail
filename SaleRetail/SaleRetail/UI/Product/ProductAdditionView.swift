@@ -24,7 +24,7 @@ struct ProductAdditionView: View {
             
             scrollView
         }
-        .frame(width: 632, height: 700)
+        .frame(width: 832, height: 700)
     }
 }
 
@@ -39,16 +39,16 @@ extension ProductAdditionView {
         HStack(spacing: 0) {
             Group {
                 Text(item.code)
-                    .frame(width: 150, alignment: .leading)
+                    .frame(width: 200, alignment: .leading)
                 
                 Text(item.name)
-                    .frame(width: 250, alignment: .leading)
+                    .frame(width: 300, alignment: .leading)
                 
-                Text(item.units.first?.name ?? "")
-                    .frame(width: 100, alignment: .leading)
+                Text(item.unitSelected?.name ?? "")
+                    .frame(width: 150, alignment: .leading)
                 
-                Text("\(item.units.first?.price ?? 0)")
-                    .frame(width: 100, alignment: .leading)
+                Text("\(item.unitSelected?.price ?? 0)")
+                    .frame(width: 150, alignment: .leading)
             }
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
@@ -60,17 +60,17 @@ extension ProductAdditionView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("Mã Hàng Hóa")
+                Text("MÃ HÀNG HÓA")
+                    .frame(width: 200, alignment: .leading)
+                
+                Text("TÊN HÀNG HÓA")
+                    .frame(width: 300, alignment: .leading)
+                
+                Text("ĐƠN VỊ")
                     .frame(width: 150, alignment: .leading)
-                
-                Text("Tên Hàng Hóa")
-                    .frame(width: 250, alignment: .leading)
-                
-                Text("Đơn Vị")
-                    .frame(width: 100, alignment: .leading)
                
-                Text("Đơn Giá")
-                    .frame(width: 100, alignment: .leading)
+                Text("ĐƠN GIÁ")
+                    .frame(width: 150, alignment: .leading)
                 
             }
             .foregroundColor(.white)

@@ -54,7 +54,7 @@ struct SalesOrderListView: View {
     
     var filterView: some View {
         HStack(spacing: 32) {
-            TextFormView(title: "Ngày Giao", content: state.createString)
+            TextFormView(title: "TỪ NGÀY", content: state.createString)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     state.isShowCreateDatePicker = true
@@ -67,7 +67,7 @@ struct SalesOrderListView: View {
                     DateView(selectedDate: $state.createDate)
                 }
             
-            TextFormView(title: "Ngày Giao", content: state.endString)
+            TextFormView(title: "ĐẾN NGÀY", content: state.endString)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     state.isShowEndDatePicker = true
@@ -100,7 +100,10 @@ extension SalesOrderListView {
                 Text("Khách Hàng")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Ngày Ghi Phiếu")
+                Text("Ngày Giao")
+                    .frame(width: 150, alignment: .leading)
+                
+                Text("Xe Giao")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("Ghi Chú")

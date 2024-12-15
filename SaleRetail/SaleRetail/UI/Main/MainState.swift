@@ -21,6 +21,7 @@ class MainState: ObservableObject {
     @Published var shouldShowLoginView = LoginManager.shared.shouldLogin
     @Published var isLoading = false
     @Published var isShowErrorDialog = false
+    @Published var message: String = ""
     init() {}
     
 }

@@ -17,13 +17,4 @@ class ProductItemState: ObservableObject {
         self.index = index
         self.isDisplayUnitModal = isDisplayUnitModal
     }
-    
-    var unitSelected: UnitModel? {
-        if let unit = product.unitSelected {
-            return unit
-        }
-        return product.units.first
-    }
-    
-    
 }

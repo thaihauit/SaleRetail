@@ -26,7 +26,7 @@ struct ProductItemView: View {
                 Text(state.product.name)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(state.unitSelected?.name ?? "")
+                Text(state.product.unitSelected?.name ?? "")
                     .contentShape(Rectangle())
                     .onTapGesture {
                         state.isDisplayUnitModal = true
@@ -40,7 +40,7 @@ struct ProductItemView: View {
                 })
                 .frame(width: 100, alignment: .leading)
                 
-                Text("\(state.unitSelected?.price ?? 0)")
+                Text("\(state.product.unitSelected?.price ?? 0)")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("\(state.product.discount)")

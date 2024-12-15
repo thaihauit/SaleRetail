@@ -26,7 +26,7 @@ struct TextViewFromView: View {
             
             TextEditor(text: $text)
                 .padding(12)
-                .background(Color(.secondarySystemBackground))
+                .background(Color(.blue).opacity(0.6))
                 .cornerRadius(10)
                 .frame(height: 200)
                 .frame(maxWidth: .infinity)

@@ -21,7 +21,10 @@ struct SaleOrderItemView: View {
                 Text(item.customerName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.createdDate)
+                Text(item.deliveryDate)
+                    .frame(width: 150, alignment: .leading)
+                
+                Text(item.vehicleLicensePlate ?? "")
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.note)
@@ -39,13 +42,16 @@ struct SaleOrderItemView: View {
                 Text("\(item.paidAmount)")
                     .frame(width: 100, alignment: .leading)
                 
-                Text("Đã Xuất Kho")
+                Image(systemName: item.stockExported ? "checkmark.square.fill" : "square.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.blue)
                     .frame(width: 100, alignment: .leading)
 
             }
             .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
-            .font(.system(size: 12))
+            .font(.system(size: 11))
             .frame(height: 60)
         }
         .contentShape(Rectangle())

@@ -8,6 +8,31 @@
 import Foundation
 import UIKit
 
+enum MessageType {
+    case error(mess: String)
+    case success(mess: String)
+    case finish(mess: String)
+    
+    var message: String {
+        switch self {
+        case .error(let mess):
+            return mess
+        case .success(let mess):
+            return mess
+        case .finish(let mess):
+            return mess
+        }
+    }
+    
+    var isFinished: Bool {
+        switch self {
+        case .finish:
+            return true
+        default: return false
+        }
+    }
+}
+
 class CreateReceiptState: ObservableObject {
     @Published var isShowCustomerModal = false
     @Published var iShowProductModal = false
@@ -25,9 +50,9 @@ class CreateReceiptState: ObservableObject {
     @Published var depots: [WarehouseModel] = []
     @Published var note: String = ""
     @Published var receipt: ReceiptModel?
-    @Published var isShowErrorDialog = false
-    @Published var isShowSuccessDialog = false
-    @Published var isCreatedReceipt = false
+    
+    @Published var isShowDialog = false
+    @Published var messageType: MessageType?
     
     var deliverString: String { dateFormatter.string(from: deliverDate) }
     @Published var deliverDate = Date()
@@ -75,10 +100,10 @@ class CreateReceiptState: ObservableObject {
     }
     
     func receiptJson(model: ReceiptModel?) -> [String: Any]? {
-        guard let receiptModel else { return nil }
+        guard let model else { return nil }
         var params: [String: Any] = [:]
         do {
-            let jsonData = try JSONEncoder().encode(receiptModel)
+            let jsonData = try JSONEncoder().encode(model)
             if let parameters = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                 params = parameters
             }
@@ -130,12 +155,18 @@ class CreateReceiptState: ObservableObject {
     
     func calculatePromotion() {
         guard let json = receiptJson(model: receiptModel) else {
-            isShowErrorDialog = true
+            isShowDialog = true
+            messageType = .error(mess: "Xin Nhập Đầy Đủ Thông Tin")
             return
         }
         BaseProvider().calculatePromotion(json: json) { receipt in
-            self.receipt = receipt
-            self.isCreatedReceipt = true
+            self.isShowDialog = true
+            if let receiptModel = receipt?.data {
+                self.receipt = receiptModel
+                self.messageType = .success(mess: "Kiểm tra Khuyến Mãi Thành Công")
+            } else {
+                self.messageType = .error(mess: receipt?.error_message ?? "Lỗi Kết Nối")
+            }
         }
     }
     
@@ -144,7 +175,12 @@ class CreateReceiptState: ObservableObject {
             return
         }
         BaseProvider().sell(json: json) { data in
-            self.isShowSuccessDialog = data
+            self.isShowDialog = true
+            if let data, data.ok {
+                self.messageType = .finish(mess: "Tạo Đơn Thành Công")
+            } else {
+                self.messageType = .error(mess: data?.error_message ?? "Lỗi Kết Nối")
+            }
         }
     }
     

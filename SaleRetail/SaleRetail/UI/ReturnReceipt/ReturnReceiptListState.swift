@@ -10,6 +10,4 @@ import UIKit
 
 class ReturnReceiptListState : ObservableObject {
     @Published var items: [ReturnReceiptModel] = []
-    
-    let width = UIApplication.shared.windows.first?.bounds.width ?? 0
 }

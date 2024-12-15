@@ -45,7 +45,7 @@ extension VehicleView {
     var headerView: some View {
         HStack(spacing: 0) {
             Group {
-                Text("Loại Xe")
+                Text("LOẠI XE")
                     .frame(width: 200, alignment: .leading)
             }
             .foregroundColor(.white)
