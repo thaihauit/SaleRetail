@@ -42,7 +42,7 @@ class CreateReceiptState: ObservableObject {
     @Published var iShowVehiceModal = false
     @Published var iShowDepotModal = false
     @Published var isDisplayUnitModal = false
-    
+    @Published var isLoading = false
     @Published var productAdditions: [ProductModel] = []
     @Published var products: [ProductModel] = []
     @Published var vehicles: [VehicleModel] = []
@@ -57,6 +57,10 @@ class CreateReceiptState: ObservableObject {
     var deliverString: String { dateFormatter.string(from: deliverDate) }
     @Published var deliverDate = Date()
     @Published var isShowDatePicker = false
+    
+    var isDisableCreateButton: Bool {
+        receipt == nil
+    }
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -80,6 +84,7 @@ class CreateReceiptState: ObservableObject {
         deliverDate = Date()
         receipt = nil
         products = []
+        note = ""
     }
     
     var receiptModel: ReceiptModel? {
@@ -159,7 +164,9 @@ class CreateReceiptState: ObservableObject {
             messageType = .error(mess: "Xin Nhập Đầy Đủ Thông Tin")
             return
         }
+        isLoading = true
         BaseProvider().calculatePromotion(json: json) { receipt in
+            self.isLoading = false
             self.isShowDialog = true
             if let receiptModel = receipt?.data {
                 self.receipt = receiptModel
@@ -174,8 +181,10 @@ class CreateReceiptState: ObservableObject {
         guard let json = receiptJson(model: receipt) else {
             return
         }
+        isLoading = true
         BaseProvider().sell(json: json) { data in
             self.isShowDialog = true
+            self.isLoading = false
             if let data, data.ok {
                 self.messageType = .finish(mess: "Tạo Đơn Thành Công")
             } else {

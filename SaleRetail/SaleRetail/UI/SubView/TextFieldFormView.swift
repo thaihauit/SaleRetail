@@ -26,11 +26,20 @@ struct TextFieldFormView: View {
             .font(.system(size: 12, weight: .bold))
             .frame(width: 100, height: 60, alignment: .leading)
             .onChange(of: text) { newValue in
-                if type == .number, let value = Int(newValue) {
-                    onChangeValue(newValue)
+                if type == .number {
+                    if Int(newValue) != nil {
+                        onChangeValue(newValue)
+                    } else {
+                        onChangeValue("")
+                        text = ""
+                    }
                 } else {
                     onChangeValue(newValue)
                 }
+            }
+            .submitLabel(.done)
+            .onSubmit {
+                hideKeyboard()
             }
     }
 }

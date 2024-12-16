@@ -17,4 +17,11 @@ class ProductItemState: ObservableObject {
         self.index = index
         self.isDisplayUnitModal = isDisplayUnitModal
     }
+    
+    var quantityText: String {
+        if product.quantity > 0 {
+            return "\(product.quantity)"
+        }
+        return ""
+    }
 }

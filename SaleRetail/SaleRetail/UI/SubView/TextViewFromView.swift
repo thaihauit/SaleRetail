@@ -30,8 +30,18 @@ struct TextViewFromView: View {
                 .cornerRadius(10)
                 .frame(height: 200)
                 .frame(maxWidth: .infinity)
+                .submitLabel(.done)
+                .onSubmit {
+                    hideKeyboard()
+                }
             
         }
+    }
+}
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 

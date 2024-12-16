@@ -33,7 +33,7 @@ struct ProductItemView: View {
                     }
                     .frame(width: 100, alignment: .leading)
                 
-                TextFieldFormView(text: "\(state.product.quantity)", onChangeValue: { value in
+                TextFieldFormView(text: state.quantityText, type: .number, onChangeValue: { value in
                     if let value = Int(value) {
                         action(.didSelectedNumber(index: state.index, value: value))
                     }

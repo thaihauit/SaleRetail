@@ -34,6 +34,13 @@ struct CreateReceiptView: View {
             state.getCustomers()
             state.getProducts()
         }
+        .overlay {
+            if state.isLoading {
+                ProgressView()
+                    .tint(.blue)
+                    .progressViewStyle(.circular)
+            }
+        }
         .alert("Thông Báo", isPresented: $state.isShowDialog) {
             Button("OK", role: .cancel) {
                 state.isShowDialog = false
@@ -210,12 +217,15 @@ extension CreateReceiptView {
             
             TextViewFromView(text: $state.note, title: "Ghi Chú")
             
-            ButtonView(title: "KIỂM TRA KHUYẾN MÃI") {
+            ButtonView(title: "KIỂM TRA KHUYẾN MÃI", isDisable: !state.isDisableCreateButton, onTap: {
                 state.calculatePromotion()
-            }
-            ButtonView(title: "TẠO ĐƠN") {
+            })
+            
+            ButtonView(title: "TẠO ĐƠN", isDisable: state.isDisableCreateButton, onTap: {
                 state.sell()
-            }
+            })
+            
+            
         }
         .fullScreenCover(isPresented: $state.iShowProductModal) {
             PopupView(isPresented: $state.iShowProductModal) {
