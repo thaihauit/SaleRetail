@@ -11,11 +11,9 @@ import SwiftUI
 struct InventoryView: View {
     
     @ObservedObject var state: InventoryState
-    let action: (Action) -> Void
     
-    init(state: InventoryState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: InventoryState) {
         self.state = state
-        self.action = action
     }
     
     var body: some View {
@@ -154,10 +152,6 @@ extension InventoryView {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
                 itemRow(item: item, index: index)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        action(.didTapItem(item: item))
-                    }
             }
         }
         .listStyle(PlainListStyle())

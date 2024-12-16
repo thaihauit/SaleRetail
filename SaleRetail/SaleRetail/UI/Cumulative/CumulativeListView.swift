@@ -10,11 +10,8 @@ import SwiftUI
 struct CumulativeListView: View {
     
     @ObservedObject var state: CumulativeListState
-    let action: (Action) -> Void
-    
-    init(state: CumulativeListState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: CumulativeListState) {
         self.state = state
-        self.action = action
     }
     
     var body: some View {
@@ -110,10 +107,6 @@ extension CumulativeListView {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
                 itemRow(item: item, index: index)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        action(.didTapItem(item: item))
-                    }
             }
         }
         .listStyle(PlainListStyle())

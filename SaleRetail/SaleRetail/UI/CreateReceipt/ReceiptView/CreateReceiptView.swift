@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct CreateReceiptView: View {
-    
     @ObservedObject var state: CreateReceiptState
-    let action: (Action) -> Void
-    
-    init(state: CreateReceiptState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: CreateReceiptState) {
         self.state = state
-        self.action = action
     }
     
     var body: some View {

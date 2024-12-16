@@ -13,8 +13,7 @@ class DiscountListState: ObservableObject {
     @Published var items: [DiscountModel] = []
     @Published var isLoading = false
     
-    init() {
-    }
+    init() {}
     
     func fetchDiscountList() {
         isLoading = true

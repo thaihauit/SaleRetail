@@ -10,11 +10,9 @@ import SwiftUI
 struct DiscountListView: View {
     
     @ObservedObject var state: DiscountListState
-    let action: (Action) -> Void
     
-    init(state: DiscountListState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: DiscountListState) {
         self.state = state
-        self.action = action
     }
     
     var body: some View {
@@ -131,10 +129,6 @@ extension DiscountListView {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
                 itemRow(item: item, index: index)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        action(.didTapItem(item: item))
-                    }
             }
         }
         .listStyle(PlainListStyle())

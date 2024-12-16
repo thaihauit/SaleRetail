@@ -34,9 +34,10 @@ class LoginManager {
     }
     
     func reset() {
-        self.token = ""
-        self.userName = ""
-        self.password = ""
+        token = ""
+        userName = ""
+        password = ""
+        expiredTime = 0
     }
     
     func asynLogin(userName: String, password: String, completion: @escaping (Bool, String) -> Void) {

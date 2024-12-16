@@ -10,11 +10,9 @@ import SwiftUI
 struct ProductListView: View {
     
     @ObservedObject var state: ProductListState
-    let action: (Action) -> Void
     
-    init(state: ProductListState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: ProductListState) {
         self.state = state
-        self.action = action
     }
     
     var body: some View {
@@ -139,10 +137,6 @@ extension ProductListView {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
                 itemRow(item: item, index: index)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        action(.didTapItem(item: item))
-                    }
             }
         }
         .listStyle(PlainListStyle())

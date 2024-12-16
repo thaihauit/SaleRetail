@@ -9,13 +9,10 @@ import SwiftUI
 
 struct SalesOrderListView: View {
     
-    @State var isTapItem = false
     @ObservedObject var state: SalesOrderListState
-    let action: (Action) -> Void
     
-    init(state: SalesOrderListState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: SalesOrderListState) {
         self.state = state
-        self.action = action
     }
     
     var body: some View {

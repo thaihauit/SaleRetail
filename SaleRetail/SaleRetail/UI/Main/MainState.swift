@@ -21,7 +21,12 @@ class MainState: ObservableObject {
     @Published var shouldShowLoginView = LoginManager.shared.shouldLogin
     @Published var isLoading = false
     @Published var isShowErrorDialog = false
+    @Published var isShowLogoutIcon = true
     @Published var message: String = ""
     init() {}
     
+    func logout() {
+        LoginManager.shared.reset()
+        shouldShowLoginView = true
+    }
 }

@@ -10,11 +10,9 @@ import SwiftUI
 struct PromotionView: View {
     
     @ObservedObject var state: PromotionState
-    let action: (Action) -> Void
     
-    init(state: PromotionState, action: @escaping (Action) -> Void = { _ in }) {
+    init(state: PromotionState) {
         self.state = state
-        self.action = action
     }
     
     var body: some View {
@@ -133,10 +131,6 @@ extension PromotionView {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
                 itemRow(item: item, index: index)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        action(.didTapItem(item: item))
-                    }
             }
         }
         .listStyle(PlainListStyle())
