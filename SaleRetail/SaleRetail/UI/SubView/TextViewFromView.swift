@@ -25,8 +25,8 @@ struct TextViewFromView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             TextEditor(text: $text)
-                .padding(12)
-                .background(Color(.blue).opacity(0.6))
+                .padding(4)
+                .background(Color(.blue).opacity(0.15))
                 .cornerRadius(10)
                 .frame(height: 200)
                 .frame(maxWidth: .infinity)

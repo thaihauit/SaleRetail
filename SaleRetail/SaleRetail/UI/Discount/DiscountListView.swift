@@ -37,6 +37,9 @@ struct DiscountListView: View {
                     .progressViewStyle(.circular)
             }
         }
+        .refreshable {
+            state.fetchDiscountList()
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     

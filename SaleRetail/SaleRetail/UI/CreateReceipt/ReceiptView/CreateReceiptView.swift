@@ -224,6 +224,8 @@ extension CreateReceiptView {
                     case .didTapItem(let item):
                         state.iShowProductModal = false
                         state.products.append(item)
+                    case .onRefresh:
+                        state.getProducts()
                     }
                 }
             }
@@ -235,6 +237,8 @@ extension CreateReceiptView {
                     case .didTapCustomer(let item):
                         state.isShowCustomerModal = false
                         state.customer = item
+                    case .onRefresh:
+                        state.getCustomers()
                     }
                 }
             }

@@ -25,6 +25,9 @@ struct CustomerAdditionView: View {
             
             scrollView
         }
+        .refreshable {
+            action(.onRefresh)
+        }
         .frame(width: 882, height: 700)
     }
 }
@@ -32,6 +35,7 @@ struct CustomerAdditionView: View {
 extension CustomerAdditionView {
     enum Action {
         case didTapCustomer(item: CustomerModel)
+        case onRefresh
     }
 }
 

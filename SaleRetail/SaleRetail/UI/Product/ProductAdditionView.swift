@@ -24,6 +24,9 @@ struct ProductAdditionView: View {
             
             scrollView
         }
+        .refreshable {
+            action(.onRefresh)
+        }
         .frame(width: 832, height: 700)
     }
 }
@@ -31,6 +34,7 @@ struct ProductAdditionView: View {
 extension ProductAdditionView{
     enum Action {
         case didTapItem(item: ProductModel)
+        case onRefresh
     }
 }
 

@@ -35,6 +35,9 @@ struct SalesOrderListView: View {
                     .progressViewStyle(.circular)
             }
         }
+        .refreshable {
+            state.fetchItemList()
+        }
         .onAppear {
             state.fetchItemList()
         }

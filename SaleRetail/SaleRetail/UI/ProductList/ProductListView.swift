@@ -37,6 +37,9 @@ struct ProductListView: View {
                     .progressViewStyle(.circular)
             }
         }
+        .refreshable {
+            state.fetchProductList()
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     

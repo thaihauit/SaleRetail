@@ -38,6 +38,9 @@ struct InventoryView: View {
                     .progressViewStyle(.circular)
             }
         }
+        .refreshable {
+            state.fetchItemList()
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
