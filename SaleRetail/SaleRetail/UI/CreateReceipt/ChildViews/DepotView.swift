@@ -19,6 +19,9 @@ struct DepotView: View {
     
     var body: some View {
         contentView
+            .refreshable {
+                action(.onRefresh)
+            }
             .frame(height: 300)
     }
 }
@@ -26,6 +29,7 @@ struct DepotView: View {
 extension DepotView {
     enum Action {
         case didTapItem(item: WarehouseModel)
+        case onRefresh
     }
 }
 

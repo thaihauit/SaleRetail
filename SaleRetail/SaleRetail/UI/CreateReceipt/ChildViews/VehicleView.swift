@@ -19,6 +19,9 @@ struct VehicleView: View {
     
     var body: some View {
         contentView
+            .refreshable {
+                action(.onRefresh)
+            }
             .frame(height: 300)
     }
 }
@@ -26,6 +29,7 @@ struct VehicleView: View {
 extension VehicleView {
     enum Action {
         case didTapItem(item: VehicleModel)
+        case onRefresh
     }
 }
 

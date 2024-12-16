@@ -85,6 +85,24 @@ extension CreateReceiptView {
             .cornerRadius(8)
     }
     
+    var noteView: some View {
+        Color.blue.opacity(0.15)
+            .overlay {
+                VStack(spacing: 16) {
+                    Text("GHI CHÚ")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(.blue)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 8)
+                    
+                    TextViewFromView(text: $state.note)
+                }
+                .padding(16)
+            }
+            .frame(height: 270)
+            .cornerRadius(8)
+    }
+    
     var productView: some View {
         Color.blue.opacity(0.15)
             .overlay {
@@ -94,7 +112,7 @@ extension CreateReceiptView {
                             .font(.system(size: 15, weight: .bold))
                             .foregroundColor(.blue)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.vertical, 12)
+                            .padding(.vertical, 8)
                         
                         HStack(spacing: 8) {
                             Image(systemName: "plus.circle")
@@ -137,7 +155,7 @@ extension CreateReceiptView {
                         .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.blue)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, 9)
+                        .padding(.vertical, 8)
                     
                     HStack(spacing: 8) {
                         TextFormView(title: "Ngày Giao", content: state.deliverString)
@@ -168,6 +186,8 @@ extension CreateReceiptView {
                                     case .didTapItem(let item):
                                         state.depot = item
                                         state.iShowDepotModal = false
+                                    case .onRefresh:
+                                        state.getDepots()
                                     }
                                 })
                             }
@@ -187,6 +207,8 @@ extension CreateReceiptView {
                                     case .didTapItem(let item):
                                         state.vehicle = item
                                         state.iShowVehiceModal = false
+                                    case .onRefresh:
+                                        state.getVehicle()
                                     }
                                 })
                             }
@@ -210,8 +232,7 @@ extension CreateReceiptView {
             customerView
             infoView
             productView
-            
-            TextViewFromView(text: $state.note, title: "Ghi Chú")
+            noteView
             
             ButtonView(title: "KIỂM TRA KHUYẾN MÃI", isDisable: !state.isDisableCreateButton, onTap: {
                 state.calculatePromotion()
