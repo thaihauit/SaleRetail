@@ -30,11 +30,6 @@ struct TextViewFromView: View {
                 .cornerRadius(10)
                 .frame(height: 200)
                 .frame(maxWidth: .infinity)
-                .submitLabel(.done)
-                .onSubmit {
-                    hideKeyboard()
-                }
-            
         }
     }
 }

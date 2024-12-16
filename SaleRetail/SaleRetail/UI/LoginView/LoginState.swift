@@ -8,7 +8,7 @@
 import Foundation
 
 class LoginState: ObservableObject {
-    @Published var userName: String = "saletest"
-    @Published var password: String = "admin"
+    @Published var userName: String = ""
+    @Published var password: String = ""
     
 }

@@ -72,6 +72,10 @@ struct TextFieldFormView2: View {
                     RoundedRectangle(cornerRadius: 4)
                         .stroke(Color.blue, lineWidth: 1)
                 )
+                .submitLabel(.done)
+                .onSubmit {
+                    hideKeyboard()
+                }
                 .background(Color.white)
         }
             
