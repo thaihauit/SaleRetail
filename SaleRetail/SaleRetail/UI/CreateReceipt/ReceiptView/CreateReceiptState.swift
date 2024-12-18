@@ -36,7 +36,6 @@ enum MessageType {
 enum ReceiptType {
     case edit
     case calculatedPromotion
-    case finished
 }
 
 class CreateReceiptState: ObservableObject {
@@ -210,7 +209,7 @@ class CreateReceiptState: ObservableObject {
             self.isLoading = false
             if let data, data.ok {
                 self.messageType = .finish(mess: "Tạo Đơn Thành Công")
-                self.receiptType = .finished
+                self.receiptType = .edit
             } else {
                 self.messageType = .error(mess: data?.error_message ?? "Lỗi Kết Nối")
             }

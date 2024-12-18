@@ -71,7 +71,9 @@ extension CreateReceiptView {
                         TextFormView(title: "Tên", content: state.customer?.name ?? "")
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                state.isShowCustomerModal = true
+                                if state.receiptType == .edit {
+                                    state.isShowCustomerModal = true
+                                }
                             }
                         
                         TextFormView(title: "SĐT", content: state.customer?.phone ?? "")
@@ -96,6 +98,7 @@ extension CreateReceiptView {
                         .padding(.vertical, 8)
                     
                     TextViewFromView(text: $state.note)
+                        .disabled(state.receiptType == .calculatedPromotion)
                 }
                 .padding(16)
             }
@@ -126,7 +129,9 @@ extension CreateReceiptView {
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            state.iShowProductModal = true
+                            if state.receiptType == .edit {
+                                state.iShowProductModal = true
+                            }
                         }
                     }
                     
@@ -140,6 +145,7 @@ extension CreateReceiptView {
                             state.selectedUnit(index: index, unit: unit)
                         }
                     }
+                    .disabled(state.receiptType == .calculatedPromotion)
                 }
                 .padding(16)
             }
@@ -161,7 +167,9 @@ extension CreateReceiptView {
                         TextFormView(title: "Ngày Giao", content: state.deliverString)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                state.isShowDatePicker = true
+                                if state.receiptType == .edit {
+                                    state.isShowDatePicker = true
+                                }
                             }
                             .popover(
                                 isPresented: $state.isShowDatePicker,
@@ -174,7 +182,9 @@ extension CreateReceiptView {
                         TextFormView(title: "Kho", content: state.depot?.name ?? "")
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                state.iShowDepotModal = true
+                                if state.receiptType == .edit {
+                                    state.iShowDepotModal = true
+                                }
                             }
                             .popover(
                                 isPresented: $state.iShowDepotModal,
@@ -195,7 +205,9 @@ extension CreateReceiptView {
                         TextFormView(title: "Xe", content: state.vehicle?.code ?? "")
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                state.iShowVehiceModal = true
+                                if state.receiptType == .edit {
+                                    state.iShowVehiceModal = true
+                                }
                             }
                             .popover(
                                 isPresented: $state.iShowVehiceModal,

@@ -37,7 +37,7 @@ extension VehicleView {
     func itemRow(item: VehicleModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text(item.code)
+                Text(item.licensePlate)
                     .frame(width: 200, alignment: .leading)
             }
             .fixedSize(horizontal: false, vertical: true)

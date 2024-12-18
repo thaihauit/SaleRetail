@@ -11,7 +11,7 @@ struct Product: Codable {
     let data: [ProductModel]
 }
 
-struct ProductModel: Codable {
+struct ProductModel: Codable, Identifiable {
     let id: Int
     let unit: Int
     let smallUnit: Int

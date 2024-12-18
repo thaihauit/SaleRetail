@@ -24,7 +24,7 @@ struct TextFieldFormView: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .keyboardType(type == .number ? .numberPad : .alphabet)
             .font(.system(size: 12, weight: .bold))
-            .frame(width: 100, height: 60, alignment: .leading)
+            .frame(width: 92, height: 60, alignment: .leading)
             .onChange(of: text) { newValue in
                 if type == .number {
                     if Int(newValue) != nil {

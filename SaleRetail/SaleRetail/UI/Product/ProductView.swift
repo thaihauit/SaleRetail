@@ -85,7 +85,7 @@ extension ProductView {
     
     var scrollView: some View {
         List {
-            ForEach(Array(state.products.enumerated()), id: \.offset) { (index, item) in
+            ForEach(Array(state.products.enumerated()), id: \.element.id) { (index, item) in
                 itemRow(item: item, index: index)
                     .contentShape(Rectangle())
                     .swipeActions {
