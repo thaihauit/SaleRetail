@@ -234,15 +234,19 @@ extension CreateReceiptView {
             productView
             noteView
             
-            ButtonView(title: "KIỂM TRA KHUYẾN MÃI", isDisable: !state.isDisableCreateButton, onTap: {
+            ButtonView(title: "KIỂM TRA KHUYẾN MÃI", isDisable: state.isDisableCalculatedButton, onTap: {
                 state.calculatePromotion()
             })
             
-            ButtonView(title: "TẠO ĐƠN", isDisable: state.isDisableCreateButton, onTap: {
-                state.sell()
-            })
-            
-            
+            HStack(spacing: 32) {
+                ButtonView(title: "CHỈNH SỬA", isDisable: state.isDisableEditButton, onTap: {
+                    state.receiptType = .edit
+               })
+                
+                ButtonView(title: "TẠO ĐƠN", isDisable: state.isDisableCreateButton, onTap: {
+                   state.sell()
+               })
+            }
         }
         .fullScreenCover(isPresented: $state.iShowProductModal) {
             PopupView(isPresented: $state.iShowProductModal) {

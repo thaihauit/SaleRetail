@@ -15,6 +15,7 @@ struct SaleRetailApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(state: .init())
+                .preferredColorScheme(.light)
         }
     }
 }

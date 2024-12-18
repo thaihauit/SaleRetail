@@ -33,6 +33,12 @@ enum MessageType {
     }
 }
 
+enum ReceiptType {
+    case edit
+    case calculatedPromotion
+    case finished
+}
+
 class CreateReceiptState: ObservableObject {
     @Published var isShowCustomerModal = false
     @Published var iShowProductModal = false
@@ -50,7 +56,7 @@ class CreateReceiptState: ObservableObject {
     @Published var depots: [WarehouseModel] = []
     @Published var note: String = ""
     @Published var receipt: ReceiptModel?
-    
+    @Published var receiptType: ReceiptType = .edit
     @Published var isShowDialog = false
     @Published var messageType: MessageType?
     
@@ -59,7 +65,11 @@ class CreateReceiptState: ObservableObject {
     @Published var isShowDatePicker = false
     
     var isDisableCreateButton: Bool {
-        receipt == nil
+        receipt == nil || receiptType != .calculatedPromotion
+    }
+    
+    var isDisableEditButton: Bool {
+        receiptType != .calculatedPromotion
     }
     
     var dateFormatter: DateFormatter {
@@ -85,10 +95,11 @@ class CreateReceiptState: ObservableObject {
         receipt = nil
         products = []
         note = ""
+        receiptType = .edit
     }
     
-    var receiptModel: ReceiptModel? {
-        guard let customer, let depot, !products.isEmpty else { return nil }
+    var receiptRawModel: ReceiptModel? {
+        guard isValidReceipt, let customer, let depot else { return nil }
         return ReceiptModel(
             cumulativeAmount: 0,
             customer: customer,
@@ -158,8 +169,19 @@ class CreateReceiptState: ObservableObject {
         )
     }
     
+    var isValidReceipt: Bool {
+        guard customer == nil || depot == nil || products.isEmpty || products.filter({ $0.quantity <= 0 }).count > 0 else {
+            return true
+        }
+        return false
+    }
+    
+    var isDisableCalculatedButton: Bool {
+        !isValidReceipt || receiptType != .edit
+    }
+    
     func calculatePromotion() {
-        guard let json = receiptJson(model: receiptModel) else {
+        guard let json = receiptJson(model: receiptRawModel) else {
             isShowDialog = true
             messageType = .error(mess: "Xin Nhập Đầy Đủ Thông Tin")
             return
@@ -171,6 +193,7 @@ class CreateReceiptState: ObservableObject {
             if let receiptModel = receipt?.data {
                 self.receipt = receiptModel
                 self.messageType = .success(mess: "Kiểm tra Khuyến Mãi Thành Công")
+                self.receiptType = .calculatedPromotion
             } else {
                 self.messageType = .error(mess: receipt?.error_message ?? "Lỗi Kết Nối")
             }
@@ -187,6 +210,7 @@ class CreateReceiptState: ObservableObject {
             self.isLoading = false
             if let data, data.ok {
                 self.messageType = .finish(mess: "Tạo Đơn Thành Công")
+                self.receiptType = .finished
             } else {
                 self.messageType = .error(mess: data?.error_message ?? "Lỗi Kết Nối")
             }

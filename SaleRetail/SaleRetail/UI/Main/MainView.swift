@@ -212,7 +212,3 @@ extension MainView {
         .padding(.horizontal, 150)
     }
 }
-
-#Preview {
-    MainView(state: .init()) { _ in }
-}
