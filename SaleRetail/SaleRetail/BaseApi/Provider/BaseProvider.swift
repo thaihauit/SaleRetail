@@ -125,6 +125,25 @@ struct BaseProvider: Restable {
         }
     }
     
+    func transfer(datas: [ProductData]) -> [ProductModel] {
+        return datas.map {
+           ProductModel(
+               id: $0.id,
+               unit: $0.unit,
+               smallUnit: $0.smallUnit,
+               discount: $0.discount,
+               unitExchangeRate: $0.unitExchangeRate,
+               code: $0.code,
+               name: $0.name,
+               units: $0.units,
+               quantity: $0.quantity,
+               unitSelected: $0.unitSelected,
+               amount: $0.amount,
+               isPromotionProduct: $0.isPromotionProduct
+           )
+       }
+    }
+    
     func productSell(completion: @escaping ([ProductModel]) -> Void) {
         provider.request(.productSell) { result in
             switch result {
@@ -132,7 +151,7 @@ struct BaseProvider: Restable {
                 DispatchQueue.main.async {
                     BaseRestApi.decodingTask(with: response.data, decodingType: Product.self) { (data) in
                         if let data = data as? Product {
-                            completion(data.data)
+                            completion(transfer(datas: data.data))
                         } else {
                             completion([])
                         }

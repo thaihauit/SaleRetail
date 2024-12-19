@@ -85,15 +85,18 @@ extension ProductView {
     
     var scrollView: some View {
         List {
-            ForEach(Array(state.products.enumerated()), id: \.element.id) { (index, item) in
+            ForEach(Array(state.products.enumerated()), id: \.element.uuid) { (index, item) in
                 itemRow(item: item, index: index)
+                    .disabled(state.isDisable || item.isPromotionProduct)
                     .contentShape(Rectangle())
                     .swipeActions {
-                        HStack {
-                            Button(role: .destructive) {
-                                action(.didRemoveItem(index: index))
-                            } label: {
-                                Label("Xóa", systemImage: "trash")
+                        if !state.isDisable, !item.isPromotionProduct {
+                            HStack {
+                                Button(role: .destructive) {
+                                    action(.didRemoveItem(index: index))
+                                } label: {
+                                    Label("Xóa", systemImage: "trash")
+                                }
                             }
                         }
                     }

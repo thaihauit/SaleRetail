@@ -30,8 +30,8 @@ struct TextFieldFormView: View {
                     if Int(newValue) != nil {
                         onChangeValue(newValue)
                     } else {
-                        onChangeValue("0")
-                        text = "0"
+                        onChangeValue("")
+                        text = ""
                     }
                 } else {
                     onChangeValue(newValue)

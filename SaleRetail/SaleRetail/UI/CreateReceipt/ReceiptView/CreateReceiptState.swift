@@ -103,7 +103,7 @@ class CreateReceiptState: ObservableObject {
             cumulativeAmount: 0,
             customer: customer,
             deliveryDate: dateFormatter2.string(from: deliverDate),
-            products: products,
+            products: products.filter { !$0.isPromotionProduct },
             discount: 0,
             discountIds: [],
             note: note,
@@ -143,7 +143,8 @@ class CreateReceiptState: ObservableObject {
             units: product.units,
             quantity: value,
             unitSelected: product.unitSelected,
-            amount: amount
+            amount: amount,
+            isPromotionProduct: product.isPromotionProduct
         )
     }
     
@@ -164,7 +165,8 @@ class CreateReceiptState: ObservableObject {
             units: product.units,
             quantity: product.quantity,
             unitSelected: unit,
-            amount: amount
+            amount: amount,
+            isPromotionProduct: product.isPromotionProduct
         )
     }
     
@@ -190,13 +192,31 @@ class CreateReceiptState: ObservableObject {
             self.isLoading = false
             self.isShowDialog = true
             if let receiptModel = receipt?.data {
-                self.receipt = receiptModel
+                let model = self.transfer(data: receiptModel)
+                self.receipt = model
                 self.messageType = .success(mess: "Kiểm tra Khuyến Mãi Thành Công")
                 self.receiptType = .calculatedPromotion
+                self.products = model.products
             } else {
                 self.messageType = .error(mess: receipt?.error_message ?? "Lỗi Kết Nối")
             }
         }
+    }
+    
+    func transfer(data: ReceiptData) -> ReceiptModel {
+        ReceiptModel(
+            cumulativeAmount: data.cumulativeAmount,
+            customer: data.customer,
+            deliveryDate: data.deliveryDate,
+            products: BaseProvider().transfer(datas: data.products),
+            discount: data.discount,
+            discountIds: data.discountIds,
+            note: data.note,
+            paidAmount: data.paidAmount,
+            totalAmount: data.totalAmount,
+            vehicle: data.vehicle,
+            warehouse: data.warehouse
+        )
     }
     
     func sell() {

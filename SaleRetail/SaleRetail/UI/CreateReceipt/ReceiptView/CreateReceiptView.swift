@@ -135,7 +135,7 @@ extension CreateReceiptView {
                         }
                     }
                     
-                    ProductView(state: .init(products: state.products)) { action in
+                    ProductView(state: .init(products: state.products, isDisable: state.receiptType == .calculatedPromotion)) { action in
                         switch action {
                         case .didRemoveItem(let index):
                             state.products.remove(at: index)
@@ -145,7 +145,6 @@ extension CreateReceiptView {
                             state.selectedUnit(index: index, unit: unit)
                         }
                     }
-                    .disabled(state.receiptType == .calculatedPromotion)
                 }
                 .padding(16)
             }
@@ -202,7 +201,7 @@ extension CreateReceiptView {
                                 })
                             }
                         
-                        TextFormView(title: "Xe", content: state.vehicle?.code ?? "")
+                        TextFormView(title: "Xe", content: state.vehicle?.licensePlate ?? "")
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 if state.receiptType == .edit {
@@ -253,6 +252,7 @@ extension CreateReceiptView {
             HStack(spacing: 32) {
                 ButtonView(title: "CHỈNH SỬA", isDisable: state.isDisableEditButton, onTap: {
                     state.receiptType = .edit
+                    state.products = state.products.filter { !$0.isPromotionProduct }
                })
                 
                 ButtonView(title: "TẠO ĐƠN", isDisable: state.isDisableCreateButton, onTap: {

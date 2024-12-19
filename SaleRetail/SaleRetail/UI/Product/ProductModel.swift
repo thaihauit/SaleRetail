@@ -8,10 +8,10 @@
 import Foundation
 
 struct Product: Codable {
-    let data: [ProductModel]
+    let data: [ProductData]
 }
 
-struct ProductModel: Codable, Identifiable {
+struct ProductData: Codable {
     let id: Int
     let unit: Int
     let smallUnit: Int
@@ -23,19 +23,22 @@ struct ProductModel: Codable, Identifiable {
     let quantity: Int
     let unitSelected: UnitModel?
     let amount: Int
-    
-    init(id: Int, unit: Int, smallUnit: Int, discount: Int, unitExchangeRate: Int, code: String, name: String, units: [UnitModel], quantity: Int, unitSelected: UnitModel? = nil, amount: Int) {
-        self.id = id
-        self.unit = unit
-        self.smallUnit = smallUnit
-        self.discount = discount
-        self.unitExchangeRate = unitExchangeRate
-        self.code = code
-        self.name = name
-        self.units = units
-        self.quantity = quantity
-        self.unitSelected = unitSelected
-        self.amount = amount
-    }
+    let isPromotionProduct: Bool
+}
+
+struct ProductModel: Identifiable, Codable {
+    var uuid = UUID()
+    let id: Int
+    let unit: Int
+    let smallUnit: Int
+    let discount: Int
+    let unitExchangeRate: Int
+    let code: String
+    let name: String
+    let units: [UnitModel]
+    let quantity: Int
+    let unitSelected: UnitModel?
+    let amount: Int
+    let isPromotionProduct: Bool
 }
 

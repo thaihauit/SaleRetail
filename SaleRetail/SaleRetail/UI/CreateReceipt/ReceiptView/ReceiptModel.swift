@@ -7,6 +7,20 @@
 
 import Foundation
 
+struct ReceiptData: Codable {
+    var cumulativeAmount: Int
+    var customer: CustomerModel
+    var deliveryDate: String
+    var products: [ProductData]
+    var discount: Int
+    var discountIds: [DiscountId]
+    var note: String
+    var paidAmount: Int
+    var totalAmount: Int
+    var vehicle: VehicleModel?
+    var warehouse: WarehouseModel
+}
+
 struct ReceiptModel: Codable {
     var cumulativeAmount: Int
     var customer: CustomerModel
@@ -27,7 +41,7 @@ struct DiscountId: Codable {
 }
 
 struct Receipt: Codable {
-    let data: ReceiptModel?
+    let data: ReceiptData?
     let error_message: String?
 }
 
