@@ -24,6 +24,7 @@ struct ProductData: Codable {
     let unitSelected: UnitModel?
     let amount: Int
     let isPromotionProduct: Bool
+    let promotionId: Int?
 }
 
 struct ProductModel: Identifiable, Codable {
@@ -40,5 +41,6 @@ struct ProductModel: Identifiable, Codable {
     let unitSelected: UnitModel?
     let amount: Int
     let isPromotionProduct: Bool
+    let promotionId: Int?
 }
 

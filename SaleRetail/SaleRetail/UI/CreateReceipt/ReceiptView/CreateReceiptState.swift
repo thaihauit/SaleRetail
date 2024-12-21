@@ -144,7 +144,8 @@ class CreateReceiptState: ObservableObject {
             quantity: value,
             unitSelected: product.unitSelected,
             amount: amount,
-            isPromotionProduct: product.isPromotionProduct
+            isPromotionProduct: product.isPromotionProduct,
+            promotionId: product.promotionId
         )
     }
     
@@ -166,7 +167,8 @@ class CreateReceiptState: ObservableObject {
             quantity: product.quantity,
             unitSelected: unit,
             amount: amount,
-            isPromotionProduct: product.isPromotionProduct
+            isPromotionProduct: product.isPromotionProduct,
+            promotionId: product.promotionId
         )
     }
     
