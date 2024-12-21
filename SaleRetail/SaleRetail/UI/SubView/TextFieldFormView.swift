@@ -27,11 +27,15 @@ struct TextFieldFormView: View {
             .frame(width: 92, height: 60, alignment: .leading)
             .onChange(of: text) { newValue in
                 if type == .number {
-                    if Int(newValue) != nil {
-                        onChangeValue(newValue)
+                    // Loại bỏ số 0 ở đầu chuỗi
+                    let trimmedValue = newValue.replacingOccurrences(of: "^0+", with: "", options: .regularExpression)
+                    
+                    if let intValue = Int(trimmedValue) {
+                        text = String(intValue) // Cập nhật textField
+                        onChangeValue(String(intValue))
                     } else {
-                        onChangeValue("")
                         text = ""
+                        onChangeValue("")
                     }
                 } else {
                     onChangeValue(newValue)

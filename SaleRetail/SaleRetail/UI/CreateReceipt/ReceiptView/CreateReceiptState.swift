@@ -133,6 +133,7 @@ class CreateReceiptState: ObservableObject {
         let price = product.unitSelected?.price ?? 0
         let amount = price * value - product.discount
         products[index] = ProductModel(
+            uuid: product.uuid,
             id: product.id,
             unit: product.unit,
             smallUnit: product.smallUnit,
@@ -156,6 +157,7 @@ class CreateReceiptState: ObservableObject {
         let amount = price * number - product.discount
         
         products[index] = ProductModel(
+            uuid: product.uuid,
             id: product.id,
             unit: product.unit,
             smallUnit: product.smallUnit,
