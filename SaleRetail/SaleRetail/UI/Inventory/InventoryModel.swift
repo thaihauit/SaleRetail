@@ -8,17 +8,17 @@
 import Foundation
 
 struct InventoryModel: Decodable {
-    let productCode: String
-    let productName: String
-    let productGroup: String
-    let providerName: String
-    let warehouseName: String
-    let unitName: String
-    let unit: Int
-    let unitTemporary: Int
-    let smallUnitTemporary: Int
-    let smallUnitName: String
-    let smallUnit: Int
+    @Default var productCode: String
+    @Default var productName: String
+    @Default var productGroup: String
+    @Default var providerName: String
+    @Default var warehouseName: String
+    @Default var unitName: String
+    @Default var unit: Int
+    @Default var unitTemporary: Int
+    @Default var smallUnitTemporary: Int
+    @Default var smallUnitName: String
+    @Default var smallUnit: Int
 }
 
 struct Inventory: Decodable {

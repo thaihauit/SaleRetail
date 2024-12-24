@@ -278,6 +278,4 @@ struct BaseProvider: Restable {
             }
         }
     }
-    
-    
 }

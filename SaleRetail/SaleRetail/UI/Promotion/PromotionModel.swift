@@ -8,14 +8,14 @@
 import Foundation
 
 struct PromotionModel: Decodable {
-    let requiredQuantity: Int
-    let requiredUnitName: String
-    let productCode: String
-    let productName: String
-    let promotionQuantity: Int
-    let promotionProductName: String
-    let promotionUnitName: String
-    let totalPromotionQuantity: Int
+    @Default var requiredQuantity: Int
+    @Default var requiredUnitName: String
+    @Default var productCode: String
+    @Default var productName: String
+    @Default var promotionQuantity: Int
+    @Default var promotionProductName: String
+    @Default var promotionUnitName: String
+    @Default var totalPromotionQuantity: Int
 }
 
 struct Promotion: Decodable {

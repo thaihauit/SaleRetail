@@ -62,19 +62,19 @@ extension ProductListView {
     func itemRow(item: ProductListModel, index: Int) -> some View {
         HStack(spacing: 0) {
             Group {
-                Text(item.code)
+                Text(item.code ?? "")
                     .frame(width: 100, alignment: .leading)
                    
-                Text(item.name)
+                Text(item.name ?? "")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.groupName)
+                Text(item.groupName ?? "")
                     .frame(width: 100, alignment: .leading)
                 
-                Text(item.unitName)
+                Text(item.unitName ?? "")
                     .frame(width: 100, alignment: .leading)
                 
-                Text(item.smallUnitName)
+                Text(item.smallUnitName ?? "")
                     .frame(width: 100, alignment: .leading)
                 
                 Text("\(item.unitExchangeRate)")
@@ -86,7 +86,7 @@ extension ProductListView {
                 Text("\(item.smallUnitSellPrice)")
                     .frame(width: 100, alignment: .leading)
                 
-                Text(item.minSellUnitName)
+                Text(item.minSellUnitName ?? "")
                     .frame(width: 100, alignment: .leading)
             }
             .foregroundColor(.black)

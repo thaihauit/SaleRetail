@@ -27,13 +27,14 @@ struct ProductList: Decodable {
 }
 
 struct ProductListModel: Decodable {
-    let unitName: String
-    let sellPrice: Int
-    let unitExchangeRate: Int
-    let smallUnitSellPrice: Int
-    let groupName: String
-    let code: String
-    let name: String
-    let smallUnitName: String
-    let minSellUnitName: String
+    @Default var unitName: String
+    @Default var sellPrice: Int
+    @Default var unitExchangeRate: Int
+    @Default var smallUnitSellPrice: Int
+    @Default var groupName: String
+    @Default var code: String
+    @Default var name: String
+    @Default var smallUnitName: String
+    @Default var minSellUnitName: String
 }
+

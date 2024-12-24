@@ -8,10 +8,10 @@
 import Foundation
 
 struct CumulativeModel: Decodable {
-    let fromDate: String
-    let toDate: String
-    let requiredAmount: Int
-    let discountAmount: Int
+    @Default var fromDate: String
+    @Default var toDate: String
+    @Default var requiredAmount: Int
+    @Default var discountAmount: Int
 }
 
 struct Cumulative: Decodable {

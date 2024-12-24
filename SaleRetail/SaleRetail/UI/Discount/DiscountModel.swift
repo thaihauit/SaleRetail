@@ -8,13 +8,13 @@
 import Foundation
 
 struct DiscountModel: Decodable {
-    let basedOnDisplay: String
-    let requiredAmount: Int
-    let fromDate: String
-    let toDate: String
-    let productName: String
-    let productGroupName: String?
-    let discountDisplay: String
+    @Default var basedOnDisplay: String
+    @Default var requiredAmount: Int
+    @Default var fromDate: String
+    @Default var toDate: String
+    @Default var productName: String
+    @Default var productGroupName: String
+    @Default var discountDisplay: String
 }
 
 struct Discount: Decodable {

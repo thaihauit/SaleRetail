@@ -10,7 +10,7 @@ import Foundation
 struct Login: Decodable {
     let ok: Bool
     let data: Data?
-    let error_message: String?
+    @Default var  error_message: String
     
     struct Data: Decodable {
         let token: String
