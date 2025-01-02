@@ -39,7 +39,7 @@ extension LoginView {
             
             Group {
                 TextFieldFormView2(title: "Tài Khoản", text: $state.userName)
-                TextFieldFormView2(title: "Mật Khẩu", text: $state.password)
+                TextFieldFormView3(title: "Mật Khẩu", text: $state.password)
                 
                 ButtonView(title: "Đăng Nhập") {
                     action(.didTapItem(userName: state.userName, password: state.password))

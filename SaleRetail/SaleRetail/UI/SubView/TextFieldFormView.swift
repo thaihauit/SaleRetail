@@ -48,6 +48,45 @@ struct TextFieldFormView: View {
     }
 }
 
+
+struct TextFieldFormView3: View {
+    let title: String
+    @Binding var text: String
+    
+    init(title: String, text: Binding<String>) {
+        self.title = title
+        self._text = text
+    }
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Text(title)
+                .padding(.horizontal, 4)
+                .font(.system(size: 12, weight: .bold))
+                .foregroundColor(.blue)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            SecureField("", text: $text)
+                .padding(.horizontal, 16)
+                .frame(height: 60)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.system(size: 14))
+                .foregroundColor(.black)
+                .background(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color.blue, lineWidth: 1)
+                )
+                .submitLabel(.done)
+                .onSubmit {
+                    hideKeyboard()
+                }
+                .background(Color.white)
+        }
+            
+    }
+}
+
 struct TextFieldFormView2: View {
     let title: String
     @Binding var text: String

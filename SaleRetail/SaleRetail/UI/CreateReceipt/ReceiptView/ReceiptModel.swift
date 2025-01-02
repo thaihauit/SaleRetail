@@ -38,10 +38,10 @@ struct ReceiptModel: Codable {
 }
 
 struct SalePromotion: Codable {
-    @Default var Promotion: Int
-    @Default var Product: Int
-    @Default var Provider: Int
-    @Default var ProductGroup: [Int]
+    @Default var promotion: Int
+    @Default var product: Int
+    @Default var provider: Int
+    @Default var productGroup: [Int]
 }
 
 struct DiscountId: Codable {
