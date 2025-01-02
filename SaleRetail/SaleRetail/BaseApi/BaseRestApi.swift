@@ -72,5 +72,3 @@ extension Array: DefaultValue where Element: DefaultValue {
 extension Dictionary: DefaultValue where Key: DefaultValue, Value: DefaultValue {
     static var defaultValue: [Key: Value] { [:] }
 }
-
-

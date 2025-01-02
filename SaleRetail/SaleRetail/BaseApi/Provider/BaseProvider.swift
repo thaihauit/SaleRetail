@@ -140,7 +140,7 @@ struct BaseProvider: Restable {
                unitSelected: $0.unitSelected,
                amount: $0.amount,
                isPromotionProduct: $0.isPromotionProduct,
-               promotionId: $0.promotionId
+               promotions: $0.promotions
            )
        }
     }

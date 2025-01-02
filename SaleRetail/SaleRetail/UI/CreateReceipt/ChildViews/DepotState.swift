@@ -20,7 +20,7 @@ struct Warehouse: Codable {
 }
 
 struct WarehouseModel: Codable {
-    let id: Int
-    let code: String
-    let name: String
+    @Default var id: Int
+    @Default var code: String
+    @Default var name: String
 }
