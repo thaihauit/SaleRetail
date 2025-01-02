@@ -70,7 +70,7 @@ extension PromotionView {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Nhà Cung Cấp")
-                    .frame(width: 100, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Đơn Vị YC")
                     .frame(width: 100, alignment: .leading)

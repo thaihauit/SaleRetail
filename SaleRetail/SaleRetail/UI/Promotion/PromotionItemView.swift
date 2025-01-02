@@ -22,7 +22,7 @@ struct PromotionItemView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(item.providerName)
-                    .frame(width: 100, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(item.requiredUnitName)
                     .frame(width: 100, alignment: .leading)
