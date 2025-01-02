@@ -59,43 +59,6 @@ extension PromotionView {
 }
 
 extension PromotionView {
-    func itemRow(item: PromotionModel, index: Int) -> some View {
-        HStack(spacing: 0) {
-            Group {
-                Text(item.productCode)
-                    .frame(width: 100, alignment: .leading)
-                   
-                Text(item.productName)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text(item.providerName)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text(item.requiredUnitName)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.requiredQuantity)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text(item.promotionProductName)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text(item.promotionUnitName)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.promotionQuantity)")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.totalPromotionQuantity)")
-                    .frame(width: 100, alignment: .leading)
-            }
-            .foregroundColor(.black)
-            .fixedSize(horizontal: false, vertical: true)
-            .font(.system(size: 12))
-            .frame(height: 60)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
     
     var headerView: some View {
         HStack(spacing: 0) {
@@ -114,18 +77,6 @@ extension PromotionView {
                 
                 Text("SL Yêu Cầu")
                     .frame(width: 100, alignment: .leading)
-                
-                Text("SP Khuyến Mãi")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("ĐV-SP Khuyến Mãi")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("SL Khuyến Mãi")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("Tổng SL Hàng KM Còn Lại")
-                    .frame(width: 100, alignment: .leading)
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
@@ -136,7 +87,7 @@ extension PromotionView {
     var scrollView: some View {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
-                itemRow(item: item, index: index)
+                PromotionItemView(item: item)
             }
         }
         .listStyle(PlainListStyle())

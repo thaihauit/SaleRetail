@@ -12,7 +12,6 @@ class PromotionState: ObservableObject {
     
     @Published var items: [PromotionModel] = []
     @Published var isLoading = false
-    
     init() {}
     
     func fetchItemList() {

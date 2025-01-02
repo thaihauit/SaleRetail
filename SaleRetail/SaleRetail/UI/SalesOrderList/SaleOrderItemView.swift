@@ -24,7 +24,7 @@ struct SaleOrderItemView: View {
                 Text(item.deliveryDate)
                     .frame(width: 150, alignment: .leading)
                 
-                Text(item.vehicleLicensePlate ?? "")
+                Text(item.vehicleLicensePlate)
                     .frame(width: 100, alignment: .leading)
                 
                 Text(item.note)
