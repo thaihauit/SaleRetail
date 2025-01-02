@@ -226,10 +226,10 @@ extension CreateReceiptView {
                     }
                     
                     HStack(spacing: 8) {
-                        TextFormView(title: "Thành Tiền", content: "\(state.receipt?.totalAmount ?? 0)")
-                        TextFormView(title: "Chiết Khấu", content: "\(state.receipt?.discount ?? 0)")
-                        TextFormView(title: "CK Tích Lũy", content: "\(state.receipt?.cumulativeAmount ?? 0)")
-                        TextFormView(title: "Phải Thu", content: "\(state.receipt?.paidAmount ?? 0)")
+                        TextFormView(title: "Thành Tiền", content: state.totalAmount)
+                        TextFormView(title: "Chiết Khấu", content: state.discount)
+                        TextFormView(title: "CK Tích Lũy", content: state.cumulativeAmount)
+                        TextFormView(title: "Phải Thu", content: state.paidAmount)
                     }
                 }
                 .padding(16)

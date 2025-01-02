@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct InventoryModel: Decodable {
+struct InventoryModel: Codable {
     @Default var productCode: String
     @Default var productName: String
     @Default var productGroup: String
@@ -21,6 +21,6 @@ struct InventoryModel: Decodable {
     @Default var smallUnit: Int
 }
 
-struct Inventory: Decodable {
+struct Inventory: Codable {
     let data: [InventoryModel]
 }

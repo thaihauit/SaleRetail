@@ -63,6 +63,22 @@ class CreateReceiptState: ObservableObject {
     @Published var deliverDate = Date()
     @Published var isShowDatePicker = false
     
+    var totalAmount: String {
+        receipt?.totalAmount.commaString ?? ""
+    }
+    
+    var discount: String {
+        receipt?.discount.commaString ?? ""
+    }
+    
+    var paidAmount: String {
+        receipt?.paidAmount.commaString ?? ""
+    }
+    
+    var cumulativeAmount: String {
+        receipt?.cumulativeAmount.commaString ?? ""
+    }
+    
     var isDisableCreateButton: Bool {
         receipt == nil || receiptType != .calculatedPromotion
     }

@@ -22,11 +22,11 @@ class ProductListState: ObservableObject {
     }
 }
 
-struct ProductList: Decodable {
+struct ProductList: Codable {
     let data: [ProductListModel]
 }
 
-struct ProductListModel: Decodable {
+struct ProductListModel: Codable {
     @Default var unitName: String
     @Default var sellPrice: Int
     @Default var unitExchangeRate: Int

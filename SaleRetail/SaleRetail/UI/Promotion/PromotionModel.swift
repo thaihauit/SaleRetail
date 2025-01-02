@@ -7,17 +7,18 @@
 
 import Foundation
 
-struct PromotionModel: Decodable {
+struct PromotionModel: Codable {
     @Default var requiredQuantity: Int
     @Default var requiredUnitName: String
     @Default var productCode: String
     @Default var productName: String
+    @Default var providerName: String
     @Default var promotionQuantity: Int
     @Default var promotionProductName: String
     @Default var promotionUnitName: String
     @Default var totalPromotionQuantity: Int
 }
 
-struct Promotion: Decodable {
+struct Promotion: Codable {
     let data: [PromotionModel]
 }

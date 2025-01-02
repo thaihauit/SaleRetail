@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Login: Decodable {
+struct Login: Codable {
     let ok: Bool
     let data: Data?
     @Default var  error_message: String
     
-    struct Data: Decodable {
+    struct Data: Codable {
         let token: String
         let refToken: String
         let expiredTime: String

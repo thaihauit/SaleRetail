@@ -36,3 +36,11 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 }
+
+extension Int {
+    var commaString: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
+    }
+}

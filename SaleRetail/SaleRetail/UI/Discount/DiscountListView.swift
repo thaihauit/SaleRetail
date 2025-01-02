@@ -63,30 +63,32 @@ extension DiscountListView {
         HStack(spacing: 0) {
             Group {
                 
-                Text(item.productName)
+                Text(item.code)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(item.productGroupName ?? "")
+                Text(item.name)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text(item.providerName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("\(item.requiredAmount)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
                 
                 Text(item.basedOnDisplay)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
                 
                 Text(item.fromDate)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
                 
                 Text(item.toDate)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
                 
                 Text("\(item.discountDisplay)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
 
             }
             .foregroundColor(.black)
-            .padding(.leading, 4)
             .fixedSize(horizontal: false, vertical: true)
             .font(.system(size: 12))
             .frame(height: 60)
@@ -98,29 +100,33 @@ extension DiscountListView {
         HStack(spacing: 0) {
             Group {
                 
-                Text("Sản Phẩm")
+                Text("Mã")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Nhóm Sản Phẩm")
+                Text("Tên")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Tổng Tiền/ SL YC")
+                Text("Nhà Cung Cấp")
                     .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text("Tổng Tiền/SLYC")
+                    .frame(width: 100, alignment: .leading)
                 
                 Text("Loại YC")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
                 
                 Text("Từ Ngày")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
                 
                 Text("Đến Ngày")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
                 
                 Text("Chiết Khấu")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 100, alignment: .leading)
             }
             .foregroundColor(.white)
             .font(.system(size: 12, weight: .semibold))
+            .fixedSize(horizontal: false, vertical: true)
             .frame(height: 60)
         }
     }

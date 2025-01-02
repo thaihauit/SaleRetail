@@ -13,8 +13,7 @@ class PromotionState: ObservableObject {
     @Published var items: [PromotionModel] = []
     @Published var isLoading = false
     
-    init() {
-    }
+    init() {}
     
     func fetchItemList() {
         isLoading = true

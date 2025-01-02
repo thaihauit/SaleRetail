@@ -20,7 +20,7 @@ struct Unit: Codable {
 }
 
 struct UnitModel: Codable {
-    let id: Int
-    let price: Int
-    let name: String
+    @Default var id: Int
+    @Default var price: Int
+    @Default var name: String
 }

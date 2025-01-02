@@ -19,7 +19,7 @@ struct Vehice: Codable {
 }
 
 struct VehicleModel: Codable {
-    let id: Int
-    let licensePlate: String
-    let code: String
+    @Default var id: Int
+    @Default var licensePlate: String
+    @Default var code: String
 }

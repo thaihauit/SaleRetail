@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct SalesOrder: Decodable {
+struct SalesOrder: Codable {
     let ok: Bool
     let data: [SalesOrderModel]
 }
 
-struct SalesOrderModel: Decodable {
+struct SalesOrderModel: Codable {
     @Default var  invoiceNo: String
     @Default var  deliveryDate: String
     @Default var  customerName: String
@@ -26,7 +26,7 @@ struct SalesOrderModel: Decodable {
     let products: [Product]
     @Default var stockExported: Bool
     
-    struct Product: Decodable {
+    struct Product: Codable {
         @Default var  code: String
         @Default var  name: String
         @Default var  quantity: Int

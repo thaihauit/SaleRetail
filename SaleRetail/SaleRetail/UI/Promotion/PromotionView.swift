@@ -68,6 +68,9 @@ extension PromotionView {
                 Text(item.productName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
+                Text(item.providerName)
+                    .frame(width: 100, alignment: .leading)
+                
                 Text(item.requiredUnitName)
                     .frame(width: 100, alignment: .leading)
                 
@@ -102,6 +105,9 @@ extension PromotionView {
                    
                 Text("Tên")
                     .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text("Nhà Cung Cấp")
+                    .frame(width: 100, alignment: .leading)
                 
                 Text("Đơn Vị YC")
                     .frame(width: 100, alignment: .leading)

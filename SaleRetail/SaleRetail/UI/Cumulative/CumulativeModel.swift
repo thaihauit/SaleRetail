@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct CumulativeModel: Decodable {
+struct CumulativeModel: Codable {
     @Default var fromDate: String
     @Default var toDate: String
     @Default var requiredAmount: Int
     @Default var discountAmount: Int
 }
 
-struct Cumulative: Decodable {
+struct Cumulative: Codable {
     let data: [CumulativeModel]
 }
 

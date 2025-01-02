@@ -22,22 +22,22 @@ struct ReceiptData: Codable {
 }
 
 struct ReceiptModel: Codable {
-    var cumulativeAmount: Int
+    @Default var cumulativeAmount: Int
     var customer: CustomerModel
-    var deliveryDate: String
+    @Default var deliveryDate: String
     var products: [ProductModel]
-    var discount: Int
+    @Default var discount: Int
     var discountIds: [DiscountId]
-    var note: String
-    var paidAmount: Int
-    var totalAmount: Int
+    @Default var note: String
+    @Default var paidAmount: Int
+    @Default var totalAmount: Int
     var vehicle: VehicleModel?
     var warehouse: WarehouseModel
 }
 
 struct DiscountId: Codable {
-    let discountId: Int
-    let amount: Int
+    @Default var discountId: Int
+    @Default var amount: Int
 }
 
 struct Receipt: Codable {
@@ -47,5 +47,5 @@ struct Receipt: Codable {
 
 struct SellModel: Codable {
     let ok: Bool
-    let error_message: String?
+    @Default var error_message: String
 }

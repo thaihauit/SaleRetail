@@ -42,6 +42,13 @@ struct Default<T: Decodable & DefaultValue>: Decodable {
     }
 }
 
+extension Default: Encodable where T: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(wrappedValue)
+    }
+}
+
 protocol DefaultValue {
     static var defaultValue: Self { get }
 }
@@ -58,13 +65,12 @@ extension Bool: DefaultValue {
     static var defaultValue: Bool { false }
 }
 
-extension KeyedDecodingContainer {
-    func decode<T>(_ type: Default<T>.Type, forKey key: K) throws -> Default<T> where T: Decodable {
-        return (try? decodeIfPresent(type, forKey: key)) ?? Default(wrappedValue: T.defaultValue)
-    }
-}
-
 extension Array: DefaultValue where Element: DefaultValue {
     static var defaultValue: [Element] { [] }
 }
+
+extension Dictionary: DefaultValue where Key: DefaultValue, Value: DefaultValue {
+    static var defaultValue: [Key: Value] { [:] }
+}
+
 
