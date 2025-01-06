@@ -8,12 +8,17 @@
 import Foundation
 
 struct PromotionModel: Codable {
-    @Default var requiredQuantity: Int
-    @Default var requiredUnitName: String
-    @Default var code: String
-    @Default var name: String
-    @Default var providerName: String
-    let promotionProducts: [Product]
+    
+    @Default var  headerText: String
+    @Default var  requiredUnitName: String
+    @Default var  fromDate: String
+    @Default var  toDate: String
+    let promotionDetails: [PromotionDetail]
+    
+    struct PromotionDetail: Codable {
+        @Default var requiredQuantity: Int
+        let promotionProducts: [Product]
+    }
     
     struct Product: Codable {
         @Default var  productCode: String

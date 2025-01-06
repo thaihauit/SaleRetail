@@ -9,30 +9,15 @@ import SwiftUI
 
 struct PromotionItemView: View {
     
-    let item: PromotionModel
+    let item: PromotionModel.PromotionDetail
     @State var isTapItem = false
     
     var body: some View {
-        HStack(spacing: 0) {
-            Group {
-                Text(item.code)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text(item.name)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text(item.providerName)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text(item.requiredUnitName)
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("\(item.requiredQuantity)")
-                    .frame(width: 100, alignment: .leading)
-            }
+        Text("--- SỐ LƯỢNG YÊU CẦU ---     \(item.requiredQuantity)")
             .foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
-            .font(.system(size: 12))
+            .font(.system(size: 14))
+            .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: 60)
             .contentShape(Rectangle())
             .onTapGesture {
@@ -43,6 +28,5 @@ struct PromotionItemView: View {
                     PromotionListItemView(state: .init(products: item.promotionProducts))
                 }
             }
-        }
     }
 }

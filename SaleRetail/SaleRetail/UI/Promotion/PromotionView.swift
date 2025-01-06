@@ -42,13 +42,8 @@ struct PromotionView: View {
     }
     
     var contentView: some View {
-        VStack(spacing: 0) {
-            headerView
-                .padding(.horizontal, 16)
-                .background(Color.blue)
-            
-            scrollView
-        }
+        scrollView
+            .padding(.horizontal, 16)
     }
 }
 
@@ -60,34 +55,24 @@ extension PromotionView {
 
 extension PromotionView {
     
-    var headerView: some View {
-        HStack(spacing: 0) {
-            Group {
-                Text("Mã")
-                    .frame(width: 100, alignment: .leading)
-                   
-                Text("Tên")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("Nhà Cung Cấp")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("Đơn Vị YC")
-                    .frame(width: 100, alignment: .leading)
-                
-                Text("SL Yêu Cầu")
-                    .frame(width: 100, alignment: .leading)
-            }
-            .foregroundColor(.white)
-            .font(.system(size: 12, weight: .semibold))
-            .frame(height: 60)
-        }
-    }
-    
     var scrollView: some View {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
-                PromotionItemView(item: item)
+                VStack(spacing: 0) {
+                    Text(item.headerText)
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(.white)
+                        .font(.system(size: 14, weight: .semibold))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .background(Color.blue)
+                        
+                    
+                    ForEach(Array(item.promotionDetails.enumerated()), id: \.offset) { (index, row) in
+                        PromotionItemView(item: row)
+                    }
+                    .padding(.horizontal, 16)
+                }
             }
         }
         .listStyle(PlainListStyle())
