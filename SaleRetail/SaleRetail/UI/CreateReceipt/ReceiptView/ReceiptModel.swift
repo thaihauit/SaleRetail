@@ -19,7 +19,7 @@ struct ReceiptData: Codable {
     var totalAmount: Int
     var vehicle: VehicleModel?
     var warehouse: WarehouseModel
-    var promotions: [SalePromotion]?
+    var promotions: [Int]
 }
 
 struct ReceiptModel: Codable {
@@ -34,14 +34,7 @@ struct ReceiptModel: Codable {
     @Default var totalAmount: Int
     var vehicle: VehicleModel?
     var warehouse: WarehouseModel
-    var promotions: [SalePromotion]?
-}
-
-struct SalePromotion: Codable {
-    @Default var promotion: Int
-    @Default var product: Int
-    @Default var provider: Int
-    @Default var productGroup: [Int]
+    var promotions: [Int]
 }
 
 struct DiscountId: Codable {

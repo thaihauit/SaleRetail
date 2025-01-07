@@ -126,7 +126,8 @@ class CreateReceiptState: ObservableObject {
             paidAmount: 0,
             totalAmount: 0,
             vehicle: vehicle,
-            warehouse: depot
+            warehouse: depot,
+            promotions: []
         )
     }
     

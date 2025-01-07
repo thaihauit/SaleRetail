@@ -43,7 +43,7 @@ struct PromotionView: View {
     
     var contentView: some View {
         scrollView
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 8)
     }
 }
 
@@ -58,20 +58,22 @@ extension PromotionView {
     var scrollView: some View {
         List {
             ForEach(Array(state.items.enumerated()), id: \.offset) { (index, item) in
-                VStack(spacing: 0) {
+                VStack(spacing: 16) {
                     Text(item.headerText)
-                        .padding(.vertical, 16)
+                        .padding(16)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.white)
                         .font(.system(size: 14, weight: .semibold))
+                        .lineSpacing(20)
                         .fixedSize(horizontal: false, vertical: true)
                         .background(Color.blue)
                         
                     
                     ForEach(Array(item.promotionDetails.enumerated()), id: \.offset) { (index, row) in
                         PromotionItemView(item: row)
+                            .padding(.horizontal, 16)
                     }
-                    .padding(.horizontal, 16)
+                    
                 }
             }
         }
